@@ -15,8 +15,8 @@
     "classnames": "2.2.6",
     "draft-js": "0.11.7",
     "immutable": "3.8.2",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   },
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
