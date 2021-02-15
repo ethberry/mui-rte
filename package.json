@@ -62,11 +62,11 @@
     "rollup-plugin-typescript": "1.0.1",
     "rollup-plugin-uglify": "6.0.4",
     "sinon": "7.5.0",
-    "source-map-loader": "0.2.4",
+    "source-map-loader": "2.0.1",
     "ts-node": "9.1.1",
     "typescript": "4.1.5",
-    "webpack": "4.46.0",
-    "webpack-cli": "3.3.12",
+    "webpack": "5.21.2",
+    "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2"
   },
   "files": [
@@ -102,7 +102,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "lint": "eslint . --fix",
-    "serve": "cross-env webpack-dev-server --mode development",
+    "serve": "cross-env webpack serve --mode development",
     "test": "mocha -r ts-node/register test/setup.ts test/*.test.*",
     "watch": "cross-env NODE_ENV=development rollup -c -w"
   },

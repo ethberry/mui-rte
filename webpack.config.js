@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require("path");
-const webpack = require("webpack");
 
 
 module.exports = {
@@ -18,13 +17,10 @@ module.exports = {
     filename: "bundle.js",
     path: path.join(__dirname, "examples"),
   },
-
   devtool: "source-map",
-
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
-
   module: {
     rules: [
       {
@@ -38,13 +34,10 @@ module.exports = {
       },
     ],
   },
-
   optimization: {
     minimize: process.env.NODE_ENV === "production",
+    moduleIds: "named",
   },
-
-  plugins: [new webpack.NamedModulesPlugin()],
-
   devServer: {
     hot: true,
     contentBase: path.join(__dirname, "examples"),
