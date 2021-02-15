@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import classNames from "classnames";
+import clsx from "clsx";
 import {ContentBlock, ContentState} from "draft-js";
 
 import {useStyles} from "./styles";
@@ -23,7 +23,7 @@ export const Media: FC<IMediaProps> = props => {
   const htmlTag = () => {
     const componentProps = {
       src: url,
-      className: classNames(classes.root, {
+      className: clsx(classes.root, {
         [classes.editable]: !readOnly,
         [classes.focused]: !readOnly && focusKey === props.block.getKey(),
       }),
@@ -48,7 +48,7 @@ export const Media: FC<IMediaProps> = props => {
 
   return (
     <div
-      className={classNames({
+      className={clsx({
         [classes.centered]: alignment === "center",
         [classes.leftAligned]: alignment === "left",
         [classes.rightAligned]: alignment === "right",

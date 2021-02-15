@@ -10,9 +10,7 @@
     }
   ],
   "dependencies": {
-    "@types/classnames": "2.2.11",
-    "@types/draft-js": "0.10.44",
-    "classnames": "2.2.6",
+    "clsx": "1.1.1",
     "draft-js": "0.11.7",
     "immutable": "3.8.2",
     "react": "17.0.1",
@@ -24,11 +22,10 @@
     "@material-ui/icons": "4.11.2",
     "@trejgun/cross-env": "0.0.1",
     "@trejgun/eslint-config": "0.0.16",
-    "@types/chai": "4.2.15",
+    "@types/draft-js": "0.10.44",
     "@types/enzyme": "3.10.8",
     "@types/enzyme-adapter-react-16": "1.0.6",
     "@types/jest": "26.0.20",
-    "@types/mocha": "5.2.7",
     "@types/node": "14.14.28",
     "@types/react": "17.0.2",
     "@types/react-dom": "17.0.1",

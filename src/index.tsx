@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import Immutable from "immutable";
-import classNames from "classnames";
+import clsx from "clsx";
 import {Paper} from "@material-ui/core";
 import {
   AtomicBlockUtils,
@@ -976,7 +976,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
     if (!contentState.hasText()) {
       placeholder = (
         <div
-          className={classNames(classes.editorContainer, classes.placeHolder, {
+          className={clsx(classes.editorContainer, classes.placeHolder, {
             [classes.error]: props.error,
           })}
           tabIndex={0}
@@ -1040,7 +1040,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
     <div id={`${editorId}-root`} className={classes.root}>
       <div
         id={`${editorId}-container`}
-        className={classNames(classes.container, {
+        className={clsx(classes.container, {
           [classes.inheritFontSize]: props.inheritFontSize,
         })}
       >
@@ -1089,7 +1089,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
         <div id={`${editorId}-editor`} className={classes.editor}>
           <div
             id={`${editorId}-editor-container`}
-            className={classNames(className, classes.editorContainer, {
+            className={clsx(className, classes.editorContainer, {
               [classes.editorReadOnly]: !editable,
               [classes.error]: props.error,
             })}
