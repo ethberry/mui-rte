@@ -1,10 +1,10 @@
 import React, {FC} from "react";
-import {createMuiTheme, Theme, MuiThemeProvider} from "@material-ui/core";
+import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
-export const defaultTheme: Theme = createMuiTheme({
+export const defaultTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#000000",
@@ -52,12 +52,10 @@ const save = (data: string) => {
   console.log(data);
 };
 
-const Theme: FC = () => {
+export const Theme: FC = () => {
   return (
     <MuiThemeProvider theme={defaultTheme}>
       <MUIRichTextEditor label="Type something here..." onSave={save} />
     </MuiThemeProvider>
   );
 };
-
-export default Theme;

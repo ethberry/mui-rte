@@ -23,7 +23,7 @@ export type TSelectionInfo = {
 /**
  * Get the current selection details
  */
-const getSelectionInfo = (editorState: EditorState): TSelectionInfo => {
+export const getSelectionInfo = (editorState: EditorState): TSelectionInfo => {
   const selection = editorState.getSelection();
   const startOffset = selection.getStartOffset();
   const currentContent = editorState.getCurrentContent();
@@ -47,7 +47,7 @@ const getSelectionInfo = (editorState: EditorState): TSelectionInfo => {
 /**
  * Remove a block from the ContentState
  */
-const removeBlockFromMap = (editorState: EditorState, block: ContentBlock): ContentState => {
+export const removeBlockFromMap = (editorState: EditorState, block: ContentBlock): ContentState => {
   const contentState = editorState.getCurrentContent();
   const removeBlockContentState = Modifier.removeRange(
     contentState,
@@ -66,7 +66,7 @@ const removeBlockFromMap = (editorState: EditorState, block: ContentBlock): Cont
   }) as ContentState;
 };
 
-const atomicBlockExists = (name: string, controls?: TCustomControl[]): TCustomControl | undefined => {
+export const atomicBlockExists = (name: string, controls?: TCustomControl[]): TCustomControl | undefined => {
   if (!controls) {
     return;
   }
@@ -75,14 +75,14 @@ const atomicBlockExists = (name: string, controls?: TCustomControl[]): TCustomCo
   );
 };
 
-const isGreaterThan = (value: number, maxValue?: number): boolean => {
+export const isGreaterThan = (value: number, maxValue?: number): boolean => {
   if (!maxValue) {
     return false;
   }
   return value > maxValue;
 };
 
-const clearInlineStyles = (editorState: EditorState, customStyles?: DraftStyleMap): ContentState => {
+export const clearInlineStyles = (editorState: EditorState, customStyles?: DraftStyleMap): ContentState => {
   let styles = ["BOLD", "ITALIC", "UNDERLINE"];
   if (customStyles) {
     styles = styles.concat(Object.getOwnPropertyNames(customStyles));
@@ -94,28 +94,18 @@ const clearInlineStyles = (editorState: EditorState, customStyles?: DraftStyleMa
   );
 };
 
-const getEditorBounds = (editor: HTMLElement): {selectionRect: any; editorRect: any} => {
+export const getEditorBounds = (editor: HTMLElement): {selectionRect: any; editorRect: any} => {
   return {
     selectionRect: getVisibleSelectionRect(window),
     editorRect: editor.getBoundingClientRect(),
   };
 };
 
-const getLineNumber = (editorState: EditorState): number => {
+export const getLineNumber = (editorState: EditorState): number => {
   const currentBlockKey = editorState.getSelection().getStartKey();
   return editorState
     .getCurrentContent()
     .getBlockMap()
     .keySeq()
     .findIndex(k => k === currentBlockKey);
-};
-
-export {
-  getSelectionInfo,
-  removeBlockFromMap,
-  atomicBlockExists,
-  isGreaterThan,
-  clearInlineStyles,
-  getEditorBounds,
-  getLineNumber,
 };

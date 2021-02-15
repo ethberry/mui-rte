@@ -3,7 +3,7 @@ import {EditorState} from "draft-js";
 import {Avatar, Button, Chip} from "@material-ui/core";
 import {InvertColors} from "@material-ui/icons";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 import {TToolbarComponentProps} from "../../src/components/toolbar";
 
 
@@ -55,7 +55,7 @@ const MyBlockComponent: FC<TToolbarComponentProps> = props => {
   );
 };
 
-const CustomControls: FC = () => {
+export const CustomControls: FC = () => {
   return (
     <MUIRichTextEditor
       label="Type something here..."
@@ -97,5 +97,3 @@ const CustomControls: FC = () => {
     />
   );
 };
-
-export default CustomControls;

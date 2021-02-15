@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {EditorState, convertToRaw} from "draft-js";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
 const save = (data: string) => {
@@ -32,7 +32,7 @@ const blur = () => {
   console.log("Blur, focus lost on MUIRichTextEditor");
 };
 
-const Events: FC = () => {
+export const Events: FC = () => {
   return (
     <MUIRichTextEditor
       label="Open the console to see the event callback as you type..."
@@ -43,5 +43,3 @@ const Events: FC = () => {
     />
   );
 };
-
-export default Events;

@@ -1,9 +1,8 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {Button, Grid, IconButton, makeStyles, Popover, TextField} from "@material-ui/core";
 import {AttachFile, Backup, Close, Done} from "@material-ui/icons";
 
-import MUIRichTextEditor from "../..";
-import {TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
 
 
 interface IUploadImagePopoverProps {
@@ -61,7 +60,7 @@ const uploadImage = async (file: File) => {
   };
 };
 
-const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = props => {
+const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
   const classes = cardPopverStyles(props);
   const [state, setState] = useState<TUploadImagePopoverState>({
     anchor: null,
@@ -150,7 +149,7 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = props =>
   );
 };
 
-const AsyncImageUpload: FunctionComponent = () => {
+export const AsyncImageUpload: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
 
@@ -196,5 +195,3 @@ const AsyncImageUpload: FunctionComponent = () => {
     </>
   );
 };
-
-export default AsyncImageUpload;

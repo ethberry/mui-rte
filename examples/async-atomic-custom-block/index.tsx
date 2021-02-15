@@ -1,42 +1,10 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from "react";
-import {Button, Card, CardContent, Grid, makeStyles, Popover, TextField, Typography} from "@material-ui/core";
-import {Close, Done, Update} from "@material-ui/icons";
+import React, {FC, useRef, useState} from "react";
+import {Update} from "@material-ui/icons";
 
-import MUIRichTextEditor from "../..";
-import {TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {MyCard} from "./my-card";
+import {MyCardPopover} from "./my-card-popover";
 
-
-type TMyCardData = {
-  searchTerm?: string;
-};
-
-type TAnchor = HTMLElement | null;
-
-interface IMyCardPopoverProps {
-  anchor: TAnchor;
-  onSubmit: (data: TMyCardData, insert: boolean) => void;
-}
-
-type TMyCardPopoverState = {
-  anchor: TAnchor;
-  isCancelled: boolean;
-};
-
-const cardPopverStyles = makeStyles({
-  root: {
-    padding: 10,
-    maxWidth: 350,
-  },
-  textField: {
-    width: "100%",
-  },
-});
-
-const cardStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-});
 
 const getDataFromCloudService = (searchTerm: string): Promise<any> => {
   return new Promise(resolve => {
@@ -62,111 +30,7 @@ const downloadData = async (searchTerm: string): Promise<{data: any}> => {
   };
 };
 
-const MyCard: FunctionComponent<any> = props => {
-  const {blockProps} = props;
-  const classes = cardStyles(props);
-
-  return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {blockProps.title}
-        </Typography>
-        <Typography gutterBottom component="h2">
-          {blockProps.subtitle}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {blockProps.text}
-        </Typography>
-      </CardContent>
-    </Card>
-  );
-};
-
-const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
-  const classes = cardPopverStyles(props);
-  const [state, setState] = useState<TMyCardPopoverState>({
-    anchor: null,
-    isCancelled: false,
-  });
-  const [data, setData] = useState<TMyCardData>({});
-
-  useEffect(() => {
-    setState({
-      anchor: props.anchor,
-      isCancelled: false,
-    });
-  }, [props.anchor]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const textFieldProps = {
-    className: classes.textField,
-    onChange: handleChange,
-    InputLabelProps: {
-      shrink: true,
-    },
-  };
-
-  return (
-    <Popover
-      anchorEl={state.anchor}
-      open={state.anchor !== null}
-      onExited={() => {
-        props.onSubmit(data, !state.isCancelled);
-      }}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-    >
-      <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={12}>
-          <TextField
-            {...textFieldProps}
-            autoFocus={true}
-            label="Search term"
-            name="searchTerm"
-            placeholder="Type anything here..."
-          />
-        </Grid>
-        <Grid item container xs={12} justify="flex-end">
-          <Button
-            onClick={() => {
-              setState({
-                anchor: null,
-                isCancelled: true,
-              });
-            }}
-          >
-            <Close />
-          </Button>
-          <Button
-            onClick={() => {
-              setState({
-                anchor: null,
-                isCancelled: false,
-              });
-            }}
-          >
-            <Done />
-          </Button>
-        </Grid>
-      </Grid>
-    </Popover>
-  );
-};
-
-export const AsyncAtomicCustomBlock: FunctionComponent = () => {
+export const AsyncAtomicCustomBlock: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   return (
@@ -203,5 +67,3 @@ export const AsyncAtomicCustomBlock: FunctionComponent = () => {
     </>
   );
 };
-
-export default AsyncAtomicCustomBlock;

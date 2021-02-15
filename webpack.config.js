@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require("path");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
 
 module.exports = {
@@ -24,8 +25,37 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
+        test: /\.[tj]sx?$/,
+        exclude: [/node_modules/],
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              babelrc: false,
+              sourceType: "unambiguous",
+              presets: [
+                [
+                  "@babel/env",
+                  {
+                    modules: false,
+                    targets: {
+                      browsers: ["> 1%"],
+                    },
+                  },
+                ],
+                [
+                  "@babel/typescript",
+                  {
+                    isTSX: true,
+                    allExtensions: true,
+                  },
+                ],
+                "@babel/react",
+              ],
+              plugins: ["optimize-clsx"],
+            },
+          },
+        ],
       },
       {
         enforce: "pre",
@@ -38,6 +68,7 @@ module.exports = {
     minimize: process.env.NODE_ENV === "production",
     moduleIds: "named",
   },
+  plugins: [new ProgressBarPlugin()],
   devServer: {
     hot: true,
     contentBase: path.join(__dirname, "examples"),

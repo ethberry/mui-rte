@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
 const save = (data: string) => {
@@ -37,7 +37,7 @@ const MyAtDecorator: FC<{decoratedText: string}> = props => {
   );
 };
 
-const Decorators: FC = () => {
+export const Decorators: FC = () => {
   return (
     <MUIRichTextEditor
       label="Try writing a #hashtag or a @mention..."
@@ -55,5 +55,3 @@ const Decorators: FC = () => {
     />
   );
 };
-
-export default Decorators;

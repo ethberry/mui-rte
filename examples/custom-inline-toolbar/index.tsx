@@ -1,14 +1,14 @@
 import React, {FC} from "react";
 import {InvertColors} from "@material-ui/icons";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
 const save = (data: string) => {
   console.log(data);
 };
 
-const CustomInlineToolbar: FC = () => {
+export const CustomInlineToolbar: FC = () => {
   return (
     <MUIRichTextEditor
       label="Try selecting some text to show the inline toolbar..."
@@ -29,5 +29,3 @@ const CustomInlineToolbar: FC = () => {
     />
   );
 };
-
-export default CustomInlineToolbar;

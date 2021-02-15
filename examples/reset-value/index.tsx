@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 
-import MUIRichTextEditor from "../..";
+import {MUIRichTextEditor} from "../../src";
 
 
 const contentOne =
@@ -12,7 +12,7 @@ const save = (data: string) => {
   console.log(data);
 };
 
-const ResetValue: FC = () => {
+export const ResetValue: FC = () => {
   const [content, setContent] = useState(contentOne);
 
   return (
@@ -22,5 +22,3 @@ const ResetValue: FC = () => {
     </>
   );
 };
-
-export default ResetValue;

@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Avatar, ListItemAvatar, ListItemText} from "@material-ui/core";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 import {TAutocompleteItem} from "../../src/components/autocomplete";
 
 
@@ -106,7 +106,7 @@ const staff = [
   },
 ];
 
-const Autocomplete: FC = () => {
+export const Autocomplete: FC = () => {
   return (
     <MUIRichTextEditor
       label="Try typing ':grin' or '/mexico'..."
@@ -131,5 +131,3 @@ const Autocomplete: FC = () => {
     />
   );
 };
-
-export default Autocomplete;

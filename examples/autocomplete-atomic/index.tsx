@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Avatar, Chip} from "@material-ui/core";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 import {TAutocompleteItem} from "../../src/components/autocomplete";
 
 
@@ -55,7 +55,7 @@ const CityChip: FC<any> = props => {
   return <Chip avatar={<Avatar>{value.image}</Avatar>} label={value.name} onClick={handleClick} />;
 };
 
-const AutocompleteAtomic: FC = () => {
+export const AutocompleteAtomic: FC = () => {
   return (
     <MUIRichTextEditor
       label="Try typing '/mexico'..."
@@ -79,5 +79,3 @@ const AutocompleteAtomic: FC = () => {
     />
   );
 };
-
-export default AutocompleteAtomic;

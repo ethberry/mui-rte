@@ -1,10 +1,9 @@
-import React, {FunctionComponent, useRef} from "react";
+import React, {FC, useRef} from "react";
 
-import MUIRichTextEditor from "../../";
-import {TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
 
 
-const RefSave: FunctionComponent = () => {
+export const RefSave: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
 
   const handleClick = () => {
@@ -49,5 +48,3 @@ const RefSave: FunctionComponent = () => {
     </div>
   );
 };
-
-export default RefSave;

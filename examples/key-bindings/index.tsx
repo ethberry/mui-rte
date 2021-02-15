@@ -1,14 +1,14 @@
 import React, {FC} from "react";
 import {EditorState, RichUtils} from "draft-js";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
 const save = (data: string) => {
   console.log(data);
 };
 
-const KeyBindings: FC = () => {
+export const KeyBindings: FC = () => {
   return (
     <MUIRichTextEditor
       label="Press CMD + C to clear the editor or CMD + K to add 'italic' style to the selection..."
@@ -34,5 +34,3 @@ const KeyBindings: FC = () => {
     />
   );
 };
-
-export default KeyBindings;

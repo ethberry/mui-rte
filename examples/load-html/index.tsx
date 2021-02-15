@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {convertFromHTML, ContentState, convertToRaw} from "draft-js";
 
-import MUIRichTextEditor from "../../";
+import {MUIRichTextEditor} from "../../src";
 
 
 const sampleMarkup =
@@ -14,8 +14,6 @@ const save = (data: string) => {
   console.log(data);
 };
 
-const LoadHTML: FC = () => {
+export const LoadHTML: FC = () => {
   return <MUIRichTextEditor defaultValue={content} onSave={save} />;
 };
-
-export default LoadHTML;
