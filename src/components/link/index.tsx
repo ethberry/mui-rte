@@ -10,9 +10,9 @@ interface ILinkProps {
 }
 
 export const Link: FC<ILinkProps> = props => {
-  const {contentState, children} = props;
+  const {contentState, entityKey, children} = props;
 
-  const {url, className}: {url: string; className: string} = contentState.getEntity(props.entityKey).getData();
+  const {url, className}: {url: string; className: string} = contentState.getEntity(entityKey).getData();
 
   return (
     <MuiLink href={url} className={clsx(className, "editor-anchor")} target="_blank">

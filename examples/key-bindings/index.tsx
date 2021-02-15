@@ -26,8 +26,7 @@ export const KeyBindings: FC = () => {
           key: 75, // K
           name: "toggle-italic",
           callback: (editorState: EditorState) => {
-            const newState = RichUtils.toggleInlineStyle(editorState, "ITALIC");
-            return newState;
+            return RichUtils.toggleInlineStyle(editorState, "ITALIC");
           },
         },
       ]}

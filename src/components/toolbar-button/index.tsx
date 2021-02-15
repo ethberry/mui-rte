@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, MouseEvent} from "react";
 import {IconButton} from "@material-ui/core";
 
-import {TToolbarComponentProps, TToolbarButtonSize} from "../toolbar";
+import {IToolbarComponentProps, TToolbarButtonSize} from "../toolbar";
 
 
 interface IToolbarButtonProps {
@@ -16,7 +16,7 @@ interface IToolbarButtonProps {
   inlineMode?: boolean;
   disabled?: boolean;
   size?: TToolbarButtonSize;
-  component?: FC<TToolbarComponentProps>;
+  component?: FC<IToolbarComponentProps>;
 }
 
 export const ToolbarButton: FC<IToolbarButtonProps> = props => {
@@ -38,7 +38,7 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
   const toolbarId = inlineMode ? "-toolbar" : "";
   const elemId = editorId + "-" + (id || label) + "-button" + toolbarId;
 
-  const mouseDownHandler = (e: React.MouseEvent) => {
+  const mouseDownHandler = (e: MouseEvent) => {
     e.preventDefault();
     if (onClick) {
       onClick(style, type, elemId, inlineMode);

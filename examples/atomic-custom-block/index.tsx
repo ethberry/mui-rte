@@ -1,7 +1,8 @@
-import React, {FC, useRef, useState} from "react";
+import React, {FC, Fragment, useRef, useState} from "react";
 import {WebAsset} from "@material-ui/icons";
 
 import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {TAnchor} from "../../src/components/types";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
 
@@ -12,9 +13,9 @@ const save = (data: string) => {
 
 export const AtomicCustomBlock: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
-  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const [anchor, setAnchor] = useState<TAnchor>(null);
   return (
-    <>
+    <Fragment>
       <MyCardPopover
         anchor={anchor}
         onSubmit={(data, insert) => {
@@ -45,6 +46,6 @@ export const AtomicCustomBlock: FC = () => {
           },
         ]}
       />
-    </>
+    </Fragment>
   );
 };

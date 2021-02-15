@@ -86,14 +86,15 @@ This sample adds a block to the editor based on a `React Element`:
 import MUIRichTextEditor from 'mui-rte'
 import TableChartIcon from '@material-ui/icons/TableChart'
 
-const MyBlock = (props) => {
+const MyBlock: FC = props => {
+    const {children} = props;
     return (
         <div style={{
             padding: 10,
             backgroundColor: "#ebebeb"
         }}>
             My Block content is:
-            {props.children}
+            {children}
         </div>
     )
 }
@@ -208,8 +209,9 @@ To add some functionality when a user inputs a `#hashtag` use the following exam
 ```js
 import MUIRichTextEditor from 'mui-rte'
 
-const MyHashTagDecorator = (props) => {
-    const hashtagUrl = "http://myurl/" + props.decoratedText
+const MyHashTagDecorator: FC = props => {
+  const {decoratedText, children} = props;
+    const hashtagUrl = `http://myurl/${decoratedText}`
     return (
         <a 
             href={hashtagUrl}
@@ -217,7 +219,7 @@ const MyHashTagDecorator = (props) => {
                 color: "green"
             }}
         >
-            {props.children}
+            {children}
         </a>
     )
 }

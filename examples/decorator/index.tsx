@@ -1,40 +1,12 @@
 import React, {FC} from "react";
 
 import {MUIRichTextEditor} from "../../src";
+import {MyHashTagDecorator} from "./hash";
+import {MyAtDecorator} from "./at";
 
 
 const save = (data: string) => {
   console.log(data);
-};
-
-const MyHashTagDecorator = (props: any) => {
-  return (
-    <span
-      style={{
-        color: "#3F51B5",
-      }}
-    >
-      {props.children}
-    </span>
-  );
-};
-
-const MyAtDecorator: FC<{decoratedText: string}> = props => {
-  const {decoratedText, children} = props;
-  const customUrl = `http://myulr/mention/${decoratedText}`;
-  return (
-    <a
-      onClick={() => {
-        window.location.href = customUrl;
-      }}
-      style={{
-        color: "green",
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </a>
-  );
 };
 
 export const Decorators: FC = () => {

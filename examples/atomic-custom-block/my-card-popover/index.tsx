@@ -1,7 +1,10 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 
-import {Button, Grid, makeStyles, Popover, TextField} from "@material-ui/core";
+import {Button, Grid, Popover, TextField} from "@material-ui/core";
 import {Close, Done} from "@material-ui/icons";
+
+import {TAnchor} from "../../../src/components/types";
+import {useStyles} from "./styles";
 
 
 type TMyCardData = {
@@ -12,31 +15,20 @@ type TMyCardData = {
   image?: string;
 };
 
-type TAnchor = HTMLElement | null;
-
 interface IMyCardPopoverProps {
   anchor: TAnchor;
   onSubmit: (data: TMyCardData, insert: boolean) => void;
 }
 
-type TMyCardPopoverState = {
+type IMyCardPopoverState = {
   anchor: TAnchor;
   isCancelled: boolean;
 };
 
-const cardPopverStyles = makeStyles({
-  root: {
-    padding: 10,
-    maxWidth: 350,
-  },
-  textField: {
-    width: "100%",
-  },
-});
-
 export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
-  const classes = cardPopverStyles(props);
-  const [state, setState] = useState<TMyCardPopoverState>({
+  const {anchor, onSubmit} = props;
+  const classes = useStyles();
+  const [state, setState] = useState<IMyCardPopoverState>({
     anchor: null,
     isCancelled: false,
   });
@@ -44,15 +36,15 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
 
   useEffect(() => {
     setState({
-      anchor: props.anchor,
+      anchor: anchor,
       isCancelled: false,
     });
     setData({
       date: new Date(),
     });
-  }, [props.anchor]);
+  }, [anchor]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setData({
       ...data,
       [event.target.name]: event.target.value,
@@ -72,7 +64,7 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
       anchorEl={state.anchor}
       open={state.anchor !== null}
       onExited={() => {
-        props.onSubmit(data, !state.isCancelled);
+        onSubmit(data, !state.isCancelled);
       }}
       anchorOrigin={{
         vertical: "bottom",

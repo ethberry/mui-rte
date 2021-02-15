@@ -1,164 +1,22 @@
-import React, {FC, useEffect, useRef, useState} from "react";
-import {Button, Grid, IconButton, makeStyles, Popover, TextField} from "@material-ui/core";
-import {AttachFile, Backup, Close, Done} from "@material-ui/icons";
+import React, {FC, Fragment, useRef, useState} from "react";
+import {Backup} from "@material-ui/icons";
 
 import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {TAnchor} from "../../src/components/types";
+import {uploadImage} from "./utils";
+import {UploadImagePopover} from "./upload-image-popover";
 
-
-interface IUploadImagePopoverProps {
-  anchor: TAnchor;
-  onSubmit: (data: TUploadImageData, insert: boolean) => void;
-}
-
-type TUploadImagePopoverState = {
-  anchor: TAnchor;
-  isCancelled: boolean;
-};
-
-type TUploadImageData = {
-  file?: File;
-};
-
-type TAnchor = HTMLElement | null;
-
-const cardPopverStyles = makeStyles({
-  root: {
-    padding: 10,
-    maxWidth: 350,
-  },
-  textField: {
-    width: "100%",
-  },
-  input: {
-    display: "none",
-  },
-});
-
-const uploadImageToServer = (file: File) => {
-  return new Promise(resolve => {
-    console.log(`Uploading image ${file.name} ...`);
-    setTimeout(() => {
-      console.log("Upload successful");
-      resolve(`https://return_uploaded_image_url/${file.name}`);
-    }, 2000);
-  });
-};
-
-const uploadImage = async (file: File) => {
-  const url = await uploadImageToServer(file);
-  if (!url) {
-    throw new Error();
-  }
-  return {
-    data: {
-      url: url,
-      width: 300,
-      height: 200,
-      alignment: "left", // or "center", "right"
-      type: "image", // or "video"
-    },
-  };
-};
-
-const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
-  const classes = cardPopverStyles(props);
-  const [state, setState] = useState<TUploadImagePopoverState>({
-    anchor: null,
-    isCancelled: false,
-  });
-  const [data, setData] = useState<TUploadImageData>({});
-
-  useEffect(() => {
-    setState({
-      anchor: props.anchor,
-      isCancelled: false,
-    });
-    setData({
-      file: undefined,
-    });
-  }, [props.anchor]);
-
-  return (
-    <Popover
-      anchorEl={state.anchor}
-      open={state.anchor !== null}
-      onExited={() => {
-        props.onSubmit(data, !state.isCancelled);
-      }}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-    >
-      <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={10}>
-          <TextField
-            className={classes.textField}
-            disabled
-            value={data.file?.name || ""}
-            placeholder="Click icon to attach image"
-          />
-        </Grid>
-        <Grid item xs={2}>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            type="file"
-            onChange={event => {
-              setData({
-                ...data,
-                file: event.target.files![0],
-              });
-            }}
-          />
-          <label htmlFor="contained-button-file">
-            <IconButton color="primary" aria-label="upload image" component="span">
-              <AttachFile />
-            </IconButton>
-          </label>
-        </Grid>
-        <Grid item container xs={12} justify="flex-end">
-          <Button
-            onClick={() => {
-              setState({
-                anchor: null,
-                isCancelled: true,
-              });
-            }}
-          >
-            <Close />
-          </Button>
-          <Button
-            onClick={() => {
-              setState({
-                anchor: null,
-                isCancelled: false,
-              });
-            }}
-          >
-            <Done />
-          </Button>
-        </Grid>
-      </Grid>
-    </Popover>
-  );
-};
 
 export const AsyncImageUpload: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
-  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const [anchor, setAnchor] = useState<TAnchor>(null);
 
   const handleFileUpload = (file: File) => {
     ref.current?.insertAtomicBlockAsync("IMAGE", uploadImage(file), "Uploading now...");
   };
 
   return (
-    <>
+    <Fragment>
       <UploadImagePopover
         anchor={anchor}
         onSubmit={(data, insert) => {
@@ -192,6 +50,6 @@ export const AsyncImageUpload: FC = () => {
           },
         }}
       />
-    </>
+    </Fragment>
   );
 };

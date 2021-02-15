@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {CSSProperties, FC, MouseEvent, ReactElement, useEffect, useState} from "react";
 import {EditorState} from "draft-js";
 import {
   Code,
@@ -19,8 +19,9 @@ import {
   Undo,
 } from "@material-ui/icons";
 
-import {ToolbarButton} from "../toolbar-button";
+import {TAnchor} from "../types";
 import {getSelectionInfo} from "../../utils";
+import {ToolbarButton} from "../toolbar-button";
 
 
 export type TToolbarControl =
@@ -44,9 +45,9 @@ export type TControlType = "inline" | "block" | "callback" | "atomic";
 
 export type TToolbarButtonSize = "small" | "medium";
 
-export type TToolbarComponentProps = {
+export type IToolbarComponentProps = {
   id: string;
-  onMouseDown: (e: React.MouseEvent) => void;
+  onMouseDown: (e: MouseEvent) => void;
   active: boolean;
   disabled: boolean;
 };
@@ -56,11 +57,11 @@ export type TCustomControl = {
   name: string;
   icon?: JSX.Element;
   type: TControlType;
-  component?: FC<TToolbarComponentProps>;
-  inlineStyle?: React.CSSProperties;
-  blockWrapper?: React.ReactElement;
+  component?: FC<IToolbarComponentProps>;
+  inlineStyle?: CSSProperties;
+  blockWrapper?: ReactElement;
   atomicComponent?: FC;
-  onClick?: (editorState: EditorState, name: string, anchor: HTMLElement | null) => EditorState | void;
+  onClick?: (editorState: EditorState, name: string, anchor: TAnchor) => EditorState | void;
 };
 
 type TStyleType = {
@@ -69,7 +70,7 @@ type TStyleType = {
   label: string;
   style: string;
   icon?: JSX.Element;
-  component?: FC<TToolbarComponentProps>;
+  component?: FC<IToolbarComponentProps>;
   type: TControlType;
   active?: boolean;
   clickFnName?: string;

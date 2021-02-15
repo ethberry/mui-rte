@@ -1,47 +1,43 @@
-import React, {FC, useEffect, useState, ChangeEvent} from "react";
-import {Button, Grid, Popover, TextField} from "@material-ui/core";
-import {Close, Done} from "@material-ui/icons";
+import React, {FC, useEffect, useState} from "react";
+import {Button, Grid, IconButton, Popover, TextField} from "@material-ui/core";
+import {AttachFile, Close, Done} from "@material-ui/icons";
 
 import {TAnchor} from "../../../src/components/types";
 import {useStyles} from "./styles";
 
 
-type TMyCardData = {
-  searchTerm?: string;
-};
-
-interface IMyCardPopoverProps {
+interface IUploadImagePopoverProps {
   anchor: TAnchor;
-  onSubmit: (data: TMyCardData, insert: boolean) => void;
+  onSubmit: (data: TUploadImageData, insert: boolean) => void;
 }
 
-interface IMyCardPopoverState {
+type TUploadImagePopoverState = {
   anchor: TAnchor;
   isCancelled: boolean;
-}
+};
 
-export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
+type TUploadImageData = {
+  file?: File;
+};
+
+export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
   const {anchor, onSubmit} = props;
 
   const classes = useStyles();
 
-  const [state, setState] = useState<IMyCardPopoverState>({
+  const [state, setState] = useState<TUploadImagePopoverState>({
     anchor: null,
     isCancelled: false,
   });
-  const [data, setData] = useState<TMyCardData>({});
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const [data, setData] = useState<TUploadImageData>({});
 
   useEffect(() => {
     setState({
       anchor,
       isCancelled: false,
+    });
+    setData({
+      file: undefined,
     });
   }, [anchor]);
 
@@ -62,18 +58,32 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
       }}
     >
       <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={12}>
+        <Grid item xs={10}>
           <TextField
             className={classes.textField}
-            onChange={handleChange}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            autoFocus={true}
-            label="Search term"
-            name="searchTerm"
-            placeholder="Type anything here..."
+            disabled
+            value={data.file?.name || ""}
+            placeholder="Click icon to attach image"
           />
+        </Grid>
+        <Grid item xs={2}>
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="contained-button-file"
+            type="file"
+            onChange={event => {
+              setData({
+                ...data,
+                file: event.target.files![0],
+              });
+            }}
+          />
+          <label htmlFor="contained-button-file">
+            <IconButton color="primary" aria-label="upload image" component="span">
+              <AttachFile />
+            </IconButton>
+          </label>
         </Grid>
         <Grid item container xs={12} justify="flex-end">
           <Button

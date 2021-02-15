@@ -1,35 +1,14 @@
 import React, {FC} from "react";
-
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  IconButton,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import {Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography} from "@material-ui/core";
 import {Favorite, Share} from "@material-ui/icons";
 
+import {useStyles} from "./styles";
 
-const cardStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%",
-  },
-  avatar: {
-    backgroundColor: "tomato",
-  },
-});
 
 export const MyCard: FC<any> = props => {
   const {blockProps} = props;
-  const classes = cardStyles(props);
+
+  const classes = useStyles(props);
 
   const handleLiked = () => {
     alert("Favorited");

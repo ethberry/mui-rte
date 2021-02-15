@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC, Fragment, useState} from "react";
 import {Button, ButtonGroup, Grid, Popover, TextField} from "@material-ui/core";
 import {
   Check,
@@ -11,13 +11,14 @@ import {
 } from "@material-ui/icons";
 
 import {useStyles} from "./styles";
+import {TAnchor} from "../types";
 
 
 export type TAlignment = "left" | "center" | "right";
 
 export type TMediaType = "image" | "video";
 
-export type TUrlData = {
+export type IUrlData = {
   url?: string;
   width?: number;
   height?: number;
@@ -26,8 +27,8 @@ export type TUrlData = {
 };
 
 interface IUrlPopoverStateProps {
-  anchor?: HTMLElement;
-  data?: TUrlData;
+  anchor?: TAnchor;
+  data?: IUrlData;
   isMedia?: boolean;
   onConfirm: (isMedia?: boolean, ...args: any) => void;
 }
@@ -37,7 +38,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
 
   const classes = useStyles();
 
-  const [data, setData] = useState<TUrlData>(
+  const [data, setData] = useState<IUrlData>(
     propData || {
       url: undefined,
       width: undefined,
@@ -88,7 +89,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
               />
             </Grid>
             {isMedia ? (
-              <>
+              <Fragment>
                 <Grid item xs={12}>
                   <ButtonGroup fullWidth>
                     <Button
@@ -152,7 +153,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     </Button>
                   </ButtonGroup>
                 </Grid>
-              </>
+              </Fragment>
             ) : null}
           </Grid>
           <Grid container item xs={12} direction="row" justify="flex-end">

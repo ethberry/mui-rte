@@ -3,6 +3,7 @@ import React, {
   FC,
   forwardRef,
   KeyboardEvent,
+  ReactElement,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -36,8 +37,8 @@ import {Link} from "./components/link";
 import {Media} from "./components/media";
 import {Blockquote} from "./components/blockquote";
 import {CodeBlock} from "./components/code-block";
-import {TAlignment, TMediaType, TUrlData, UrlPopover} from "./components/url-popover";
-import {Autocomplete, TAutocompleteItem} from "./components/autocomplete";
+import {IUrlData, TAlignment, TMediaType, UrlPopover} from "./components/url-popover";
+import {Autocomplete, IAutocompleteItem} from "./components/autocomplete";
 import {
   atomicBlockExists,
   clearInlineStyles,
@@ -57,7 +58,7 @@ export type TDecorator = {
 
 export type TAutocompleteStrategy = {
   triggerChar: string;
-  items: TAutocompleteItem[];
+  items: IAutocompleteItem[];
   insertSpaceAfter?: boolean;
   atomicBlockName?: string;
 };
@@ -125,7 +126,7 @@ export interface IMUIRichTextEditorProps {
 type TMUIRichTextEditorState = {
   anchorUrlPopover?: HTMLElement;
   urlKey?: string;
-  urlData?: TUrlData;
+  urlData?: IUrlData;
   urlIsMedia?: boolean;
   toolbarPosition?: TPosition;
 };
@@ -205,7 +206,29 @@ const useEditorState = (props: IMUIRichTextEditorProps) => {
 };
 
 export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextEditorProps>((props, ref) => {
-  const {controls, customControls} = props;
+  const {
+    readOnly,
+    controls,
+    customControls,
+    keyCommands,
+    id = "mui-rte",
+    autocomplete,
+    onFocus,
+    onBlur,
+    onSave,
+    onChange,
+    maxLength,
+    toolbar,
+    inlineToolbarControls = defaultInlineToolbarControls,
+    label,
+    error,
+    value,
+    defaultValue,
+    inheritFontSize,
+    inlineToolbar,
+    toolbarButtonSize,
+    draftEditorProps,
+  } = props;
 
   const classes = useStyles();
 
@@ -217,13 +240,13 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   const [focusMediaKey, setFocusMediaKey] = useState("");
 
   const editorRef = useRef<Editor>(null);
-  const editorId = props.id || "mui-rte";
+  const editorId = id;
   const toolbarPositionRef = useRef<TPosition | undefined>(undefined);
   const editorStateRef = useRef<EditorState | null>(editorState);
   const autocompleteRef = useRef<TAutocompleteStrategy | undefined>(undefined);
   const autocompleteSelectionStateRef = useRef<SelectionState | undefined>(undefined);
   const autocompletePositionRef = useRef<TPosition | undefined>(undefined);
-  const autocompleteLimit = props.autocomplete ? props.autocomplete.suggestLimit || 5 : 5;
+  const autocompleteLimit = autocomplete ? autocomplete.suggestLimit || 5 : 5;
   const isFirstFocus = useRef(true);
   const customBlockMapRef = useRef<DraftBlockRenderMap | undefined>(undefined);
   const customStyleMapRef = useRef<DraftStyleMap | undefined>(undefined);
@@ -240,10 +263,10 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const findAutocompleteStrategy = (chars: string): TAutocompleteStrategy | undefined => {
-    if (!props.autocomplete) {
+    if (!autocomplete) {
       return undefined;
     }
-    const acArray = props.autocomplete.strategies.filter(ac => ac.triggerChar === chars);
+    const acArray = autocomplete.strategies.filter(ac => ac.triggerChar === chars);
     if (acArray.length) {
       return acArray[0];
     }
@@ -308,7 +331,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
     refocus();
   };
 
-  const getAutocompleteItems = (): TAutocompleteItem[] => {
+  const getAutocompleteItems = (): IAutocompleteItem[] => {
     if (searchTerm.length < autocompleteMinSearchCharCount) {
       return [];
     }
@@ -324,8 +347,8 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
 
   const handleFocus = () => {
     focusEditor();
-    if (props.onFocus) {
-      props.onFocus();
+    if (onFocus) {
+      onFocus();
     }
   };
 
@@ -351,8 +374,8 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   const handleBlur = () => {
     isFocusedWithMouse.current = false;
     setFocus(false);
-    if (props.onBlur) {
-      props.onBlur();
+    if (onBlur) {
+      onBlur();
     }
 
     if (!state.anchorUrlPopover) {
@@ -378,8 +401,8 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const handleSave = () => {
-    if (props.onSave) {
-      props.onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    if (onSave) {
+      onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     }
   };
 
@@ -418,10 +441,10 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const handleCustomClick = (style: any, id: string) => {
-    if (!props.customControls) {
+    if (!customControls) {
       return;
     }
-    for (const control of props.customControls) {
+    for (const control of customControls) {
       if (control.name.toUpperCase() === style) {
         if (control.onClick) {
           setTimeout(() => editorRef.current?.blur(), 0);
@@ -486,7 +509,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
 
   const isMaxLengthHandled = (editorState: EditorState, nextLength: number): DraftHandleValue => {
     const currentLength = editorState.getCurrentContent().getPlainText("").length;
-    return isGreaterThan(currentLength + nextLength, props.maxLength) ? "handled" : "not-handled";
+    return isGreaterThan(currentLength + nextLength, maxLength) ? "handled" : "not-handled";
   };
 
   const handlePastedText = (text: string, _html: string | undefined, editorState: EditorState): DraftHandleValue => {
@@ -558,7 +581,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const insertAutocompleteSuggestionAsAtomicBlock = (name: string, selection: SelectionState, value: any) => {
-    const block = atomicBlockExists(name, props.customControls);
+    const block = atomicBlockExists(name, customControls);
     if (!block) {
       return;
     }
@@ -612,8 +635,8 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
         }
         return "handled";
       }
-      if (props.keyCommands) {
-        const keyCommand = props.keyCommands.find(comm => comm.name === command);
+      if (keyCommands) {
+        const keyCommand = keyCommands.find(comm => comm.name === command);
         if (keyCommand) {
           const newState = keyCommand.callback(editorState);
           handleChange(newState);
@@ -656,7 +679,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const handleInsertAtomicBlockSync = (name: string, data: any) => {
-    const block = atomicBlockExists(name, props.customControls);
+    const block = atomicBlockExists(name, customControls);
     if (!block) {
       return;
     }
@@ -828,7 +851,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
 
   const setupStyleMap = () => {
     const customStyleMap = JSON.parse(JSON.stringify(styleRenderMap));
-    props.customControls
+    customControls
       ?.filter(control => control.type === "inline" && control.inlineStyle)
       .forEach(control => {
         customStyleMap[control.name.toUpperCase()] = control.inlineStyle;
@@ -845,7 +868,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
 
   const setupBlockMap = () => {
     const customBlockMap: any = {};
-    props.customControls
+    customControls
       ?.filter(control => control.type === "block" && control.blockWrapper)
       .forEach(control => {
         customBlockMap[control.name.toUpperCase()] = {
@@ -876,12 +899,12 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
             editable: false,
             props: {
               onClick: focusMedia,
-              readOnly: props.readOnly,
+              readOnly: readOnly,
               focusKey: focusMediaKey,
             },
           };
         } else {
-          const block = atomicBlockExists(type.toLowerCase(), props.customControls);
+          const block = atomicBlockExists(type.toLowerCase(), customControls);
           if (block) {
             return {
               component: block.atomicComponent,
@@ -948,8 +971,8 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const keyBindingFn = (e: KeyboardEvent): string | null => {
-    if (KeyBindingUtil.hasCommandModifier(e) && props.keyCommands) {
-      const comm = props.keyCommands.find(comm => comm.key === e.keyCode);
+    if (KeyBindingUtil.hasCommandModifier(e) && keyCommands) {
+      const comm = keyCommands.find(comm => comm.key === e.keyCode);
       if (comm) {
         return comm.name;
       }
@@ -966,23 +989,22 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
     return keyBinding;
   };
 
-  const renderToolbar = props.toolbar === undefined || props.toolbar;
-  const inlineToolbarControls = props.inlineToolbarControls || defaultInlineToolbarControls;
-  const editable = props.readOnly === undefined || !props.readOnly;
+  const renderToolbar = toolbar === undefined || toolbar;
+  const editable = readOnly === undefined || !readOnly;
   let className = "";
-  let placeholder: React.ReactElement | null = null;
+  let placeholder: ReactElement | null = null;
   if (!focus) {
     const contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
       placeholder = (
         <div
           className={clsx(classes.editorContainer, classes.placeHolder, {
-            [classes.error]: props.error,
+            [classes.error]: error,
           })}
           tabIndex={0}
           onFocus={handlePlaceholderFocus}
         >
-          {props.label || ""}
+          {label || ""}
         </div>
       );
       className = classes.hidePlaceholder;
@@ -996,11 +1018,11 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
     return () => {
       toggleMouseUpListener();
     };
-  }, [props.value, props.defaultValue]);
+  }, [value, defaultValue]);
 
   useEffect(() => {
-    if (props.onChange) {
-      props.onChange(editorState);
+    if (onChange) {
+      onChange(editorState);
     }
     editorStateRef.current = editorState;
   }, [editorState]);
@@ -1041,10 +1063,10 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
       <div
         id={`${editorId}-container`}
         className={clsx(classes.container, {
-          [classes.inheritFontSize]: props.inheritFontSize,
+          [classes.inheritFontSize]: inheritFontSize,
         })}
       >
-        {props.autocomplete && autocompletePositionRef.current ? (
+        {autocomplete && autocompletePositionRef.current ? (
           <Autocomplete
             items={getAutocompleteItems()}
             top={autocompletePositionRef.current.top}
@@ -1053,7 +1075,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
             selectedIndex={selectedIndex}
           />
         ) : null}
-        {props.inlineToolbar && editable && state.toolbarPosition ? (
+        {inlineToolbar && editable && state.toolbarPosition ? (
           <Paper
             className={classes.inlineToolbar}
             style={{
@@ -1081,7 +1103,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
             customControls={customControls}
             className={classes.toolbar}
             disabled={!editable}
-            size={props.toolbarButtonSize}
+            size={toolbarButtonSize}
             isActive={focus}
           />
         ) : null}
@@ -1091,7 +1113,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
             id={`${editorId}-editor-container`}
             className={clsx(className, classes.editorContainer, {
               [classes.editorReadOnly]: !editable,
-              [classes.error]: props.error,
+              [classes.error]: error,
             })}
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
@@ -1103,14 +1125,14 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
               editorState={editorState}
               onChange={handleChange}
               onFocus={handleEditorFocus}
-              readOnly={props.readOnly}
+              readOnly={readOnly}
               handleKeyCommand={handleKeyCommand}
               handleBeforeInput={handleBeforeInput}
               handlePastedText={handlePastedText}
               handleReturn={handleReturn}
               keyBindingFn={keyBindingFn}
               ref={editorRef}
-              {...props.draftEditorProps}
+              {...draftEditorProps}
             />
           </div>
         </div>

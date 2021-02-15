@@ -13,9 +13,9 @@ interface IMediaProps {
 }
 
 export const Media: FC<IMediaProps> = props => {
-  const {contentState, blockProps} = props;
+  const {contentState, blockProps, block} = props;
 
-  const {url, width, height, alignment, type} = contentState.getEntity(props.block.getEntityAt(0)).getData();
+  const {url, width, height, alignment, type} = contentState.getEntity(block.getEntityAt(0)).getData();
   const {onClick, readOnly, focusKey} = blockProps;
 
   const classes = useStyles();
@@ -25,7 +25,7 @@ export const Media: FC<IMediaProps> = props => {
       src: url,
       className: clsx(classes.root, {
         [classes.editable]: !readOnly,
-        [classes.focused]: !readOnly && focusKey === props.block.getKey(),
+        [classes.focused]: !readOnly && focusKey === block.getKey(),
       }),
       width: width,
       height: type === "video" ? "auto" : height,
@@ -33,7 +33,7 @@ export const Media: FC<IMediaProps> = props => {
         if (readOnly) {
           return;
         }
-        onClick(props.block);
+        onClick(block);
       },
     };
 

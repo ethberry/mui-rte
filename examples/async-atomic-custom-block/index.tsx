@@ -1,40 +1,18 @@
-import React, {FC, useRef, useState} from "react";
+import React, {Fragment, FC, useRef, useState} from "react";
 import {Update} from "@material-ui/icons";
 
 import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {TAnchor} from "../../src/components/types";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
+import {downloadData} from "./utils";
 
-
-const getDataFromCloudService = (searchTerm: string): Promise<any> => {
-  return new Promise(resolve => {
-    console.log(`Searching for ${searchTerm}...`);
-    setTimeout(() => {
-      resolve({
-        title: "Data from cloud",
-        subtitle: `You searched: ${searchTerm}`,
-        text: "Some description from the cloud.",
-      });
-    }, 2000);
-  });
-};
-
-const downloadData = async (searchTerm: string): Promise<{data: any}> => {
-  const data = await getDataFromCloudService(searchTerm);
-  if (!data) {
-    // for this example this will never be rejected
-    throw new Error();
-  }
-  return {
-    data: data,
-  };
-};
 
 export const AsyncAtomicCustomBlock: FC = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
-  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const [anchor, setAnchor] = useState<TAnchor>(null);
   return (
-    <>
+    <Fragment>
       <MyCardPopover
         anchor={anchor}
         onSubmit={(data, insert) => {
@@ -64,6 +42,6 @@ export const AsyncAtomicCustomBlock: FC = () => {
           },
         ]}
       />
-    </>
+    </Fragment>
   );
 };

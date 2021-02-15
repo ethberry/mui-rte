@@ -1,16 +1,13 @@
 import React, {FC} from "react";
-import {Card, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardContent, Typography} from "@material-ui/core";
 
+import {useStyles} from "./styles";
 
-const cardStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-});
 
 export const MyCard: FC<any> = props => {
   const {blockProps} = props;
-  const classes = cardStyles(props);
+
+  const classes = useStyles();
 
   return (
     <Card className={classes.root}>

@@ -4,14 +4,14 @@ import {List, ListItem, Paper} from "@material-ui/core";
 import {useStyles} from "./styles";
 
 
-export type TAutocompleteItem = {
+export type IAutocompleteItem = {
   keys: string[];
   value: any;
   content: string | JSX.Element;
 };
 
 interface IAutocompleteProps {
-  items: TAutocompleteItem[];
+  items: IAutocompleteItem[];
   top: number;
   left: number;
   selectedIndex: number;
@@ -19,7 +19,9 @@ interface IAutocompleteProps {
 }
 
 export const Autocomplete: FC<IAutocompleteProps> = props => {
-  if (!props.items.length) {
+  const {items, top, left, selectedIndex, onClick} = props;
+
+  if (!items.length) {
     return null;
   }
 
@@ -29,17 +31,17 @@ export const Autocomplete: FC<IAutocompleteProps> = props => {
     <Paper
       className={classes.container}
       style={{
-        top: props.top,
-        left: props.left,
+        top,
+        left,
       }}
     >
       <List dense={true}>
-        {props.items.map((item, index) => (
+        {items.map((item, index) => (
           <ListItem
             key={index}
             className={classes.item}
-            selected={index === props.selectedIndex}
-            onClick={() => props.onClick(index)}
+            selected={index === selectedIndex}
+            onClick={() => onClick(index)}
           >
             {item.content}
           </ListItem>
