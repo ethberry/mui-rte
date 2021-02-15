@@ -1,5 +1,5 @@
 # mui-rte
-![Tests](https://github.com/niuware/mui-rte/workflows/Tests/badge.svg)   
+![Tests](https://github.com/niuware/mui-rte/workflows/Tests/badge.svg)
 
 The Material-UI Rich Text Editor and Viewer
 
@@ -25,7 +25,7 @@ Install the peer dependencies: `@material-ui/core`, `@material-ui/icons`, `react
 import MUIRichTextEditor from 'mui-rte'
 
 ReactDOM.render(
-    <MUIRichTextEditor label="Start typing..." />, 
+    <MUIRichTextEditor label="Start typing..." />,
     document.getElementById("root")
 )
 ```
@@ -38,17 +38,17 @@ import MUIRichTextEditor from 'mui-rte'
 const data = getContentStateAsStringFromSomewhere()
 
 ReactDOM.render(
-    <MUIRichTextEditor 
+    <MUIRichTextEditor
         defaultValue={data}
-        label="Start typing..." 
-    />, 
+        label="Start typing..."
+    />,
     document.getElementById("root")
 )
 ```
 
 ## Examples
 
-Check the [examples](https://github.com/niuware/mui-rte/tree/master/examples) directory for more. 
+Check the [examples](https://github.com/niuware/mui-rte/tree/master/examples) directory for more.
 
 ## Custom Controls
 
@@ -62,7 +62,7 @@ This sample adds a control to change the background color and font color of the 
 import MUIRichTextEditor from 'mui-rte'
 import InvertColorsIcon from '@material-ui/icons/InvertColors'
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     controls={["my-style"]}
     customControls={[
         {
@@ -99,7 +99,7 @@ const MyBlock: FC = props => {
     )
 }
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     controls={["my-block"]}
     customControls={[
         {
@@ -133,7 +133,7 @@ import MUIRichTextEditor from 'mui-rte'
 import DoneIcon from '@material-ui/icons/Done'
 import { EditorState } from 'draft-js'
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     controls={["my-callback"]}
     customControls={[
         {
@@ -180,7 +180,7 @@ const emojis = [
     }
 ]
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     autocomplete={{
         strategies: [
             {
@@ -200,7 +200,7 @@ Check [this sample](https://github.com/niuware/mui-rte/blob/master/examples/auto
 
 ## Custom Decorators
 
-You can define custom decorators to apply styles and/or functionality based on a provided regular expression. 
+You can define custom decorators to apply styles and/or functionality based on a provided regular expression.
 
 ### Adding custom functionality with a decorator
 
@@ -213,7 +213,7 @@ const MyHashTagDecorator: FC = props => {
   const {decoratedText, children} = props;
     const hashtagUrl = `http://myurl/${decoratedText}`
     return (
-        <a 
+        <a
             href={hashtagUrl}
             style={{
                 color: "green"
@@ -224,7 +224,7 @@ const MyHashTagDecorator: FC = props => {
     )
 }
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     label="Type something here..."
     decorators={[
         {
@@ -242,7 +242,7 @@ The editor includes an inline toolbar option which renders a pop-up inside the e
 ```js
 import MUIRichTextEditor from 'mui-rte'
 
-<MUIRichTextEditor 
+<MUIRichTextEditor
     label="Type something here..."
     inlineToolbar={true}
 />
@@ -266,14 +266,14 @@ Object.assign(defaultTheme, {
                 width: "80%"
             },
             editor: {
-                borderBottom: "1px solid gray" 
+                borderBottom: "1px solid gray"
             }
         }
     }
 })
 
 <MuiThemeProvider theme={defaultTheme}>
-    <MUIRichTextEditor 
+    <MUIRichTextEditor
         label="Type something here..."
     />
 </MuiThemeProvider>
@@ -323,18 +323,18 @@ Object.assign(defaultTheme, {
 |inlineStyle|`string`|optional|The `React.CSSProperties` object for styling the text when using a custom inline style.|
 |blockWrapper|`React.ReactElement`|optional|The custom React component used for rendering a custom block.|
 |atomicComponent|`React.FunctionComponent`|optional|The custom React FunctionComponent used for rendering a custom atomic block.|
-|onClick|`(editorState: EditorState, name: string, anchor: HTMLElement \| null) => EditorState \| void`|optional|The callback function triggered when the custom control is clicked. The received arguments include the current `EditorState` object, the name of the clicked control and the `HTMLElement` from which the click was raised. If a new `EditorState` object is returned it will be replace the current one in the editor (useful to explicitly modify the `EditorState`).|   
+|onClick|`(editorState: EditorState, name: string, anchor: HTMLElement \| null) => EditorState \| void`|optional|The callback function triggered when the custom control is clicked. The received arguments include the current `EditorState` object, the name of the clicked control and the `HTMLElement` from which the click was raised. If a new `EditorState` object is returned it will be replace the current one in the editor (useful to explicitly modify the `EditorState`).|
 
 <br />
 
-`TToolbarComponentProps`  
+`TToolbarComponentProps`
 
-|Property|Type|description|  
-|---|---|---|  
+|Property|Type|description|
+|---|---|---|
 |id|`string`|The id for the component.|
 |onMouseDown|`(e: React.MouseEvent) => void`|The `mousedown` handler.|
 |active|`boolean`|Defines if the block or inline type is active for the current editor selection.|
-|disabled|`boolean`|Sets if the toolbar is disabled.|   
+|disabled|`boolean`|Sets if the toolbar is disabled.|
 
 <br />
 
@@ -343,7 +343,7 @@ Object.assign(defaultTheme, {
 |Property|Type||description|
 |---|---|---|---|
 |component|`React.FunctionComponent`|required|The React component to use for rendering the decorator.|
-|regex|`RegExp`|required|The regular expression to match a decorator.|  
+|regex|`RegExp`|required|The regular expression to match a decorator.|
 
 <br />
 
@@ -353,7 +353,7 @@ Object.assign(defaultTheme, {
 |---|---|---|---|
 |key|`number`|required|The code of the key to bind.|
 |name|`string`|required|The name of the command.|
-|callback|`(state: EditorState) => EditorState`|required|The callback function to execute when the key binding is matched. It should return the `EditorState` to set.|   
+|callback|`(state: EditorState) => EditorState`|required|The callback function to execute when the key binding is matched. It should return the `EditorState` to set.|
 
 <br />
 
@@ -362,8 +362,8 @@ Object.assign(defaultTheme, {
 |Property|Type||description|
 |---|---|---|---|
 |spellCheck|`boolean`|optional|Use browser spelling check.|
-|stripPastedStyles|`boolean`|optional|Remove styles when pasting text into the editor.|  
-|handleDroppedFiles|`(selectionState: SelectionState, files: Blob[]) => DraftHandleValue`|optional|Handle files that have been dropped into the editor. The `DraftHandleValue` is either `handled` or `not-handled`.|   
+|stripPastedStyles|`boolean`|optional|Remove styles when pasting text into the editor.|
+|handleDroppedFiles|`(selectionState: SelectionState, files: Blob[]) => DraftHandleValue`|optional|Handle files that have been dropped into the editor. The `DraftHandleValue` is either `handled` or `not-handled`.|
 
 <br />
 
@@ -372,7 +372,7 @@ Object.assign(defaultTheme, {
 |Property|Type||description|
 |---|---|---|---|
 |strategies|`TAutocompleteStrategy[]`|required|Array of autocomplete strategies.|
-|suggestLimit|`number`|optional|Defines the amount of suggestions to present to the user. Default is `5`.|   
+|suggestLimit|`number`|optional|Defines the amount of suggestions to present to the user. Default is `5`.|
 
 <br />
 
@@ -381,9 +381,9 @@ Object.assign(defaultTheme, {
 |Property|Type||description|
 |---|---|---|---|
 |triggerChar|`string`|required|A single character that triggers the autocomplete strategy.|
-|items|`TAutocompleteItem[]`|required|List of autocomplete suggestion items.| 
-|insertSpaceAfter|`boolean`|optional|If `false` it won't add an space after inserting the content into the editor. Default is `true`.|   
-|atomicBlockName|`string`|optional|Use an *atomic* custom control type to add the content to the editor.|   
+|items|`TAutocompleteItem[]`|required|List of autocomplete suggestion items.|
+|insertSpaceAfter|`boolean`|optional|If `false` it won't add an space after inserting the content into the editor. Default is `true`.|
+|atomicBlockName|`string`|optional|Use an *atomic* custom control type to add the content to the editor.|
 
 <br />
 
@@ -393,7 +393,7 @@ Object.assign(defaultTheme, {
 |---|---|---|---|
 |keys|`string[]`|required|The list of keys that the user needs to type to reveal this item suggestion.|
 |value|`any`|required|The value to insert into the editor when the item is selected.|
-|content|`string \| JSX.Element`|required|The content presented in the autocomplete suggestion list for this item. Note that this content is render under a `ListItem` component.|   
+|content|`string \| JSX.Element`|required|The content presented in the autocomplete suggestion list for this item. Note that this content is render under a `ListItem` component.|
 
 <br />
 
@@ -405,23 +405,23 @@ Object.assign(defaultTheme, {
 |save|`() => void`||Triggers the save method on the editor.|
 |insertAtomicBlock|`(name: string, data: any)`|deprecated|Use `insertAtomicBlockSync` instead.|
 |insertAtomicBlockSync|`(name: string, data: any)`||Inserts an atomic block named as `name` (if exists) with the provided `data` into the editor.|
-|insertAtomicBlockAsync|`(name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => void`||Inserts an atomic block named as `name` (if exists) asynchronously with the provided `data` into the editor. The `placeholder` text will be shown on the editor until the promise is resolved.|   
+|insertAtomicBlockAsync|`(name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => void`||Inserts an atomic block named as `name` (if exists) asynchronously with the provided `data` into the editor. The `placeholder` text will be shown on the editor until the promise is resolved.|
 
-<br />   
+<br />
 
 `TAsyncAtomicBlockResponse`
 
 |Property|Type||description|
 |---|---|---|---|
-|data|`any`|required|The data assigned to the entity added into the editor.|    
+|data|`any`|required|The data assigned to the entity added into the editor.|
 
-<br />   
+<br />
 
 ## Changelog
 
 Check the [release notes](https://github.com/niuware/mui-rte/releases) for the changelog.
 
-## Development 
+## Development
 
 For development use:
 
