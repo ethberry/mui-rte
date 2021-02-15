@@ -1,13 +1,9 @@
-import React from 'react'
-import MUIRichTextEditor from '../../'
+import React, {FC} from "react";
+import MUIRichTextEditor from "../../";
 
-const InlineToolbar = () => {
-    return (
-        <MUIRichTextEditor 
-            label="Try selecting some text to show the inline toolbar..."
-            inlineToolbar={true}
-        />
-    )
-}
 
-export default InlineToolbar
+const InlineToolbar: FC = () => {
+  return <MUIRichTextEditor label="Try selecting some text to show the inline toolbar..." inlineToolbar={true} />;
+};
+
+export default InlineToolbar;

@@ -1,18 +1,13 @@
-import React from 'react'
-import MUIRichTextEditor from '../../'
+import React, {FC} from "react";
+import MUIRichTextEditor from "../../";
+
 
 const save = (data: string) => {
-    console.log(data)
-}
+  console.log(data);
+};
 
-const MaxLength = () => {
-    return (
-        <MUIRichTextEditor 
-            label="You can only type 10 characters..."
-            maxLength={10}
-            onSave={save}
-        />
-    )
-}
+const MaxLength: FC = () => {
+  return <MUIRichTextEditor label="You can only type 10 characters..." maxLength={10} onSave={save} />;
+};
 
-export default MaxLength
+export default MaxLength;

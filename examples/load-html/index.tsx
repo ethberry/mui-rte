@@ -1,23 +1,20 @@
-import React from 'react'
-import { convertFromHTML, ContentState, convertToRaw } from 'draft-js'
-import MUIRichTextEditor from '../../'
+import React, {FC} from "react";
+import {convertFromHTML, ContentState, convertToRaw} from "draft-js";
+import MUIRichTextEditor from "../../";
 
-const sampleMarkup = '<b>Bold text</b>, <i>Italic text</i><br/ ><br />Other text<br /><br /><a href="http://myurl.com">Some link</a>'
-const contentHTML = convertFromHTML(sampleMarkup)
-const state = ContentState.createFromBlockArray(contentHTML.contentBlocks, contentHTML.entityMap)
-const content = JSON.stringify(convertToRaw(state))
+
+const sampleMarkup =
+  '<b>Bold text</b>, <i>Italic text</i><br/ ><br />Other text<br /><br /><a href="http://myurl.com">Some link</a>';
+const contentHTML = convertFromHTML(sampleMarkup);
+const state = ContentState.createFromBlockArray(contentHTML.contentBlocks, contentHTML.entityMap);
+const content = JSON.stringify(convertToRaw(state));
 
 const save = (data: string) => {
-    console.log(data)
-}
+  console.log(data);
+};
 
-const LoadHTML = () => {
-    return (
-        <MUIRichTextEditor 
-            defaultValue={content} 
-            onSave={save}
-        />
-    )
-}
+const LoadHTML: FC = () => {
+  return <MUIRichTextEditor defaultValue={content} onSave={save} />;
+};
 
-export default LoadHTML
+export default LoadHTML;

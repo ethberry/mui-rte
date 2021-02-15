@@ -1,15 +1,22 @@
 {
-    "settings": {
-        "import/extensions": [
-            ".js"
-        ]
-    },
+    "extends": [
+        "@trejgun/eslint-config/presets/ts"
+    ],
     "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "allowImportExportEverywhere": true,
-        "ecmaFeatures": {
-            "jsx": true
-        }
+        "project": "./tsconfig.test.json"
+    },
+    "root": true,
+    "rules": {
+        "no-console": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "test/**/*.{ts,tsx}",
+                    "rollup.config.js",
+                    "webpack.config.js"
+                ]
+            }
+        ]
     }
 }

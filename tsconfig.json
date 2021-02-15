@@ -1,29 +1,31 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "target": "es5",
-        "strict": true,
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "noImplicitReturns": true,
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "jsx": "react",
-        "lib": [
-            "es5",
-            "es6",
-            "dom"
-        ],
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        }
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["es5", "es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "outDir": "./dist",
+    "allowJs": true,
+    "paths": {
+      "*": ["node_modules/*"]
     },
-    "include": [
-        "src/**/*"
-    ]
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "target": "es5"
+  }
 }
