@@ -1,23 +1,22 @@
 import React from "react";
 import {mount} from "enzyme";
-import {assert, expect} from "chai";
 import {EditorState} from "draft-js";
 
-import {Toolbar, TToolbarControl} from "../src/components/toolbar";
-import {ToolbarButton} from "../src/components/toolbar-button";
+import {Toolbar, TToolbarControl} from "./index";
+import {ToolbarButton} from "../toolbar-button";
 
 
 describe("<EditorControls />", () => {
   let editorState: EditorState;
 
-  before(() => {
+  beforeAll(() => {
     editorState = EditorState.createEmpty();
   });
 
   it("should render all controls", () => {
     const wrapper = mount(<Toolbar id="mui-rte" editorState={editorState} onClick={() => {}} isActive={true} />);
     const result = wrapper.find(ToolbarButton);
-    assert.strictEqual(result.length, 16);
+    expect(result).toHaveLength(16);
   });
 
   it("should render controls in order", () => {
@@ -29,7 +28,7 @@ describe("<EditorControls />", () => {
     const result = wrapper.find(ToolbarButton).map(item => {
       return item.prop("label");
     });
-    expect(result).to.have.ordered.members(expected);
+    expect(result).toEqual(expected);
   });
 
   it("should not render controls", () => {
@@ -37,6 +36,6 @@ describe("<EditorControls />", () => {
       <Toolbar id="mui-rte" editorState={editorState} controls={[]} onClick={() => {}} isActive={true} />,
     );
     const result = wrapper.find(ToolbarButton);
-    assert.strictEqual(result.length, 0);
+    expect(result).toHaveLength(0);
   });
 });

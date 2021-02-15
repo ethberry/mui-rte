@@ -1,22 +1,24 @@
 {
-    "extends": [
-        "@trejgun/eslint-config/presets/ts"
-    ],
-    "parserOptions": {
-        "project": "./tsconfig.test.json"
-    },
-    "root": true,
-    "rules": {
-        "no-console": 0,
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "test/**/*.{ts,tsx}",
-                    "rollup.config.js",
-                    "webpack.config.js"
-                ]
-            }
+  "extends": [
+    "@trejgun/eslint-config/presets/ts",
+    "@trejgun/eslint-config/rules/jest"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.test.json"
+  },
+  "root": true,
+  "rules": {
+    "no-console": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.{ts,tsx}",
+          "**/enzyme.config.ts",
+          "rollup.config.js",
+          "webpack.config.js"
         ]
-    }
+      }
+    ]
+  }
 }

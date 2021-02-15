@@ -1,0 +1,13 @@
+{
+  "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}"],
+  "coverageDirectory": "../coverage",
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
+  "rootDir": "src",
+  "setupFilesAfterEnv": ["<rootDir>/enzyme.config.ts"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "testRegex": ".test.tsx?$",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "verbose": true
+}

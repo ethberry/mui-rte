@@ -4,7 +4,7 @@ import {uglify} from "rollup-plugin-uglify";
 
 
 export default {
-  input: "./index.ts",
+  input: "./src/index.tsx",
   plugins: [
     typescript(),
     commonjs({
