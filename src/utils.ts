@@ -9,7 +9,7 @@ import {
   DraftStyleMap,
 } from "draft-js";
 import Immutable from "immutable";
-import {TCustomControl} from "./components/Toolbar";
+import {TCustomControl} from "./components/toolbar";
 
 
 export type TSelectionInfo = {

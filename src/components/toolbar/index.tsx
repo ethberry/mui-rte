@@ -1,23 +1,26 @@
-import React, {FC, useState, useEffect} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {EditorState} from "draft-js";
-import FormatBoldIcon from "@material-ui/icons/FormatBold";
-import FormatItalicIcon from "@material-ui/icons/FormatItalic";
-import FormatUnderlinedIcon from "@material-ui/icons/FormatUnderlined";
-import StrikethroughIcon from "@material-ui/icons/StrikethroughS";
-import HighlightIcon from "@material-ui/icons/Highlight";
-import TitleIcon from "@material-ui/icons/Title";
-import InsertLinkIcon from "@material-ui/icons/InsertLink";
-import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
-import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
-import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
-import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
-import CodeIcon from "@material-ui/icons/Code";
-import FormatClearIcon from "@material-ui/icons/FormatClear";
-import SaveIcon from "@material-ui/icons/Save";
-import UndoIcon from "@material-ui/icons/Undo";
-import RedoIcon from "@material-ui/icons/Redo";
-import ToolbarButton from "./ToolbarButton";
-import {getSelectionInfo} from "../utils";
+import {
+  Code,
+  FormatBold,
+  FormatClear,
+  FormatItalic,
+  FormatListBulleted,
+  FormatListNumbered,
+  FormatQuote,
+  FormatUnderlined,
+  Highlight,
+  InsertLink,
+  PhotoLibrary,
+  Redo,
+  Save,
+  StrikethroughS,
+  Title,
+  Undo,
+} from "@material-ui/icons";
+
+import {ToolbarButton} from "../toolbar-button";
+import {getSelectionInfo} from "../../utils";
 
 
 export type TToolbarControl =
@@ -72,7 +75,7 @@ type TStyleType = {
   clickFnName?: string;
 };
 
-type TToolbarProps = {
+interface IToolbarProps {
   id: string;
   editorState: EditorState;
   controls?: Array<TToolbarControl>;
@@ -83,70 +86,70 @@ type TToolbarProps = {
   disabled?: boolean;
   size?: TToolbarButtonSize;
   isActive: boolean;
-};
+}
 
 const STYLE_TYPES: TStyleType[] = [
   {
     label: "H2",
     name: "title",
     style: "header-two",
-    icon: <TitleIcon />,
+    icon: <Title />,
     type: "block",
   },
   {
     label: "Bold",
     name: "bold",
     style: "BOLD",
-    icon: <FormatBoldIcon />,
+    icon: <FormatBold />,
     type: "inline",
   },
   {
     label: "Italic",
     name: "italic",
     style: "ITALIC",
-    icon: <FormatItalicIcon />,
+    icon: <FormatItalic />,
     type: "inline",
   },
   {
     label: "Underline",
     name: "underline",
     style: "UNDERLINE",
-    icon: <FormatUnderlinedIcon />,
+    icon: <FormatUnderlined />,
     type: "inline",
   },
   {
     label: "Strikethrough",
     name: "strikethrough",
     style: "STRIKETHROUGH",
-    icon: <StrikethroughIcon />,
+    icon: <StrikethroughS />,
     type: "inline",
   },
   {
     label: "Highlight",
     name: "highlight",
     style: "HIGHLIGHT",
-    icon: <HighlightIcon />,
+    icon: <Highlight />,
     type: "inline",
   },
   {
     label: "Undo",
     name: "undo",
     style: "UNDO",
-    icon: <UndoIcon />,
+    icon: <Undo />,
     type: "callback",
   },
   {
     label: "Redo",
     name: "redo",
     style: "REDO",
-    icon: <RedoIcon />,
+    icon: <Redo />,
     type: "callback",
   },
   {
     label: "Link",
     name: "link",
     style: "LINK",
-    icon: <InsertLinkIcon />,
+    icon: <InsertLink />,
     type: "callback",
     id: "link-control",
   },
@@ -154,7 +157,7 @@ const STYLE_TYPES: TStyleType[] = [
     label: "Media",
     name: "media",
     style: "IMAGE",
-    icon: <PhotoLibraryIcon />,
+    icon: <PhotoLibrary />,
     type: "callback",
     id: "media-control",
   },
@@ -162,89 +165,92 @@ const STYLE_TYPES: TStyleType[] = [
     label: "UL",
     name: "bulletList",
     style: "unordered-list-item",
-    icon: <FormatListBulletedIcon />,
+    icon: <FormatListBulleted />,
     type: "block",
   },
   {
     label: "OL",
     name: "numberList",
     style: "ordered-list-item",
-    icon: <FormatListNumberedIcon />,
+    icon: <FormatListNumbered />,
     type: "block",
   },
   {
     label: "Blockquote",
     name: "quote",
     style: "blockquote",
-    icon: <FormatQuoteIcon />,
+    icon: <FormatQuote />,
     type: "block",
   },
   {
     label: "Code Block",
     name: "code",
     style: "code-block",
-    icon: <CodeIcon />,
+    icon: <Code />,
     type: "block",
   },
   {
     label: "Clear",
     name: "clear",
     style: "clear",
-    icon: <FormatClearIcon />,
+    icon: <FormatClear />,
     type: "callback",
   },
   {
     label: "Save",
     name: "save",
     style: "save",
-    icon: <SaveIcon />,
+    icon: <Save />,
     type: "callback",
   },
 ];
 
-const Toolbar: FC<TToolbarProps> = props => {
-  const [availableControls, setAvailableControls] = useState(props.controls ? [] : STYLE_TYPES);
+export const Toolbar: FC<IToolbarProps> = props => {
+  const {inlineMode, controls, customControls, className, onClick, isActive, disabled, size} = props;
+
+  const [availableControls, setAvailableControls] = useState(controls ? [] : STYLE_TYPES);
   const {editorState} = props;
-  const id = props.inlineMode ? "-inline-toolbar" : "-toolbar";
+  const id = inlineMode ? "-inline-toolbar" : "-toolbar";
 
   useEffect(() => {
-    if (!props.controls) {
+    if (!controls) {
       return;
     }
     const filteredControls: TStyleType[] = [];
-    const controls = props.controls.filter((control, index) => props.controls!.indexOf(control) >= index);
-    controls.forEach(name => {
-      const style = STYLE_TYPES.find(style => style.name === name);
-      if (style) {
-        filteredControls.push(style);
-      } else if (props.customControls) {
-        const customControl = props.customControls.find(style => style.name === name);
-        if (customControl && customControl.type !== "atomic" && (customControl.icon || customControl.component)) {
-          filteredControls.push({
-            id: customControl.id || customControl.name + "Id",
-            name: customControl.name,
-            label: customControl.name,
-            style: customControl.name.toUpperCase(),
-            icon: customControl.icon,
-            component: customControl.component,
-            type: customControl.type,
-            clickFnName: "onCustomClick",
-          });
+    controls
+      .filter((control, index) => controls.indexOf(control) >= index)
+      .forEach(name => {
+        const style = STYLE_TYPES.find(style => style.name === name);
+        if (style) {
+          filteredControls.push(style);
+        } else if (customControls) {
+          const customControl = customControls.find(style => style.name === name);
+          if (customControl && customControl.type !== "atomic" && (customControl.icon || customControl.component)) {
+            filteredControls.push({
+              id: customControl.id || customControl.name + "Id",
+              name: customControl.name,
+              label: customControl.name,
+              style: customControl.name.toUpperCase(),
+              icon: customControl.icon,
+              component: customControl.component,
+              type: customControl.type,
+              clickFnName: "onCustomClick",
+            });
+          }
         }
-      }
-    });
+      });
     setAvailableControls(filteredControls);
-  }, [props.controls, props.customControls]);
+  }, [controls, customControls]);
 
   return (
-    <div id={`${props.id}${id}`} className={props.className}>
+    <div id={`${id}${id}`} className={className}>
       {availableControls.map(style => {
-        if (props.inlineMode && style.type !== "inline" && style.name !== "link" && style.name !== "clear") {
+        if (inlineMode && style.type !== "inline" && style.name !== "link" && style.name !== "clear") {
           return null;
         }
         let active = false;
-        const action = props.onClick;
-        if (!props.isActive) {
+        const action = onClick;
+        if (!isActive) {
           active = false;
         } else if (style.type === "inline") {
           active = editorState.getCurrentInlineStyle().has(style.style);
@@ -263,7 +269,7 @@ const Toolbar: FC<TToolbarProps> = props => {
         return (
           <ToolbarButton
             id={style.id}
-            editorId={props.id}
+            editorId={id}
             key={`key-${style.label}`}
             active={active}
             label={style.label}
@@ -272,13 +278,12 @@ const Toolbar: FC<TToolbarProps> = props => {
             type={style.type}
             icon={style.icon}
             component={style.component}
-            inlineMode={props.inlineMode}
-            disabled={props.disabled}
-            size={props.size}
+            inlineMode={inlineMode}
+            disabled={disabled}
+            size={size}
           />
         );
       })}
     </div>
   );
 };
-export default Toolbar;

@@ -251,7 +251,7 @@ import MUIRichTextEditor from 'mui-rte'
 You can style the editor using the `Material-UI` theming feature. First create a theme with `createMuiTheme` and override classes such as `root`, `container`, `editor`, and `editorContainer`. Check the examples directory for more.
 
 ```js
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import MUIRichTextEditor from 'mui-rte'
 
 const defaultTheme = createMuiTheme()

@@ -1,53 +1,52 @@
 import React, {
-  KeyboardEvent,
   CSSProperties,
   FC,
-  useEffect,
-  useState,
-  useRef,
   forwardRef,
-  useImperativeHandle,
+  KeyboardEvent,
   RefForwardingComponent,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from "react";
 import Immutable from "immutable";
 import classNames from "classnames";
-import {createStyles, withStyles, WithStyles, Theme} from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import {createStyles, Paper, Theme, withStyles, WithStyles} from "@material-ui/core";
 import {
-  Editor,
-  EditorState,
-  convertFromRaw,
-  RichUtils,
   AtomicBlockUtils,
   CompositeDecorator,
+  ContentBlock,
+  convertFromRaw,
   convertToRaw,
   DefaultDraftBlockRenderMap,
+  DraftBlockRenderMap,
+  DraftDecorator,
   DraftEditorCommand,
   DraftHandleValue,
   DraftStyleMap,
-  ContentBlock,
-  DraftDecorator,
-  SelectionState,
-  KeyBindingUtil,
+  Editor,
+  EditorState,
   getDefaultKeyBinding,
+  KeyBindingUtil,
   Modifier,
-  DraftBlockRenderMap,
+  RichUtils,
+  SelectionState,
 } from "draft-js";
-import Toolbar, {TToolbarControl, TCustomControl, TToolbarButtonSize} from "./components/Toolbar";
-import Link from "./components/Link";
-import Media from "./components/Media";
-import Blockquote from "./components/Blockquote";
-import CodeBlock from "./components/CodeBlock";
-import UrlPopover, {TAlignment, TUrlData, TMediaType} from "./components/UrlPopover";
-import Autocomplete, {TAutocompleteItem} from "./components/Autocomplete";
+import {TCustomControl, Toolbar, TToolbarButtonSize, TToolbarControl} from "./components/toolbar";
+import {Link} from "./components/link";
+import {Media} from "./components/media";
+import {Blockquote} from "./components/blockquote";
+import {CodeBlock} from "./components/code-block";
+import {TAlignment, TMediaType, TUrlData, UrlPopover} from "./components/url-popover";
+import {Autocomplete, TAutocompleteItem} from "./components/autocomplete";
 import {
-  getSelectionInfo,
-  removeBlockFromMap,
   atomicBlockExists,
-  isGreaterThan,
   clearInlineStyles,
   getEditorBounds,
   getLineNumber,
+  getSelectionInfo,
+  isGreaterThan,
+  removeBlockFromMap,
 } from "./utils";
 
 

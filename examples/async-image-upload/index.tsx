@@ -1,16 +1,9 @@
-import React, {useRef, useState, FunctionComponent, useEffect} from "react";
+import React, {FunctionComponent, useEffect, useRef, useState} from "react";
+import {Button, Grid, IconButton, makeStyles, Popover, TextField} from "@material-ui/core";
+import {AttachFile, Backup, Close, Done} from "@material-ui/icons";
+
 import MUIRichTextEditor from "../..";
-import {TMUIRichTextEditorRef} from "../../src/MUIRichTextEditor";
-import Grid from "@material-ui/core/Grid";
-import {makeStyles} from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
-import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import BackupIcon from "@material-ui/icons/Backup";
-import DoneIcon from "@material-ui/icons/Done";
-import CloseIcon from "@material-ui/icons/Close";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
+import {TMUIRichTextEditorRef} from "../../src";
 
 
 interface IUploadImagePopoverProps {
@@ -126,7 +119,7 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = props =>
           />
           <label htmlFor="contained-button-file">
             <IconButton color="primary" aria-label="upload image" component="span">
-              <AttachFileIcon />
+              <AttachFile />
             </IconButton>
           </label>
         </Grid>
@@ -139,7 +132,7 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = props =>
               });
             }}
           >
-            <CloseIcon />
+            <Close />
           </Button>
           <Button
             onClick={() => {
@@ -149,7 +142,7 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = props =>
               });
             }}
           >
-            <DoneIcon />
+            <Done />
           </Button>
         </Grid>
       </Grid>
@@ -183,7 +176,7 @@ const AsyncImageUpload: FunctionComponent = () => {
         customControls={[
           {
             name: "upload-image",
-            icon: <BackupIcon />,
+            icon: <Backup />,
             type: "callback",
             onClick: (_editorState, _name, anchor) => {
               setAnchor(anchor);

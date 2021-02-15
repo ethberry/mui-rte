@@ -1,8 +1,7 @@
 import React, {FC} from "react";
-import Paper from "@material-ui/core/Paper";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import {createStyles, withStyles, WithStyles} from "@material-ui/core/styles";
+import {List, ListItem, Paper} from "@material-ui/core";
+
+import {useStyles} from "./styles";
 
 
 export type TAutocompleteItem = {
@@ -11,7 +10,7 @@ export type TAutocompleteItem = {
   content: string | JSX.Element;
 };
 
-interface IAutocompleteProps extends WithStyles<typeof styles> {
+interface IAutocompleteProps {
   items: TAutocompleteItem[];
   top: number;
   left: number;
@@ -19,24 +18,13 @@ interface IAutocompleteProps extends WithStyles<typeof styles> {
   onClick: (selectedIndex: number) => void;
 }
 
-const styles = () =>
-  createStyles({
-    container: {
-      minWidth: "200px",
-      position: "absolute",
-      zIndex: 10,
-    },
-    item: {
-      cursor: "pointer",
-    },
-  });
-
-const Autocomplete: FC<IAutocompleteProps> = props => {
+export const Autocomplete: FC<IAutocompleteProps> = props => {
   if (!props.items.length) {
     return null;
   }
 
-  const {classes} = props;
+  const classes = useStyles();
+
   return (
     <Paper
       className={classes.container}
@@ -60,5 +48,3 @@ const Autocomplete: FC<IAutocompleteProps> = props => {
     </Paper>
   );
 };
-
-export default withStyles(styles, {withTheme: true})(Autocomplete);

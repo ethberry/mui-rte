@@ -2,8 +2,9 @@ import React from "react";
 import {mount} from "enzyme";
 import {assert, expect} from "chai";
 import {EditorState} from "draft-js";
-import Toolbar, {TToolbarControl} from "../src/components/Toolbar";
-import EditorButton from "../src/components/ToolbarButton";
+
+import {Toolbar, TToolbarControl} from "../src/components/toolbar";
+import {ToolbarButton} from "../src/components/toolbar-button";
 
 
 describe("<EditorControls />", () => {
@@ -15,7 +16,7 @@ describe("<EditorControls />", () => {
 
   it("should render all controls", () => {
     const wrapper = mount(<Toolbar id="mui-rte" editorState={editorState} onClick={() => {}} isActive={true} />);
-    const result = wrapper.find(EditorButton);
+    const result = wrapper.find(ToolbarButton);
     assert.strictEqual(result.length, 16);
   });
 
@@ -25,7 +26,7 @@ describe("<EditorControls />", () => {
     const wrapper = mount(
       <Toolbar id="mui-rte" editorState={editorState} controls={controls} onClick={() => {}} isActive={true} />,
     );
-    const result = wrapper.find(EditorButton).map(item => {
+    const result = wrapper.find(ToolbarButton).map(item => {
       return item.prop("label");
     });
     expect(result).to.have.ordered.members(expected);
@@ -35,7 +36,7 @@ describe("<EditorControls />", () => {
     const wrapper = mount(
       <Toolbar id="mui-rte" editorState={editorState} controls={[]} onClick={() => {}} isActive={true} />,
     );
-    const result = wrapper.find(EditorButton);
+    const result = wrapper.find(ToolbarButton);
     assert.strictEqual(result.length, 0);
   });
 });

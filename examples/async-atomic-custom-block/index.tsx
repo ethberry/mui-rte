@@ -1,17 +1,9 @@
-import React, {useRef, useState, FunctionComponent, useEffect} from "react";
+import React, {FunctionComponent, useEffect, useRef, useState} from "react";
+import {Button, Card, CardContent, Grid, makeStyles, Popover, TextField, Typography} from "@material-ui/core";
+import {Close, Done, Update} from "@material-ui/icons";
+
 import MUIRichTextEditor from "../..";
-import {TMUIRichTextEditorRef} from "../../src/MUIRichTextEditor";
-import {makeStyles} from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Popover from "@material-ui/core/Popover";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import UpdateIcon from "@material-ui/icons/Update";
-import DoneIcon from "@material-ui/icons/Done";
-import CloseIcon from "@material-ui/icons/Close";
+import {TMUIRichTextEditorRef} from "../../src";
 
 
 type TMyCardData = {
@@ -156,7 +148,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
               });
             }}
           >
-            <CloseIcon />
+            <Close />
           </Button>
           <Button
             onClick={() => {
@@ -166,7 +158,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
               });
             }}
           >
-            <DoneIcon />
+            <Done />
           </Button>
         </Grid>
       </Grid>
@@ -174,7 +166,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
   );
 };
 
-const AsyncAtomicCustomBlock: FunctionComponent = () => {
+export const AsyncAtomicCustomBlock: FunctionComponent = () => {
   const ref = useRef<TMUIRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   return (
@@ -200,7 +192,7 @@ const AsyncAtomicCustomBlock: FunctionComponent = () => {
           },
           {
             name: "add-card",
-            icon: <UpdateIcon />,
+            icon: <Update />,
             type: "callback",
             onClick: (_editorState, _name, anchor) => {
               setAnchor(anchor);

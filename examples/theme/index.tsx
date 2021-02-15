@@ -1,5 +1,6 @@
 import React, {FC} from "react";
-import {createMuiTheme, Theme, MuiThemeProvider} from "@material-ui/core/styles";
+import {createMuiTheme, Theme, MuiThemeProvider} from "@material-ui/core";
+
 import MUIRichTextEditor from "../../";
 
 

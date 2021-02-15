@@ -1,6 +1,7 @@
 import React, {FC} from "react";
+import {InvertColors} from "@material-ui/icons";
+
 import MUIRichTextEditor from "../../";
-import InvertColorsIcon from "@material-ui/icons/InvertColors";
 
 
 const save = (data: string) => {
@@ -17,7 +18,7 @@ const CustomInlineToolbar: FC = () => {
       customControls={[
         {
           name: "my-style",
-          icon: <InvertColorsIcon />,
+          icon: <InvertColors />,
           type: "inline",
           inlineStyle: {
             backgroundColor: "black",

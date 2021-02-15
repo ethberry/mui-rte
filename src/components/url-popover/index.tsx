@@ -1,17 +1,16 @@
 import React, {FC, useState} from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Popover from "@material-ui/core/Popover";
-import TextField from "@material-ui/core/TextField";
-import {createStyles, withStyles, WithStyles, Theme} from "@material-ui/core/styles";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
-import MovieIcon from "@material-ui/icons/Movie";
-import CheckIcon from "@material-ui/icons/Check";
-import DeleteIcon from "@material-ui/icons/DeleteOutline";
-import FormatAlignCenter from "@material-ui/icons/FormatAlignCenter";
-import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
-import FormatAlignRight from "@material-ui/icons/FormatAlignRight";
+import {Button, ButtonGroup, Grid, Popover, TextField} from "@material-ui/core";
+import {
+  Check,
+  Delete,
+  FormatAlignCenter,
+  FormatAlignLeft,
+  FormatAlignRight,
+  InsertPhoto,
+  Movie,
+} from "@material-ui/icons";
+
+import {useStyles} from "./styles";
 
 
 export type TAlignment = "left" | "center" | "right";
@@ -26,27 +25,20 @@ export type TUrlData = {
   type?: TMediaType;
 };
 
-interface IUrlPopoverStateProps extends WithStyles<typeof styles> {
+interface IUrlPopoverStateProps {
   anchor?: HTMLElement;
   data?: TUrlData;
   isMedia?: boolean;
   onConfirm: (isMedia?: boolean, ...args: any) => void;
 }
 
-const styles = ({spacing}: Theme) =>
-  createStyles({
-    linkPopover: {
-      padding: spacing(2, 2, 2, 2),
-      maxWidth: 250,
-    },
-    linkTextField: {
-      width: "100%",
-    },
-  });
+export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
+  const {data: propData, anchor, isMedia, onConfirm} = props;
 
-const UrlPopover: FC<IUrlPopoverStateProps> = props => {
+  const classes = useStyles();
+
   const [data, setData] = useState<TUrlData>(
-    props.data || {
+    propData || {
       url: undefined,
       width: undefined,
       height: undefined,
@@ -54,8 +46,6 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
       type: undefined,
     },
   );
-
-  const {classes} = props;
 
   const onSizeChange = (value: any, prop: "width" | "height") => {
     if (value === "") {
@@ -71,8 +61,8 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
 
   return (
     <Popover
-      open={props.anchor !== undefined}
-      anchorEl={props.anchor}
+      open={anchor !== undefined}
+      anchorEl={anchor}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "left",
@@ -90,14 +80,14 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                 className={classes.linkTextField}
                 onChange={event => setData({...data, url: event.target.value})}
                 label="URL"
-                defaultValue={props.data && props.data.url}
+                defaultValue={data && data.url}
                 autoFocus={true}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
             </Grid>
-            {props.isMedia ? (
+            {isMedia ? (
               <>
                 <Grid item xs={12}>
                   <ButtonGroup fullWidth>
@@ -106,14 +96,14 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                       size="small"
                       onClick={() => setData({...data, type: "image"})}
                     >
-                      <InsertPhotoIcon />
+                      <InsertPhoto />
                     </Button>
                     <Button
                       color={data.type === "video" ? "primary" : "default"}
                       size="small"
                       onClick={() => setData({...data, type: "video"})}
                     >
-                      <MovieIcon />
+                      <Movie />
                     </Button>
                   </ButtonGroup>
                 </Grid>
@@ -166,17 +156,13 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
             ) : null}
           </Grid>
           <Grid container item xs={12} direction="row" justify="flex-end">
-            {props.data && props.data.url ? (
-              <Button onClick={() => props.onConfirm(props.isMedia, "")}>
-                <DeleteIcon />
+            {data && data.url ? (
+              <Button onClick={() => onConfirm(isMedia, "")}>
+                <Delete />
               </Button>
             ) : null}
-            <Button
-              onClick={() =>
-                props.onConfirm(props.isMedia, data.url, data.width, data.height, data.alignment, data.type)
-              }
-            >
-              <CheckIcon />
+            <Button onClick={() => onConfirm(isMedia, data.url, data.width, data.height, data.alignment, data.type)}>
+              <Check />
             </Button>
           </Grid>
         </Grid>
@@ -184,5 +170,3 @@ const UrlPopover: FC<IUrlPopoverStateProps> = props => {
     </Popover>
   );
 };
-
-export default withStyles(styles, {withTheme: true})(UrlPopover);

@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {EditorState, RichUtils} from "draft-js";
+
 import MUIRichTextEditor from "../../";
 
 

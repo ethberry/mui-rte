@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {EditorState, convertToRaw} from "draft-js";
+
 import MUIRichTextEditor from "../../";
 
 

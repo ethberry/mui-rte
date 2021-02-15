@@ -1,9 +1,8 @@
 import React, {FC} from "react";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
+import {Avatar, ListItemAvatar, ListItemText} from "@material-ui/core";
+
 import MUIRichTextEditor from "../../";
-import {TAutocompleteItem} from "../../src/components/Autocomplete";
+import {TAutocompleteItem} from "../../src/components/autocomplete";
 
 
 const save = (data: string) => {

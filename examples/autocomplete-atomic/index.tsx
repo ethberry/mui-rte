@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
+import {Avatar, Chip} from "@material-ui/core";
+
 import MUIRichTextEditor from "../../";
-import {TAutocompleteItem} from "../../src/components/Autocomplete";
+import {TAutocompleteItem} from "../../src/components/autocomplete";
 
 
 const save = (data: string) => {

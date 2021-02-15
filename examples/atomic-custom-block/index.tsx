@@ -1,26 +1,24 @@
-import React, {useRef, useState, FunctionComponent, useEffect} from "react";
-import MUIRichTextEditor from "../..";
-import {TMUIRichTextEditorRef} from "../../src/MUIRichTextEditor";
+import React, {FunctionComponent, useEffect, useRef, useState} from "react";
+
 import {
-  Card,
-  CardHeader,
   Avatar,
-  CardMedia,
-  CardContent,
-  Typography,
-  IconButton,
+  Button,
+  Card,
   CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
   Grid,
+  IconButton,
+  makeStyles,
+  Popover,
+  TextField,
+  Typography,
 } from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import WebAssetIcon from "@material-ui/icons/WebAsset";
-import ShareIcon from "@material-ui/icons/Share";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import DoneIcon from "@material-ui/icons/Done";
-import CloseIcon from "@material-ui/icons/Close";
+import {Close, Done, Favorite, Share, WebAsset} from "@material-ui/icons";
+
+import MUIRichTextEditor from "../..";
+import {TMUIRichTextEditorRef} from "../../src";
 
 
 type TMyCardData = {
@@ -101,10 +99,10 @@ const MyCard: FunctionComponent<any> = props => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="like card" onClick={handleLiked}>
-          <FavoriteIcon />
+          <Favorite />
         </IconButton>
         <IconButton aria-label="share" onClick={handleShared}>
-          <ShareIcon />
+          <Share />
         </IconButton>
       </CardActions>
     </Card>
@@ -182,7 +180,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
               });
             }}
           >
-            <CloseIcon />
+            <Close />
           </Button>
           <Button
             onClick={() => {
@@ -192,7 +190,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = props => {
               });
             }}
           >
-            <DoneIcon />
+            <Done />
           </Button>
         </Grid>
       </Grid>
@@ -227,7 +225,7 @@ const AtomicCustomBlock: FunctionComponent = () => {
           },
           {
             name: "add-card",
-            icon: <WebAssetIcon />,
+            icon: <WebAsset />,
             type: "callback",
             onClick: (_editorState, _name, anchor) => {
               setAnchor(anchor);

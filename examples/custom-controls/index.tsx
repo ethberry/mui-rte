@@ -1,9 +1,10 @@
 import React, {FC} from "react";
-import {Chip, Avatar, Button} from "@material-ui/core";
-import InvertColorsIcon from "@material-ui/icons/InvertColors";
-import MUIRichTextEditor from "../../";
-import {TToolbarComponentProps} from "../../src/components/Toolbar";
 import {EditorState} from "draft-js";
+import {Avatar, Button, Chip} from "@material-ui/core";
+import {InvertColors} from "@material-ui/icons";
+
+import MUIRichTextEditor from "../../";
+import {TToolbarComponentProps} from "../../src/components/toolbar";
 
 
 const save = (data: string) => {
@@ -63,7 +64,7 @@ const CustomControls: FC = () => {
       customControls={[
         {
           name: "my-style",
-          icon: <InvertColorsIcon />,
+          icon: <InvertColors />,
           type: "inline",
           inlineStyle: {
             backgroundColor: "black",
