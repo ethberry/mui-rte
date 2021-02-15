@@ -3,7 +3,7 @@ import {mount} from "enzyme";
 import {spy} from "sinon";
 import {assert, expect} from "chai";
 import {Editor, convertFromRaw} from "draft-js";
-import MUIRichTextEditor from "../src";
+import {MUIRichTextEditor} from "../src";
 import {Toolbar} from "../src/components/toolbar";
 import {ToolbarButton} from "../src/components/toolbar-button";
 

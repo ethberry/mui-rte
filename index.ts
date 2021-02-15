@@ -1,1 +1,1 @@
-export {default} from "./src";
+export {MUIRichTextEditor, IMUIRichTextEditorProps} from "./src";

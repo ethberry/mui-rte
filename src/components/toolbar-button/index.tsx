@@ -52,10 +52,10 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
         aria-label={label}
         color={active ? "primary" : "default"}
         size={!inlineMode ? size || "medium" : "small"}
-      >
-        {icon}
         disabled={disabled}
         onMouseDown={mouseDownHandler}
+      >
+        {icon}
       </IconButton>
     );
   }

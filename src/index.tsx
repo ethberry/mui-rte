@@ -3,7 +3,6 @@ import React, {
   FC,
   forwardRef,
   KeyboardEvent,
-  RefForwardingComponent,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -11,7 +10,7 @@ import React, {
 } from "react";
 import Immutable from "immutable";
 import classNames from "classnames";
-import {createStyles, Paper, Theme, withStyles, WithStyles} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 import {
   AtomicBlockUtils,
   CompositeDecorator,
@@ -48,6 +47,7 @@ import {
   isGreaterThan,
   removeBlockFromMap,
 } from "./utils";
+import {useStyles} from "./styles";
 
 
 export type TDecorator = {
@@ -94,7 +94,7 @@ export type TKeyCommand = {
   callback: (state: EditorState) => EditorState;
 };
 
-export type TMUIRichTextEditorProps = {
+export interface IMUIRichTextEditorProps {
   id?: string;
   /**
    * @deprecated Use `defaultValue` instead.
@@ -120,9 +120,7 @@ export type TMUIRichTextEditorProps = {
   onChange?: (state: EditorState) => void;
   onFocus?: () => void;
   onBlur?: () => void;
-};
-
-interface IMUIRichTextEditorProps extends TMUIRichTextEditorProps, WithStyles<typeof styles> {}
+}
 
 type TMUIRichTextEditorState = {
   anchorUrlPopover?: HTMLElement;
@@ -142,58 +140,6 @@ type TPosition = {
   left: number;
 };
 
-const styles = ({spacing, typography, palette}: Theme) =>
-  createStyles({
-    root: {},
-    container: {
-      margin: spacing(1, 0, 0, 0),
-      position: "relative",
-      fontFamily: typography.body1.fontFamily,
-      fontSize: typography.body1.fontSize,
-      "& figure": {
-        margin: 0,
-      },
-    },
-    inheritFontSize: {
-      fontSize: "inherit",
-    },
-    editor: {},
-    editorContainer: {
-      margin: spacing(1, 0, 0, 0),
-      cursor: "text",
-      width: "100%",
-      padding: spacing(0, 0, 1, 0),
-    },
-    editorReadOnly: {
-      borderBottom: "none",
-    },
-    error: {
-      borderBottom: "2px solid red",
-    },
-    hidePlaceholder: {
-      display: "none",
-    },
-    placeHolder: {
-      color: palette.grey[600],
-      position: "absolute",
-      outline: "none",
-    },
-    linkPopover: {
-      padding: spacing(2, 2, 2, 2),
-    },
-    linkTextField: {
-      width: "100%",
-    },
-    anchorLink: {},
-    toolbar: {},
-    inlineToolbar: {
-      maxWidth: "180px",
-      position: "absolute",
-      padding: "5px",
-      zIndex: 10,
-    },
-  });
-
 const blockRenderMap = Immutable.Map({
   blockquote: {
     element: "blockquote",
@@ -204,6 +150,7 @@ const blockRenderMap = Immutable.Map({
     wrapper: <CodeBlock />,
   },
 });
+
 const styleRenderMap: DraftStyleMap = {
   STRIKETHROUGH: {
     textDecoration: "line-through",
@@ -257,8 +204,10 @@ const useEditorState = (props: IMUIRichTextEditorProps) => {
     : EditorState.createEmpty(decorator);
 };
 
-const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichTextEditorProps> = (props, ref) => {
-  const {classes, controls, customControls} = props;
+export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextEditorProps>((props, ref) => {
+  const {controls, customControls} = props;
+
+  const classes = useStyles();
 
   const [state, setState] = useState<TMUIRichTextEditorState>({});
   const [focus, setFocus] = useState(false);
@@ -1176,6 +1125,4 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
       </div>
     </div>
   );
-};
-
-export default withStyles(styles, {withTheme: true, name: "MUIRichTextEditor"})(forwardRef(MUIRichTextEditor));
+});

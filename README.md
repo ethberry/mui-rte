@@ -279,7 +279,7 @@ Object.assign(defaultTheme, {
 
 ## API
 
-`<MUIRichTextEditor /> (TMUIRichTextEditorProps)`
+`<MUIRichTextEditor /> (IMUIRichTextEditorProps)`
 
 |Property|Type||description|
 |---|---|---|---|
