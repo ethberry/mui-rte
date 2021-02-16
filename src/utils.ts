@@ -7,13 +7,13 @@ import {
   SelectionState,
   getVisibleSelectionRect,
   DraftStyleMap,
+  DraftInlineStyle,
 } from "draft-js";
-import Immutable from "immutable";
 import {TCustomControl} from "./components/toolbar";
 
 
 export type TSelectionInfo = {
-  inlineStyle: Immutable.OrderedSet<string>;
+  inlineStyle: DraftInlineStyle;
   blockType: DraftBlockType;
   entityType: string;
   linkKey: string;
@@ -66,8 +66,8 @@ export const removeBlockFromMap = (editorState: EditorState, block: ContentBlock
   }) as ContentState;
 };
 
-export const atomicBlockExists = (name: string, controls?: TCustomControl[]): TCustomControl | undefined => {
-  if (!controls) {
+export const atomicBlockExists = (name: string, controls: TCustomControl[]): TCustomControl | undefined => {
+  if (!controls.length) {
     return;
   }
   return controls.find(

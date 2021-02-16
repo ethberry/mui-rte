@@ -1,10 +1,10 @@
 import React, {FC, useRef} from "react";
 
-import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
 
 
 export const RefSave: FC = () => {
-  const ref = useRef<TMUIRichTextEditorRef>(null);
+  const ref = useRef<IMUIRichTextEditorRef>(null);
 
   const handleClick = () => {
     ref.current?.save();

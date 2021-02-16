@@ -1,14 +1,14 @@
 import React, {FC, Fragment, useRef, useState} from "react";
 import {Backup} from "@material-ui/icons";
 
-import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
 import {TAnchor} from "../../src/components/types";
 import {uploadImage} from "./utils";
 import {UploadImagePopover} from "./upload-image-popover";
 
 
 export const AsyncImageUpload: FC = () => {
-  const ref = useRef<TMUIRichTextEditorRef>(null);
+  const ref = useRef<IMUIRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);
 
   const handleFileUpload = (file: File) => {

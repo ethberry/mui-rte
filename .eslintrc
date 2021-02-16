@@ -13,6 +13,7 @@
       "error",
       {
         "devDependencies": [
+          "examples/**/*.{ts,tsx}",
           "**/*.test.{ts,tsx}",
           "**/enzyme.config.ts",
           "rollup.config.js",

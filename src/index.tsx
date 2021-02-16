@@ -9,7 +9,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Immutable from "immutable";
 import clsx from "clsx";
 import {Paper} from "@material-ui/core";
 import {
@@ -72,7 +71,7 @@ export type TAsyncAtomicBlockResponse = {
   data: any;
 };
 
-export type TMUIRichTextEditorRef = {
+export type IMUIRichTextEditorRef = {
   focus: () => void;
   save: () => void;
   /**
@@ -141,7 +140,7 @@ type TPosition = {
   left: number;
 };
 
-const blockRenderMap = Immutable.Map({
+const blockRenderMap = {
   blockquote: {
     element: "blockquote",
     wrapper: <Blockquote />,
@@ -150,7 +149,7 @@ const blockRenderMap = Immutable.Map({
     element: "pre",
     wrapper: <CodeBlock />,
   },
-});
+};
 
 const styleRenderMap: DraftStyleMap = {
   STRIKETHROUGH: {
@@ -205,11 +204,11 @@ const useEditorState = (props: IMUIRichTextEditorProps) => {
     : EditorState.createEmpty(decorator);
 };
 
-export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextEditorProps>((props, ref) => {
+export const MUIRichTextEditor = forwardRef<IMUIRichTextEditorRef, IMUIRichTextEditorProps>((props, ref) => {
   const {
     readOnly,
     controls,
-    customControls,
+    customControls = [],
     keyCommands,
     id = "mui-rte",
     autocomplete,
@@ -441,7 +440,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   };
 
   const handleCustomClick = (style: any, id: string) => {
-    if (!customControls) {
+    if (!customControls.length) {
       return;
     }
     for (const control of customControls) {
@@ -852,7 +851,7 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   const setupStyleMap = () => {
     const customStyleMap = JSON.parse(JSON.stringify(styleRenderMap));
     customControls
-      ?.filter(control => control.type === "inline" && control.inlineStyle)
+      .filter(control => control.type === "inline" && control.inlineStyle)
       .forEach(control => {
         customStyleMap[control.name.toUpperCase()] = control.inlineStyle;
       });
@@ -869,14 +868,14 @@ export const MUIRichTextEditor = forwardRef<TMUIRichTextEditorRef, IMUIRichTextE
   const setupBlockMap = () => {
     const customBlockMap: any = {};
     customControls
-      ?.filter(control => control.type === "block" && control.blockWrapper)
+      .filter(control => control.type === "block" && control.blockWrapper)
       .forEach(control => {
         customBlockMap[control.name.toUpperCase()] = {
           element: "div",
           wrapper: control.blockWrapper,
         };
       });
-    customBlockMapRef.current = DefaultDraftBlockRenderMap.merge(blockRenderMap, Immutable.Map(customBlockMap));
+    customBlockMapRef.current = DefaultDraftBlockRenderMap.merge(blockRenderMap, customBlockMap);
   };
 
   const getBlockMap = (): DraftBlockRenderMap => {

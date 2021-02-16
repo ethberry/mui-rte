@@ -2,6 +2,7 @@
 
 const path = require("path");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const {HotModuleReplacementPlugin} = require("webpack");
 
 
 module.exports = {
@@ -21,6 +22,9 @@ module.exports = {
   devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom",
+    },
   },
   module: {
     rules: [
@@ -68,7 +72,7 @@ module.exports = {
     minimize: process.env.NODE_ENV === "production",
     moduleIds: "named",
   },
-  plugins: [new ProgressBarPlugin()],
+  plugins: [new ProgressBarPlugin(), new HotModuleReplacementPlugin()],
   devServer: {
     hot: true,
     contentBase: path.join(__dirname, "examples"),

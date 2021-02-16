@@ -1,7 +1,7 @@
 import React, {Fragment, FC, useRef, useState} from "react";
 import {Update} from "@material-ui/icons";
 
-import {MUIRichTextEditor, TMUIRichTextEditorRef} from "../../src";
+import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
 import {TAnchor} from "../../src/components/types";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
@@ -9,7 +9,7 @@ import {downloadData} from "./utils";
 
 
 export const AsyncAtomicCustomBlock: FC = () => {
-  const ref = useRef<TMUIRichTextEditorRef>(null);
+  const ref = useRef<IMUIRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);
   return (
     <Fragment>

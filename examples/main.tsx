@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import * as ReactDOM from "react-dom";
+import {hot} from "react-hot-loader/root";
+import {render} from "react-dom";
 
 import {Events} from "./events";
 import {Theme} from "./theme";
@@ -21,7 +22,7 @@ import {AsyncImageUpload} from "./async-image-upload";
 import {AsyncAtomicCustomBlock} from "./async-atomic-custom-block";
 
 
-const App = () => {
+const App = hot(() => {
   const [sample, setSample] = useState(<Basic />);
 
   useEffect(() => {
@@ -61,6 +62,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+});
 
-ReactDOM.render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById("root"));

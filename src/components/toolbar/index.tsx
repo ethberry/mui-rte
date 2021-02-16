@@ -207,7 +207,7 @@ const STYLE_TYPES: TStyleType[] = [
 ];
 
 export const Toolbar: FC<IToolbarProps> = props => {
-  const {inlineMode, controls, customControls, className, onClick, isActive, disabled, size} = props;
+  const {inlineMode, controls, customControls = [], className, onClick, isActive, disabled, size} = props;
 
   const [availableControls, setAvailableControls] = useState(controls ? [] : STYLE_TYPES);
   const {editorState} = props;
@@ -224,7 +224,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
         const style = STYLE_TYPES.find(style => style.name === name);
         if (style) {
           filteredControls.push(style);
-        } else if (customControls) {
+        } else if (customControls.length) {
           const customControl = customControls.find(style => style.name === name);
           if (customControl && customControl.type !== "atomic" && (customControl.icon || customControl.component)) {
             filteredControls.push({
