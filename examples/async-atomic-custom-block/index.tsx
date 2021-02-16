@@ -1,7 +1,7 @@
 import React, {Fragment, FC, useRef, useState} from "react";
 import {Update} from "@material-ui/icons";
 
-import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
+import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
 import {TAnchor} from "../../src/components/types";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
@@ -9,7 +9,7 @@ import {downloadData} from "./utils";
 
 
 export const AsyncAtomicCustomBlock: FC = () => {
-  const ref = useRef<IMUIRichTextEditorRef>(null);
+  const ref = useRef<IRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);
   return (
     <Fragment>
@@ -22,7 +22,7 @@ export const AsyncAtomicCustomBlock: FC = () => {
           setAnchor(null);
         }}
       />
-      <MUIRichTextEditor
+      <RichTextEditor
         label="Press the last icon in the toolbar to insert an async atomic custom block..."
         ref={ref}
         controls={["title", "bold", "underline", "add-card"]}

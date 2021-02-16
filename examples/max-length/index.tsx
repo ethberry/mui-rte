@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const save = (data: string) => {
@@ -8,5 +8,5 @@ const save = (data: string) => {
 };
 
 export const MaxLength: FC = () => {
-  return <MUIRichTextEditor label="You can only type 10 characters..." maxLength={10} onSave={save} />;
+  return <RichTextEditor label="You can only type 10 characters..." maxLength={10} onSave={save} />;
 };

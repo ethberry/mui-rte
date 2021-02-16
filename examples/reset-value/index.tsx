@@ -1,6 +1,6 @@
 import React, {FC, Fragment, useState} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const contentOne = JSON.stringify({
@@ -160,7 +160,7 @@ export const ResetValue: FC = () => {
   return (
     <Fragment>
       <button onClick={() => setContent(contentTwo)}>Reset content</button>
-      <MUIRichTextEditor defaultValue={content} onSave={save} />
+      <RichTextEditor defaultValue={content} onSave={save} />
     </Fragment>
   );
 };

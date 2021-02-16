@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {InvertColors} from "@material-ui/icons";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const save = (data: string) => {
@@ -10,7 +10,7 @@ const save = (data: string) => {
 
 export const CustomInlineToolbar: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Try selecting some text to show the inline toolbar..."
       inlineToolbar={true}
       inlineToolbarControls={["bold", "italic", "my-style", "link"]}

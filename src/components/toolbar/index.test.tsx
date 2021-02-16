@@ -2,7 +2,8 @@ import React from "react";
 import {mount} from "enzyme";
 import {EditorState} from "draft-js";
 
-import {Toolbar, TToolbarControl} from "./index";
+import {Toolbar} from "./index";
+import {TToolbarControl} from "./types";
 import {ToolbarButton} from "../toolbar-button";
 
 

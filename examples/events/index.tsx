@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {EditorState, convertToRaw} from "draft-js";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const save = (data: string) => {
@@ -34,7 +34,7 @@ const blur = () => {
 
 export const Events: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Open the console to see the event callback as you type..."
       onSave={save}
       onChange={change}

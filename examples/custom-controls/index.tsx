@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {EditorState} from "draft-js";
 import {InvertColors} from "@material-ui/icons";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 import {MyCallbackComponent} from "./callback-component";
 import {ClearComponent} from "./clear-component";
 import {MyBlockComponent} from "./block-component";
@@ -15,7 +15,7 @@ const save = (data: string) => {
 
 export const CustomControls: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Type something here..."
       onSave={save}
       controls={["title", "bold", "my-block", "my-style", "clear", "my-callback", "clear-callback", "save"]}

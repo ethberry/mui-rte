@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {EditorState, RichUtils} from "draft-js";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const save = (data: string) => {
@@ -10,7 +10,7 @@ const save = (data: string) => {
 
 export const KeyBindings: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Press CMD + C to clear the editor or CMD + K to add 'italic' style to the selection..."
       onSave={save}
       controls={["title", "italic", "save"]}

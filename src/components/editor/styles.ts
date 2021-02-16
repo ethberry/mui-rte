@@ -34,7 +34,7 @@ export const useStyles = makeStyles(
     },
     placeHolder: {
       color: theme.palette.grey[600],
-      position: "absolute",
+      position: "relative",
       outline: "none",
     },
     linkPopover: {

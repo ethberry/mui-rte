@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const save = (data: string) => {
@@ -8,5 +8,5 @@ const save = (data: string) => {
 };
 
 export const Basic: FC = () => {
-  return <MUIRichTextEditor label="Type something here..." onSave={save} />;
+  return <RichTextEditor label="Type something here..." onSave={save} />;
 };

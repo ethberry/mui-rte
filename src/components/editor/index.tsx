@@ -31,13 +31,14 @@ import {
   RichUtils,
   SelectionState,
 } from "draft-js";
-import {TCustomControl, Toolbar, TToolbarButtonSize, TToolbarControl} from "./components/toolbar";
-import {Link} from "./components/link";
-import {Media} from "./components/media";
-import {Blockquote} from "./components/blockquote";
-import {CodeBlock} from "./components/code-block";
-import {IUrlData, TAlignment, TMediaType, UrlPopover} from "./components/url-popover";
-import {Autocomplete, IAutocompleteItem} from "./components/autocomplete";
+import {Toolbar} from "../toolbar";
+import {TCustomControl, TToolbarButtonSize, TToolbarControl} from "../toolbar/types";
+import {Link} from "../link";
+import {Media} from "../media";
+import {Blockquote} from "../blockquote";
+import {CodeBlock} from "../code-block";
+import {IUrlData, TAlignment, TMediaType, UrlPopover} from "../url-popover";
+import {Autocomplete, IAutocompleteItem} from "../autocomplete";
 import {
   atomicBlockExists,
   clearInlineStyles,
@@ -46,7 +47,7 @@ import {
   getSelectionInfo,
   isGreaterThan,
   removeBlockFromMap,
-} from "./utils";
+} from "../../utils";
 import {useStyles} from "./styles";
 
 
@@ -71,7 +72,7 @@ export type TAsyncAtomicBlockResponse = {
   data: any;
 };
 
-export type IMUIRichTextEditorRef = {
+export type IRichTextEditorRef = {
   focus: () => void;
   save: () => void;
   /**
@@ -94,7 +95,7 @@ export type TKeyCommand = {
   callback: (state: EditorState) => EditorState;
 };
 
-export interface IMUIRichTextEditorProps {
+export interface IRichTextEditorProps {
   id?: string;
   /**
    * @deprecated Use `defaultValue` instead.
@@ -180,7 +181,7 @@ const findDecoWithRegex = (regex: RegExp, contentBlock: any, callback: any) => {
   }
 };
 
-const useEditorState = (props: IMUIRichTextEditorProps) => {
+const useEditorState = (props: IRichTextEditorProps) => {
   const decorators: DraftDecorator[] = [
     {
       strategy: findLinkEntities,
@@ -204,7 +205,7 @@ const useEditorState = (props: IMUIRichTextEditorProps) => {
     : EditorState.createEmpty(decorator);
 };
 
-export const MUIRichTextEditor = forwardRef<IMUIRichTextEditorRef, IMUIRichTextEditorProps>((props, ref) => {
+export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProps>((props, ref) => {
   const {
     readOnly,
     controls,

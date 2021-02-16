@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 import {cities} from "./data";
 import {CityChip} from "./chip";
 
@@ -11,7 +11,7 @@ const save = (data: string) => {
 
 export const AutocompleteAtomic: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Try typing '/mexico'..."
       onSave={save}
       customControls={[

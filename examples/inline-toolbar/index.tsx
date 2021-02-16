@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 export const InlineToolbar: FC = () => {
-  return <MUIRichTextEditor label="Try selecting some text to show the inline toolbar..." inlineToolbar={true} />;
+  return <RichTextEditor label="Try selecting some text to show the inline toolbar..." inlineToolbar={true} />;
 };

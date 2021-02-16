@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 import {cities, emojis, staff} from "./data";
 
 
@@ -10,7 +10,7 @@ const save = (data: string) => {
 
 export const Autocomplete: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Try typing ':grin' or '/mexico'..."
       onSave={save}
       autocomplete={{

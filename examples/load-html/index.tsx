@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {convertFromHTML, ContentState, convertToRaw} from "draft-js";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const sampleMarkup =
@@ -15,5 +15,5 @@ const save = (data: string) => {
 };
 
 export const LoadHTML: FC = () => {
-  return <MUIRichTextEditor defaultValue={content} onSave={save} />;
+  return <RichTextEditor defaultValue={content} onSave={save} />;
 };

@@ -1,10 +1,10 @@
 import React, {FC, useRef} from "react";
 
-import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
+import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
 
 
 export const RefSave: FC = () => {
-  const ref = useRef<IMUIRichTextEditorRef>(null);
+  const ref = useRef<IRichTextEditorRef>(null);
 
   const handleClick = () => {
     ref.current?.save();
@@ -39,7 +39,7 @@ export const RefSave: FC = () => {
       >
         Focus
       </button>
-      <MUIRichTextEditor
+      <RichTextEditor
         label="Type something here..."
         onSave={handleSave}
         ref={ref}

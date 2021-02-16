@@ -1,14 +1,14 @@
 import React, {FC, Fragment, useRef, useState} from "react";
 import {Backup} from "@material-ui/icons";
 
-import {MUIRichTextEditor, IMUIRichTextEditorRef} from "../../src";
+import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
 import {TAnchor} from "../../src/components/types";
 import {uploadImage} from "./utils";
 import {UploadImagePopover} from "./upload-image-popover";
 
 
 export const AsyncImageUpload: FC = () => {
-  const ref = useRef<IMUIRichTextEditorRef>(null);
+  const ref = useRef<IRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);
 
   const handleFileUpload = (file: File) => {
@@ -26,7 +26,7 @@ export const AsyncImageUpload: FC = () => {
           setAnchor(null);
         }}
       />
-      <MUIRichTextEditor
+      <RichTextEditor
         label="Drop a file inside the editor or press the last icon in the toolbar to simulate uploading an image...."
         ref={ref}
         controls={["title", "bold", "underline", "media", "upload-image"]}

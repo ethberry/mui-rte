@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 import {MyHashTagDecorator} from "./hash";
 import {MyAtDecorator} from "./at";
 
@@ -11,7 +11,7 @@ const save = (data: string) => {
 
 export const Decorators: FC = () => {
   return (
-    <MUIRichTextEditor
+    <RichTextEditor
       label="Try writing a #hashtag or a @mention..."
       onSave={save}
       decorators={[

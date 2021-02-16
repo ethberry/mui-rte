@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {MUIRichTextEditor} from "../../src";
+import {RichTextEditor} from "../../src/components/editor";
 
 
 const content = JSON.stringify({
@@ -92,5 +92,5 @@ const content = JSON.stringify({
 });
 
 export const ReadOnly: FC = () => {
-  return <MUIRichTextEditor defaultValue={content} readOnly={true} />;
+  return <RichTextEditor defaultValue={content} readOnly={true} />;
 };
