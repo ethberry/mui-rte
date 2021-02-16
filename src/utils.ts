@@ -9,7 +9,7 @@ import {
   DraftStyleMap,
   DraftInlineStyle,
 } from "draft-js";
-import {TCustomControl} from "./components/toolbar";
+import {TCustomControl} from "./components/toolbar/types";
 
 
 export type TSelectionInfo = {
