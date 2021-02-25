@@ -1,0 +1,104 @@
+name: CD Renovate
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  get-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: See condition
+        run: |
+          echo "GITHUB_HEAD_REF:"${GITHUB_HEAD_REF}
+          echo "GITHUB_REF:"${GITHUB_REF#refs/*/}
+          echo "GITHUB_ACTOR:"${GITHUB_ACTOR}
+          echo "github.event.pull_request.merged:"$VAR1
+          echo "github.ref:"$VAR2
+          echo "github.head_ref:"$VAR3
+          echo "github.event_name:"$VAR4
+          echo "github.actor:"$VAR5
+        env:
+          VAR1: ${{ github.event.pull_request.merged }}
+          VAR2: ${{ github.ref }}
+          VAR3: ${{ github.head_ref }}
+          VAR4: ${{ github.event_name }}
+          VAR5: ${{ github.actor }}
+
+
+  # update: workflow don't publish chore renovate updates
+  renovate-release-patch:
+    if: ${{github.event.pull_request.merged == true && contains(github.head_ref,'renovate') && !contains(github.event.pull_request.title,'chore(deps)')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Get step info
+        id: vars
+        run:  |
+          echo $VAR1
+          echo $VAR2
+          echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+        env:
+          VAR1: ${{ github.event.pull_request.merged }}
+          VAR2: ${{ github.ref }}
+
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.short_ref }}
+
+      - name: Configure CI Git User
+        run: |
+          git config --global user.name '@trejgun'
+          git config --global user.email 'trejgun@gmail.com'
+          git remote set-url origin https://$GITHUB_ACTOR:$GITHUBTOKEN@github.com/paktolus/mui-rte
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Checkout and pull branch
+        run: git checkout ${{ steps.vars.outputs.short_ref }} && git config pull.rebase true && git pull
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Install Packages npm i
+        run: npm i
+
+      - name: Bootstrap Packages npm i
+        run: npm run bootstrap
+
+      - name: Authenticate with Registry via npm
+        run: |
+          echo "save-exact=true" > .npmrc
+          echo "package-lock=false" >> .npmrc
+          echo "@trejgun:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN" >> .npmrc
+          echo "@paktolus:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN" >> .npmrc
+          git update-index --assume-unchanged .npmrc
+          npx npm-cli-login -u trejgun -p $GITHUBTOKEN -e trejgun@gmail.com -r https://npm.pkg.github.com -s @trejgun --config-path="./"
+          npx npm-cli-login -u trejgun -p $GITHUBTOKEN -e trejgun@gmail.com -r https://npm.pkg.github.com -s @paktolus --config-path="./"
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Authenticate check via npm
+        run: npm whoami --registry=https://npm.pkg.github.com/
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Check Git Diff
+        run: git diff --exit-code
+
+      - name: Version by lerna
+        run: npm run release:version
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Publish by lerna
+        run: npm run release:publish
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
