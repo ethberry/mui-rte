@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {convertFromHTML, ContentState, convertToRaw} from "draft-js";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 
 
 const sampleMarkup =

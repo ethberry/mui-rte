@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "cssnano": {
+      "autoprefixer": {
+        "add": true,
+        "browsers": [
+          "> 1%"
+        ]
+      },
+      "zindex": false
+    }
+  }
+}

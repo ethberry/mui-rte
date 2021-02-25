@@ -3,6 +3,7 @@
 const path = require("path");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const {HotModuleReplacementPlugin} = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
@@ -28,6 +29,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
       {
         test: /\.[tj]sx?$/,
         exclude: [/node_modules/],
@@ -72,7 +77,13 @@ module.exports = {
     minimize: process.env.NODE_ENV === "production",
     moduleIds: "named",
   },
-  plugins: [new ProgressBarPlugin(), new HotModuleReplacementPlugin()],
+  plugins: [
+    new ProgressBarPlugin(),
+    new HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "bundle.css",
+    }),
+  ],
   devServer: {
     hot: true,
     contentBase: path.join(__dirname, "examples"),

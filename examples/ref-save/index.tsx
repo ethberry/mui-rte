@@ -1,6 +1,6 @@
 import React, {FC, useRef} from "react";
 
-import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
+import {RichTextEditor, IRichTextEditorRef} from "../../src";
 
 
 export const RefSave: FC = () => {

@@ -1,8 +1,7 @@
 import React, {FC, Fragment, useRef, useState} from "react";
 import {Backup} from "@material-ui/icons";
 
-import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
-import {TAnchor} from "../../src/components/types";
+import {IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
 import {uploadImage} from "./utils";
 import {UploadImagePopover} from "./upload-image-popover";
 

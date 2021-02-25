@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {InvertColors} from "@material-ui/icons";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 
 
 const save = (data: string) => {

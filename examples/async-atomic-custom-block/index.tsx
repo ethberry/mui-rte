@@ -1,8 +1,7 @@
-import React, {Fragment, FC, useRef, useState} from "react";
+import React, {FC, Fragment, useRef, useState} from "react";
 import {Update} from "@material-ui/icons";
 
-import {RichTextEditor, IRichTextEditorRef} from "../../src/components/editor";
-import {TAnchor} from "../../src/components/types";
+import {IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
 import {downloadData} from "./utils";

@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {EditorState} from "draft-js";
 import {InvertColors} from "@material-ui/icons";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 import {MyCallbackComponent} from "./callback-component";
 import {ClearComponent} from "./clear-component";
 import {MyBlockComponent} from "./block-component";

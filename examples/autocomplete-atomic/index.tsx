@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 import {cities} from "./data";
 import {CityChip} from "./chip";
 

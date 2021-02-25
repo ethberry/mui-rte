@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, KeyboardEvent} from "react";
 import {EditorState, RichUtils} from "draft-js";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 
 
 const save = (data: string) => {
@@ -13,8 +13,15 @@ export const KeyBindings: FC = () => {
     <RichTextEditor
       label="Press CMD + C to clear the editor or CMD + K to add 'italic' style to the selection..."
       onSave={save}
-      controls={["title", "italic", "save"]}
+      controls={["title", "italic", "numberList", "bulletList", "save"]}
       keyCommands={[
+        {
+          key: 190, // >
+          name: "on-tab",
+          callback: (editorState: EditorState) => {
+            return RichUtils.onTab({preventDefault: () => {}} as KeyboardEvent, editorState, 4);
+          },
+        },
         {
           key: 67, // C
           name: "clear-all",

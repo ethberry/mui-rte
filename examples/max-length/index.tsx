@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 
 
 const save = (data: string) => {

@@ -1,6 +1,6 @@
 import React, {FC, Fragment, useState} from "react";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 
 
 const contentOne = JSON.stringify({

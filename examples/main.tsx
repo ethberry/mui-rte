@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {hot} from "react-hot-loader/root";
 import {render} from "react-dom";
 
+import "draft-js/dist/Draft.css";
+
 import {Events} from "./events";
 import {Theme} from "./theme";
 import {Basic} from "./basic";

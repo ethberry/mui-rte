@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {MuiThemeProvider} from "@material-ui/core";
 
-import {RichTextEditor} from "../../src/components/editor";
+import {RichTextEditor} from "../../src";
 import {defaultTheme} from "./theme";
 
 
