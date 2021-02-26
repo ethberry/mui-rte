@@ -1,4 +1,5 @@
 {
   "extends": ["github>paktolus/renovate-config", "group:allNonMajor"],
-  "baseBranches": ["main"]
+  "baseBranches": ["main"],
+  "requiredStatusChecks": null
 }
