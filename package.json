@@ -48,7 +48,7 @@
     "eslint-config-standard": "16.0.2",
     "eslint-import-resolver-ts": "0.4.2",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "24.3.1",
+    "eslint-plugin-jest": "24.3.2",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-promise": "4.3.1",
@@ -71,7 +71,7 @@
     "ts-jest": "26.5.3",
     "ts-node": "9.1.1",
     "typescript": "4.2.3",
-    "webpack": "5.26.1",
+    "webpack": "5.26.2",
     "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2"
   },
