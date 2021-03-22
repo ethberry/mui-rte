@@ -12,7 +12,7 @@
   "dependencies": {
     "clsx": "1.1.1",
     "draft-js": "0.11.7",
-    "react": "17.0.1"
+    "react": "17.0.2"
   },
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
@@ -63,7 +63,7 @@
     "postcss-loader": "5.2.0",
     "prettier": "2.2.1",
     "progress-bar-webpack-plugin": "2.1.0",
-    "react-dom": "17.0.1",
+    "react-dom": "17.0.2",
     "react-hot-loader": "4.13.0",
     "rimraf": "3.0.2",
     "sinon": "9.2.4",
@@ -95,8 +95,8 @@
   "peerDependencies": {
     "@material-ui/core": ">=4.1.0 <5",
     "@material-ui/icons": ">=4.1.0 <5",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "repository": {
     "type": "git",
