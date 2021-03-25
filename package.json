@@ -23,7 +23,7 @@
     "@hot-loader/react-dom": "17.0.1",
     "@material-ui/core": "4.11.3",
     "@material-ui/icons": "4.11.2",
-    "@trejgun/cross-env": "0.0.1",
+    "@trejgun/cross-env": "0.0.2",
     "@trejgun/eslint-config": "0.1.4",
     "@types/draft-js": "0.11.0",
     "@types/enzyme": "3.10.8",
