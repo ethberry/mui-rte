@@ -3,7 +3,6 @@ import {IconButton} from "@material-ui/core";
 
 import {IToolbarComponentProps, TToolbarButtonSize} from "../toolbar/types";
 
-
 interface IToolbarButtonProps {
   id?: string;
   editorId?: string;

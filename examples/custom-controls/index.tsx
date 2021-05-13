@@ -8,9 +8,8 @@ import {ClearComponent} from "./clear-component";
 import {MyBlockComponent} from "./block-component";
 import {MyBlock} from "./block";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const CustomControls: FC = () => {
@@ -40,7 +39,7 @@ export const CustomControls: FC = () => {
           component: MyCallbackComponent,
           type: "callback",
           onClick: (_editorState, name, _anchor) => {
-            console.log(`Clicked ${name} control`);
+            console.info(`Clicked ${name} control`);
           },
         },
         {

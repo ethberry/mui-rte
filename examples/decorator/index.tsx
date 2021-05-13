@@ -4,9 +4,8 @@ import {RichTextEditor} from "../../src";
 import {MyHashTagDecorator} from "./hash";
 import {MyAtDecorator} from "./at";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const Decorators: FC = () => {

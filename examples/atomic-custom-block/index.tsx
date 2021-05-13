@@ -5,9 +5,8 @@ import {IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
 import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const AtomicCustomBlock: FC = () => {

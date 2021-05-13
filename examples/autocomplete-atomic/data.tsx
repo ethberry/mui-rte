@@ -1,6 +1,5 @@
 import {IAutocompleteItem} from "../../src/components/autocomplete";
 
-
 export const cities: IAutocompleteItem[] = [
   {
     keys: ["mexico"],

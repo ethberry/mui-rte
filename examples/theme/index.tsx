@@ -4,9 +4,8 @@ import {MuiThemeProvider} from "@material-ui/core";
 import {RichTextEditor} from "../../src";
 import {defaultTheme} from "./theme";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const Theme: FC = () => {

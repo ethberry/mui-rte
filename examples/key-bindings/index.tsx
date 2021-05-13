@@ -3,9 +3,8 @@ import {EditorState, RichUtils} from "draft-js";
 
 import {RichTextEditor} from "../../src";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const KeyBindings: FC = () => {

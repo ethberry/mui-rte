@@ -23,12 +23,11 @@ import {AutocompleteAtomic} from "./autocomplete-atomic";
 import {AsyncImageUpload} from "./async-image-upload";
 import {AsyncAtomicCustomBlock} from "./async-atomic-custom-block";
 
-
 const App = hot(() => {
   const [sample, setSample] = useState(<Basic />);
 
   useEffect(() => {
-    console.log(`Loaded ${sample.type.name as string} example`);
+    console.info(`Loaded ${sample.type.name as string} example`);
   });
 
   return (

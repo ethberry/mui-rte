@@ -6,7 +6,6 @@ import {RichTextEditor} from "./index";
 import {Toolbar} from "../toolbar";
 import {ToolbarButton} from "../toolbar-button";
 
-
 describe("<MUIRichTextEditor />", () => {
   it("should render controls and editor", () => {
     const wrapper = mount(<RichTextEditor />);

@@ -4,9 +4,8 @@ import {RichTextEditor} from "../../src";
 import {cities} from "./data";
 import {CityChip} from "./chip";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const AutocompleteAtomic: FC = () => {

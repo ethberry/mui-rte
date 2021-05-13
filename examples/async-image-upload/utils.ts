@@ -1,8 +1,8 @@
 export const uploadImageToServer = (file: File) => {
   return new Promise(resolve => {
-    console.log(`Uploading image ${file.name} ...`);
+    console.info(`Uploading image ${file.name} ...`);
     setTimeout(() => {
-      console.log("Upload successful");
+      console.info("Upload successful");
       resolve(`https://return_uploaded_image_url/${file.name}`);
     }, 2000);
   });

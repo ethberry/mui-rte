@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 
-
 export const MyBlock: FC = props => {
   const {children} = props;
   return (

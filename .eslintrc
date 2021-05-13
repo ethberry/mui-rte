@@ -1,25 +1,10 @@
 {
   "extends": [
-    "@trejgun/eslint-config/presets/ts",
+    "@trejgun/eslint-config/presets/tsx",
     "@trejgun/eslint-config/rules/jest"
   ],
   "parserOptions": {
     "project": "./tsconfig.test.json"
   },
-  "root": true,
-  "rules": {
-    "no-console": 0,
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "examples/**/*.{ts,tsx}",
-          "**/*.test.{ts,tsx}",
-          "**/enzyme.config.ts",
-          "rollup.config.js",
-          "webpack.config.js"
-        ]
-      }
-    ]
-  }
+  "root": true
 }

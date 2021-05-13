@@ -3,9 +3,8 @@ import {InvertColors} from "@material-ui/icons";
 
 import {RichTextEditor} from "../../src";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const CustomInlineToolbar: FC = () => {

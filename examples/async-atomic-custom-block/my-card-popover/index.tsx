@@ -5,7 +5,6 @@ import {Close, Done} from "@material-ui/icons";
 import {TAnchor} from "../../../src/components/types";
 import {useStyles} from "./styles";
 
-
 type TMyCardData = {
   searchTerm?: string;
 };

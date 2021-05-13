@@ -6,7 +6,6 @@ import {ToolbarButton} from "../toolbar-button";
 import {STYLE_TYPES} from "./style-types";
 import {TCustomControl, TStyleType, TToolbarButtonSize, TToolbarControl} from "./types";
 
-
 export interface IToolbarProps {
   id: string;
   editorState: EditorState;

@@ -5,7 +5,6 @@ import {IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
 import {uploadImage} from "./utils";
 import {UploadImagePopover} from "./upload-image-popover";
 
-
 export const AsyncImageUpload: FC = () => {
   const ref = useRef<IRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);

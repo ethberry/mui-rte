@@ -5,7 +5,6 @@ import {AttachFile, Close, Done} from "@material-ui/icons";
 import {TAnchor} from "../../../src/components/types";
 import {useStyles} from "./styles";
 
-
 interface IUploadImagePopoverProps {
   anchor: TAnchor;
   onSubmit: (data: TUploadImageData, insert: boolean) => void;

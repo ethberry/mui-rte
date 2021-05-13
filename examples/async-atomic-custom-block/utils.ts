@@ -1,6 +1,6 @@
 export const getDataFromCloudService = (searchTerm: string): Promise<any> => {
   return new Promise(resolve => {
-    console.log(`Searching for ${searchTerm}...`);
+    console.info(`Searching for ${searchTerm}...`);
     setTimeout(() => {
       resolve({
         title: "Data from cloud",

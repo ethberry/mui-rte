@@ -2,9 +2,8 @@ import React, {FC} from "react";
 
 import {RichTextEditor} from "../../src";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const MaxLength: FC = () => {

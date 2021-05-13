@@ -1,7 +1,6 @@
 import React, {FC, Fragment} from "react";
 import {Avatar, ListItemAvatar, ListItemText} from "@material-ui/core";
 
-
 type IStaff = {
   job: string;
   name: string;

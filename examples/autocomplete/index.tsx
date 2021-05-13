@@ -3,9 +3,8 @@ import React, {FC} from "react";
 import {RichTextEditor} from "../../src";
 import {cities, emojis, staff} from "./data";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const Autocomplete: FC = () => {

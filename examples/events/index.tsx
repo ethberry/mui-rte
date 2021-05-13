@@ -3,9 +3,8 @@ import {EditorState, convertToRaw} from "draft-js";
 
 import {RichTextEditor} from "../../src";
 
-
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 const change = (state: EditorState) => {
@@ -13,23 +12,23 @@ const change = (state: EditorState) => {
   // https://draftjs.org/docs/api-reference-editor-state
   //
   // Get current selection
-  console.log(state.getSelection());
+  console.info(state.getSelection());
   // Get current content
-  console.log(JSON.stringify(convertToRaw(state.getCurrentContent())));
+  console.info(JSON.stringify(convertToRaw(state.getCurrentContent())));
   // Get current text
-  console.log(state.getCurrentContent().getPlainText());
+  console.info(state.getCurrentContent().getPlainText());
   // Check if editor is empty
   if (!state.getCurrentContent().hasText()) {
-    console.log("empty");
+    console.info("empty");
   }
 };
 
 const focus = () => {
-  console.log("Focus on MUIRichTextEditor");
+  console.info("Focus on MUIRichTextEditor");
 };
 
 const blur = () => {
-  console.log("Blur, focus lost on MUIRichTextEditor");
+  console.info("Blur, focus lost on MUIRichTextEditor");
 };
 
 export const Events: FC = () => {

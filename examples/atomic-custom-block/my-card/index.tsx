@@ -4,7 +4,6 @@ import {Favorite, Share} from "@material-ui/icons";
 
 import {useStyles} from "./styles";
 
-
 export const MyCard: FC<any> = props => {
   const {blockProps} = props;
 

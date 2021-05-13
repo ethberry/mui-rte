@@ -2,7 +2,6 @@ import React, {FC, useRef} from "react";
 
 import {RichTextEditor, IRichTextEditorRef} from "../../src";
 
-
 export const RefSave: FC = () => {
   const ref = useRef<IRichTextEditorRef>(null);
 
@@ -15,7 +14,7 @@ export const RefSave: FC = () => {
   };
 
   const handleSave = (data: string) => {
-    console.log(data);
+    console.info(data);
   };
 
   return (

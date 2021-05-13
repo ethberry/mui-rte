@@ -6,7 +6,6 @@ import {MyCard} from "./my-card";
 import {MyCardPopover} from "./my-card-popover";
 import {downloadData} from "./utils";
 
-
 export const AsyncAtomicCustomBlock: FC = () => {
   const ref = useRef<IRichTextEditorRef>(null);
   const [anchor, setAnchor] = useState<TAnchor>(null);

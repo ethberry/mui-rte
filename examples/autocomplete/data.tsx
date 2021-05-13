@@ -3,7 +3,6 @@ import React from "react";
 import {IAutocompleteItem} from "../../src/components/autocomplete";
 import {Staff} from "./staff";
 
-
 export const emojis: IAutocompleteItem[] = [
   {
     keys: ["face", "grin"],

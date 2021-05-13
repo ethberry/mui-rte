@@ -6,7 +6,6 @@ import {Toolbar} from "./index";
 import {TToolbarControl} from "./types";
 import {ToolbarButton} from "../toolbar-button";
 
-
 describe("<EditorControls />", () => {
   let editorState: EditorState;
 

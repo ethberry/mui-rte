@@ -2,7 +2,6 @@ import React, {FC, Fragment, useState} from "react";
 
 import {RichTextEditor} from "../../src";
 
-
 const contentOne = JSON.stringify({
   blocks: [
     {
@@ -16,8 +15,7 @@ const contentOne = JSON.stringify({
     },
     {
       key: "apv19",
-      text:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi:",
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi:",
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [
@@ -43,8 +41,7 @@ const contentOne = JSON.stringify({
     },
     {
       key: "57hbe",
-      text:
-        "Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
+      text: "Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
       type: "blockquote",
       depth: 0,
       inlineStyleRanges: [{offset: 34, length: 17, style: "BOLD"}],
@@ -104,8 +101,7 @@ const contentTwo = JSON.stringify({
     },
     {
       key: "apv19",
-      text:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem:",
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem:",
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [
@@ -151,7 +147,7 @@ const contentTwo = JSON.stringify({
 });
 
 const save = (data: string) => {
-  console.log(data);
+  console.info(data);
 };
 
 export const ResetValue: FC = () => {

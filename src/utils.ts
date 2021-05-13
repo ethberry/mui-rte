@@ -11,7 +11,6 @@ import {
 } from "draft-js";
 import {TCustomControl} from "./components/toolbar/types";
 
-
 export type TSelectionInfo = {
   inlineStyle: DraftInlineStyle;
   blockType: DraftBlockType;
