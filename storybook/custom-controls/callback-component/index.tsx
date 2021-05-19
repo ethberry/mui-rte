@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Avatar, Chip} from "@material-ui/core";
 
-import {IToolbarComponentProps} from "../../../src/components/toolbar";
+import {IToolbarComponentProps} from "../../../src/components/toolbar/types";
 
 export const MyCallbackComponent: FC<IToolbarComponentProps> = props => {
   const {id, onMouseDown, disabled} = props;
