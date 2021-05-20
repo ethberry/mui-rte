@@ -4,7 +4,6 @@ import {ContentBlock, ContentState} from "draft-js";
 
 import {useStyles} from "./styles";
 
-
 interface IMediaProps {
   block: ContentBlock;
   contentState: ContentState;

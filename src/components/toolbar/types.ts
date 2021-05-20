@@ -2,7 +2,6 @@ import {CSSProperties, FC, MouseEvent, ReactElement} from "react";
 import {EditorState} from "draft-js";
 import {TAnchor} from "../types";
 
-
 export type TToolbarControl =
   | "title"
   | "bold"

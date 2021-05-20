@@ -3,7 +3,6 @@ import {List, ListItem, Paper} from "@material-ui/core";
 
 import {useStyles} from "./styles";
 
-
 export type IAutocompleteItem = {
   keys: string[];
   value: any;

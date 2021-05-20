@@ -21,7 +21,6 @@ import {
 
 import {TStyleType} from "./types";
 
-
 export const STYLE_TYPES: TStyleType[] = [
   {
     label: "H2",

@@ -3,7 +3,6 @@ import {ContentState} from "draft-js";
 import clsx from "clsx";
 import {Link as MuiLink} from "@material-ui/core";
 
-
 interface ILinkProps {
   contentState: ContentState;
   entityKey: string;

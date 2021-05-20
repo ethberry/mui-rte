@@ -13,7 +13,6 @@ import {
 import {useStyles} from "./styles";
 import {TAnchor} from "../types";
 
-
 export type TAlignment = "left" | "center" | "right";
 
 export type TMediaType = "image" | "video";

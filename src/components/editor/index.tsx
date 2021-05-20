@@ -50,7 +50,6 @@ import {
 } from "../../utils";
 import {useStyles} from "./styles";
 
-
 export type TDecorator = {
   component: FC<any>;
   regex: RegExp;
