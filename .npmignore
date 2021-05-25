@@ -1,0 +1,8 @@
+**/storybook
+**/src
+**/@types
+**/tsconfig.json
+**/tsconfig.test.json
+**/jest.config.json
+**/*.stories.js
+**/*.test.js
