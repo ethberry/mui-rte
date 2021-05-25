@@ -14,7 +14,7 @@
     "noUnusedParameters": false,
     "outDir": "./dist",
     "resolveJsonModule": true,
-    "rootDirs": ["./src", "./examples"],
+    "rootDirs": ["./src"],
     "skipLibCheck": true,
     "sourceMap": true,
     "strictBindCallApply": true,
@@ -23,5 +23,5 @@
     "strictPropertyInitialization": false,
     "target": "es2017"
   },
-  "exclude": ["node_modules", "./dist", "./examples"]
+  "exclude": ["node_modules", "./dist", "./storybook", "**/*.stories.tsx", "**/*.test.tsx"]
 }
