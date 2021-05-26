@@ -1,8 +1,11 @@
 **/storybook
 **/src
+**/scripts
 **/@types
+**/renovate.json
 **/tsconfig.json
-**/tsconfig.test.json
-**/jest.config.json
-**/*.stories.js
-**/*.test.js
+**/*.config.*
+**/*.stories.*
+**/*.test.*
+**/node_modules
+.*
