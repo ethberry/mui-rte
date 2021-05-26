@@ -74,11 +74,6 @@
     "ts-node": "9.1.1",
     "typescript": "4.2.4"
   },
-  "files": [
-    "dist",
-    "!*.test.*",
-    "!*.config.*"
-  ],
   "homepage": "https://github.com/paktolus/mui-rte#readme",
   "keywords": [
     "material-ui",
