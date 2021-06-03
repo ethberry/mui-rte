@@ -46,4 +46,7 @@ module.exports = {
     });
     return config;
   },
+  typescript: {
+    reactDocgen: "none",
+  },
 };
