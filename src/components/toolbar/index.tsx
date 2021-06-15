@@ -26,6 +26,8 @@ export const Toolbar: FC<IToolbarProps> = props => {
   const {editorState} = props;
   const id = inlineMode ? "-inline-toolbar" : "-toolbar";
 
+  const curedControls = Array.isArray(controls) ? [...controls, ...customControls] : customControls;
+
   useEffect(() => {
     if (!controls) {
       return;
@@ -54,7 +56,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
         }
       });
     setAvailableControls(filteredControls);
-  }, [controls, customControls]);
+  }, curedControls);
 
   return (
     <div id={`${id}${id}`} className={className}>
