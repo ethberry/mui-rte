@@ -1,5 +1,5 @@
 {
-  "extends": ["github>paktolus/renovate-config", "group:allNonMajor"],
+  "extends": ["github>trejgun/renovate-config"],
   "baseBranches": ["main"],
   "requiredStatusChecks": null
 }
