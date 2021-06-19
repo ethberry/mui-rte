@@ -109,5 +109,5 @@
     "testdeps": "sh scripts/testdeps.sh node_modules/@trejgun/*/node_modules",
     "watch": "cross-env NODE_ENV=development rollup -c -w"
   },
-  "version": "0.0.12"
+  "version": "0.0.14"
 }
