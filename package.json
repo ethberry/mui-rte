@@ -27,7 +27,7 @@
     "@trejgun/cross-env": "0.0.2",
     "@trejgun/eslint-config": "0.1.7",
     "@types/draft-js": "0.11.3",
-    "@types/enzyme": "3.10.8",
+    "@types/enzyme": "3.10.9",
     "@types/enzyme-adapter-react-16": "1.0.6",
     "@types/jest": "26.0.23",
     "@types/mini-css-extract-plugin": "1.4.3",
