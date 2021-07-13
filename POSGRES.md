@@ -1,6 +1,7 @@
 # POSTGRES
 
-Here is a sample query which you can use to search over the widget output using psql
+Here is a sample query which you can use to search over the widget output using psql.
+
 Both of these queries are the same
 
 ```sql
