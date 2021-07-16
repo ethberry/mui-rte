@@ -37,7 +37,7 @@
     "@types/sinon": "10.0.2",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
-    "@wojtekmaj/enzyme-adapter-react-17": "0.6.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "0.6.3",
     "babel-loader": "8.2.2",
     "babel-plugin-optimize-clsx": "2.6.2",
     "css-loader": "5.2.7",
