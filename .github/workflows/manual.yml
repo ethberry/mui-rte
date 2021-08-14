@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --global user.name '@trejgun'
           git config --global user.email 'trejgun@gmail.com'
-          git remote set-url origin https://$GITHUB_ACTOR:$GITHUBTOKEN@github.com/trejgun/mui-rte
+          git remote set-url origin https://$GITHUB_ACTOR:$GITHUBTOKEN@github.com/gemunion/mui-rte
         env:
           GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
 
@@ -51,7 +51,7 @@ jobs:
         run: |
           echo "save-exact=true" > .npmrc
           echo "package-lock=false" >> .npmrc
-          echo "@trejgun:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN" >> .npmrc
           git update-index --assume-unchanged .npmrc
           npx npm-cli-login -u trejgun -p $GITHUBTOKEN -e trejgun@gmail.com -r https://npm.pkg.github.com -s @trejgun --config-path="./"
