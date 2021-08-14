@@ -6,7 +6,8 @@
   "contributors": [
     {
       "email": "trejgun@gmail.com",
-      "name": "TrejGun"
+      "name": "TrejGun",
+      "url": "https://trejgun.github.io/"
     }
   ],
   "dependencies": {
@@ -15,6 +16,8 @@
   },
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
+    "@gemunion/cross-env": "0.0.3",
+    "@gemunion/eslint-config": "0.1.7",
     "@hot-loader/react-dom": "17.0.1",
     "@material-ui/core": "4.12.3",
     "@material-ui/icons": "4.11.2",
@@ -24,8 +27,6 @@
     "@storybook/node-logger": "6.3.7",
     "@storybook/preset-create-react-app": "3.2.0",
     "@storybook/react": "6.3.7",
-    "@gemunion/cross-env": "0.0.3",
-    "@gemunion/eslint-config": "0.1.7",
     "@types/draft-js": "0.11.4",
     "@types/enzyme": "3.10.9",
     "@types/enzyme-adapter-react-16": "1.0.6",
@@ -84,7 +85,7 @@
     "draft-js"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "name": "@gemunion/mui-rte",
   "peerDependencies": {
     "@material-ui/core": "^4",
@@ -103,10 +104,12 @@
     "build": "tsc",
     "lint": "eslint . --fix",
     "prebuild": "rimraf dist/",
+    "prepare": "npm run build",
     "start": "cross-env webpack serve --mode development",
     "storybook": "start-storybook -p 6006",
     "test": "jest --config jest.config.json --no-watch --verbose",
     "watch": "cross-env NODE_ENV=development rollup -c -w"
   },
-  "version": "0.0.15"
+  "types": "./dist/index.d.ts",
+  "version": "0.0.16"
 }
