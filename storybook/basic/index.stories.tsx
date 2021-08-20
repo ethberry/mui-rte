@@ -1,7 +1,7 @@
 import React from "react";
-import {Story} from "@storybook/react";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
 
 export default {
   title: "Basic",

@@ -1,9 +1,9 @@
-import React, {FC, useEffect, useState} from "react";
-import {Button, Grid, IconButton, Popover, TextField} from "@material-ui/core";
-import {AttachFile, Close, Done} from "@material-ui/icons";
+import React, { FC, useEffect, useState } from "react";
+import { Button, Grid, IconButton, Popover, TextField } from "@material-ui/core";
+import { AttachFile, Close, Done } from "@material-ui/icons";
 
-import {TAnchor} from "../../../src";
-import {useStyles} from "./styles";
+import { TAnchor } from "../../../src";
+import { useStyles } from "./styles";
 
 interface IUploadImagePopoverProps {
   anchor: TAnchor;
@@ -20,7 +20,7 @@ type TUploadImageData = {
 };
 
 export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
-  const {anchor, onSubmit} = props;
+  const { anchor, onSubmit } = props;
 
   const classes = useStyles();
 

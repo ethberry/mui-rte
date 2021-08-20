@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 export const MyBlock: FC = props => {
-  const {children} = props;
+  const { children } = props;
   return (
     <div
       style={{

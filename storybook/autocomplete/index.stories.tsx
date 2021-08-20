@@ -1,8 +1,8 @@
 import React from "react";
-import {Story} from "@storybook/react";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
-import {cities, emojis, staff} from "./data";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { cities, emojis, staff } from "./data";
 
 export default {
   title: "Autocomplete",

@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles(
   theme => ({
@@ -8,5 +8,5 @@ export const useStyles = makeStyles(
       borderLeft: `4px solid ${theme.palette.grey.A100}`,
     },
   }),
-  {name: "Blockquote"},
+  { name: "Blockquote" },
 );

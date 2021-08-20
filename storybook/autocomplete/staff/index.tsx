@@ -1,5 +1,5 @@
-import React, {FC, Fragment} from "react";
-import {Avatar, ListItemAvatar, ListItemText} from "@material-ui/core";
+import React, { FC, Fragment } from "react";
+import { Avatar, ListItemAvatar, ListItemText } from "@material-ui/core";
 
 type IStaff = {
   job: string;
@@ -8,7 +8,7 @@ type IStaff = {
 };
 
 export const Staff: FC<IStaff> = props => {
-  const {backgroundColor, name, job} = props;
+  const { backgroundColor, name, job } = props;
   return (
     <Fragment>
       <ListItemAvatar>

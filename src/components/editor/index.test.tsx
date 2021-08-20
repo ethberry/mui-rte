@@ -1,10 +1,10 @@
 import React from "react";
-import {mount} from "enzyme";
-import {spy} from "sinon";
-import {Editor, convertFromRaw} from "draft-js";
-import {RichTextEditor} from "./index";
-import {Toolbar} from "../toolbar";
-import {ToolbarButton} from "../toolbar-button";
+import { mount } from "enzyme";
+import { spy } from "sinon";
+import { Editor, convertFromRaw } from "draft-js";
+import { RichTextEditor } from "./index";
+import { Toolbar } from "../toolbar";
+import { ToolbarButton } from "../toolbar-button";
 
 describe("<MUIRichTextEditor />", () => {
   it("should render controls and editor", () => {

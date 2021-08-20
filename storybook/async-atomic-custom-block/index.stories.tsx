@@ -1,11 +1,11 @@
-import React, {Fragment, useRef, useState} from "react";
-import {Story} from "@storybook/react";
-import {Update} from "@material-ui/icons";
+import React, { Fragment, useRef, useState } from "react";
+import { Story } from "@storybook/react";
+import { Update } from "@material-ui/icons";
 
-import {IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
-import {MyCard} from "./my-card";
-import {MyCardPopover} from "./my-card-popover";
-import {downloadData} from "./utils";
+import { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
+import { MyCard } from "./my-card";
+import { MyCardPopover } from "./my-card-popover";
+import { downloadData } from "./utils";
 
 export default {
   title: "Async Atomic Custom Block",

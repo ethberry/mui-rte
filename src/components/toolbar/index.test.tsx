@@ -1,10 +1,10 @@
 import React from "react";
-import {mount} from "enzyme";
-import {EditorState} from "draft-js";
+import { mount } from "enzyme";
+import { EditorState } from "draft-js";
 
-import {Toolbar} from "./index";
-import {TToolbarControl} from "./types";
-import {ToolbarButton} from "../toolbar-button";
+import { Toolbar } from "./index";
+import { TToolbarControl } from "./types";
+import { ToolbarButton } from "../toolbar-button";
 
 describe("<EditorControls />", () => {
   let editorState: EditorState;

@@ -1,8 +1,8 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import clsx from "clsx";
-import {ContentBlock, ContentState} from "draft-js";
+import { ContentBlock, ContentState } from "draft-js";
 
-import {useStyles} from "./styles";
+import { useStyles } from "./styles";
 
 interface IMediaProps {
   block: ContentBlock;
@@ -12,10 +12,10 @@ interface IMediaProps {
 }
 
 export const Media: FC<IMediaProps> = props => {
-  const {contentState, blockProps, block} = props;
+  const { contentState, blockProps, block } = props;
 
-  const {url, width, height, alignment, type} = contentState.getEntity(block.getEntityAt(0)).getData();
-  const {onClick, readOnly, focusKey} = blockProps;
+  const { url, width, height, alignment, type } = contentState.getEntity(block.getEntityAt(0)).getData();
+  const { onClick, readOnly, focusKey } = blockProps;
 
   const classes = useStyles();
 

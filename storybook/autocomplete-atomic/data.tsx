@@ -1,4 +1,4 @@
-import {IAutocompleteItem} from "../../src/components/autocomplete";
+import { IAutocompleteItem } from "../../src/components/autocomplete";
 
 export const cities: IAutocompleteItem[] = [
   {

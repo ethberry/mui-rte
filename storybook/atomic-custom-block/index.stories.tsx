@@ -1,10 +1,10 @@
-import React, {Fragment, useRef, useState} from "react";
-import {WebAsset} from "@material-ui/icons";
-import {Story} from "@storybook/react";
+import React, { Fragment, useRef, useState } from "react";
+import { WebAsset } from "@material-ui/icons";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
-import {MyCard} from "./my-card";
-import {MyCardPopover} from "./my-card-popover";
+import { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
+import { MyCard } from "./my-card";
+import { MyCardPopover } from "./my-card-popover";
 
 export default {
   title: "Atomic Custom Block",

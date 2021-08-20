@@ -1,8 +1,8 @@
-import React, {KeyboardEvent} from "react";
-import {EditorState, RichUtils} from "draft-js";
-import {Story} from "@storybook/react";
+import React, { KeyboardEvent } from "react";
+import { EditorState, RichUtils } from "draft-js";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
 
 export default {
   title: "Key Bindings",
@@ -22,7 +22,7 @@ const Template: Story<IRichTextEditorProps> = args => {
           key: 190, // >
           name: "on-tab",
           callback: (editorState: EditorState) => {
-            return RichUtils.onTab({preventDefault: () => {}} as KeyboardEvent, editorState, 4);
+            return RichUtils.onTab({ preventDefault: () => {} } as KeyboardEvent, editorState, 4);
           },
         },
         {

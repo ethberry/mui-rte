@@ -11,7 +11,7 @@ export const getDataFromCloudService = (searchTerm: string): Promise<any> => {
   });
 };
 
-export const downloadData = async (searchTerm: string): Promise<{data: any}> => {
+export const downloadData = async (searchTerm: string): Promise<{ data: any }> => {
   const data = await getDataFromCloudService(searchTerm);
   if (!data) {
     // for this example this will never happen

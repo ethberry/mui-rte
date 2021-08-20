@@ -1,11 +1,20 @@
-import React, {FC} from "react";
-import {Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography} from "@material-ui/core";
-import {Favorite, Share} from "@material-ui/icons";
+import React, { FC } from "react";
+import {
+  Avatar,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  IconButton,
+  Typography,
+} from "@material-ui/core";
+import { Favorite, Share } from "@material-ui/icons";
 
-import {useStyles} from "./styles";
+import { useStyles } from "./styles";
 
 export const MyCard: FC<any> = props => {
-  const {blockProps} = props;
+  const { blockProps } = props;
 
   const classes = useStyles(props);
 

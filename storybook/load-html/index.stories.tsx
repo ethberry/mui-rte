@@ -1,8 +1,8 @@
 import React from "react";
-import {convertFromHTML, ContentState, convertToRaw} from "draft-js";
-import {Story} from "@storybook/react";
+import { convertFromHTML, ContentState, convertToRaw } from "draft-js";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
 
 export default {
   title: "Load HTML",

@@ -1,10 +1,10 @@
-import React, {Fragment, useRef, useState} from "react";
-import {Backup} from "@material-ui/icons";
-import {Story} from "@storybook/react";
+import React, { Fragment, useRef, useState } from "react";
+import { Backup } from "@material-ui/icons";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor} from "../../src";
-import {uploadImage} from "./utils";
-import {UploadImagePopover} from "./upload-image-popover";
+import { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
+import { uploadImage } from "./utils";
+import { UploadImagePopover } from "./upload-image-popover";
 
 export default {
   title: "Async Image Upload",

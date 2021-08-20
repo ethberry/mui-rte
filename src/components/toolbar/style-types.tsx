@@ -19,7 +19,7 @@ import {
   Undo,
 } from "@material-ui/icons";
 
-import {TStyleType} from "./types";
+import { TStyleType } from "./types";
 
 export const STYLE_TYPES: TStyleType[] = [
   {

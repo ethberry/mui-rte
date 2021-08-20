@@ -1,9 +1,9 @@
 import React from "react";
-import {Story} from "@storybook/react";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
-import {cities} from "./data";
-import {CityChip} from "./chip";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { cities } from "./data";
+import { CityChip } from "./chip";
 
 export default {
   title: "Autocomplete Atomic",

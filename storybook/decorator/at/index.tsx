@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
-export const MyAtDecorator: FC<{decoratedText: string}> = props => {
-  const {decoratedText, children} = props;
+export const MyAtDecorator: FC<{ decoratedText: string }> = props => {
+  const { decoratedText, children } = props;
   const customUrl = `http://myulr/mention/${decoratedText}`;
   return (
     <a

@@ -1,7 +1,7 @@
-import React, {FC} from "react";
-import {List, ListItem, Paper} from "@material-ui/core";
+import React, { FC } from "react";
+import { List, ListItem, Paper } from "@material-ui/core";
 
-import {useStyles} from "./styles";
+import { useStyles } from "./styles";
 
 export type IAutocompleteItem = {
   keys: string[];
@@ -18,7 +18,7 @@ interface IAutocompleteProps {
 }
 
 export const Autocomplete: FC<IAutocompleteProps> = props => {
-  const {items, top, left, selectedIndex, onClick} = props;
+  const { items, top, left, selectedIndex, onClick } = props;
 
   if (!items.length) {
     return null;

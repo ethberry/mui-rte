@@ -1,7 +1,7 @@
-import React, {Fragment, useState} from "react";
-import {Story} from "@storybook/react";
+import React, { Fragment, useState } from "react";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
 
 export default {
   title: "Reset Value",
@@ -24,13 +24,13 @@ const contentOne = JSON.stringify({
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [
-        {offset: 6, length: 5, style: "BOLD"},
+        { offset: 6, length: 5, style: "BOLD" },
         {
           offset: 192,
           length: 16,
           style: "UNDERLINE",
         },
-        {offset: 261, length: 21, style: "ITALIC"},
+        { offset: 261, length: 21, style: "ITALIC" },
       ],
       entityRanges: [],
       data: {},
@@ -49,7 +49,7 @@ const contentOne = JSON.stringify({
       text: "Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
       type: "blockquote",
       depth: 0,
-      inlineStyleRanges: [{offset: 34, length: 17, style: "BOLD"}],
+      inlineStyleRanges: [{ offset: 34, length: 17, style: "BOLD" }],
       entityRanges: [],
       data: {},
     },
@@ -86,11 +86,11 @@ const contentOne = JSON.stringify({
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [],
-      entityRanges: [{offset: 6, length: 9, key: 0}],
+      entityRanges: [{ offset: 6, length: 9, key: 0 }],
       data: {},
     },
   ],
-  entityMap: {"0": {type: "LINK", mutability: "MUTABLE", data: {url: "https://github.com/niuware"}}},
+  entityMap: { "0": { type: "LINK", mutability: "MUTABLE", data: { url: "https://github.com/niuware" } } },
 });
 
 const contentTwo = JSON.stringify({
@@ -110,7 +110,7 @@ const contentTwo = JSON.stringify({
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [
-        {offset: 6, length: 5, style: "BOLD"},
+        { offset: 6, length: 5, style: "BOLD" },
         {
           offset: 192,
           length: 16,

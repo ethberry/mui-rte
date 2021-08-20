@@ -1,9 +1,9 @@
-import React, {FC, useEffect, useState, ChangeEvent} from "react";
-import {Button, Grid, Popover, TextField} from "@material-ui/core";
-import {Close, Done} from "@material-ui/icons";
+import React, { FC, useEffect, useState, ChangeEvent } from "react";
+import { Button, Grid, Popover, TextField } from "@material-ui/core";
+import { Close, Done } from "@material-ui/icons";
 
-import {TAnchor} from "../../../src";
-import {useStyles} from "./styles";
+import { TAnchor } from "../../../src";
+import { useStyles } from "./styles";
 
 type TMyCardData = {
   searchTerm?: string;
@@ -20,7 +20,7 @@ interface IMyCardPopoverState {
 }
 
 export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
-  const {anchor, onSubmit} = props;
+  const { anchor, onSubmit } = props;
 
   const classes = useStyles();
 

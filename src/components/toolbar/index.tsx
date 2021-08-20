@@ -1,10 +1,10 @@
-import React, {FC, useEffect, useState} from "react";
-import {EditorState} from "draft-js";
+import React, { FC, useEffect, useState } from "react";
+import { EditorState } from "draft-js";
 
-import {getSelectionInfo} from "../../utils";
-import {ToolbarButton} from "../toolbar-button";
-import {STYLE_TYPES} from "./style-types";
-import {TCustomControl, TStyleType, TToolbarButtonSize, TToolbarControl} from "./types";
+import { getSelectionInfo } from "../../utils";
+import { ToolbarButton } from "../toolbar-button";
+import { STYLE_TYPES } from "./style-types";
+import { TCustomControl, TStyleType, TToolbarButtonSize, TToolbarControl } from "./types";
 
 export interface IToolbarProps {
   id: string;
@@ -20,10 +20,10 @@ export interface IToolbarProps {
 }
 
 export const Toolbar: FC<IToolbarProps> = props => {
-  const {inlineMode, controls, customControls = [], className, onClick, isActive, disabled, size} = props;
+  const { inlineMode, controls, customControls = [], className, onClick, isActive, disabled, size } = props;
 
   const [availableControls, setAvailableControls] = useState(controls ? [] : STYLE_TYPES);
-  const {editorState} = props;
+  const { editorState } = props;
   const id = inlineMode ? "-inline-toolbar" : "-toolbar";
 
   const curedControls = Array.isArray(controls) ? [...controls, ...customControls] : customControls;

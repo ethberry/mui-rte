@@ -1,13 +1,13 @@
 import React from "react";
-import {EditorState} from "draft-js";
-import {InvertColors} from "@material-ui/icons";
-import {Story} from "@storybook/react";
+import { EditorState } from "draft-js";
+import { InvertColors } from "@material-ui/icons";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
-import {MyCallbackComponent} from "./callback-component";
-import {ClearComponent} from "./clear-component";
-import {MyBlockComponent} from "./block-component";
-import {MyBlock} from "./block";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { MyCallbackComponent } from "./callback-component";
+import { ClearComponent } from "./clear-component";
+import { MyBlockComponent } from "./block-component";
+import { MyBlock } from "./block";
 
 export default {
   title: "Custom Controls",

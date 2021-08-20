@@ -9,7 +9,7 @@ import {
   DraftStyleMap,
   DraftInlineStyle,
 } from "draft-js";
-import {TCustomControl} from "./components/toolbar/types";
+import { TCustomControl } from "./components/toolbar/types";
 
 export type TSelectionInfo = {
   inlineStyle: DraftInlineStyle;
@@ -93,7 +93,7 @@ export const clearInlineStyles = (editorState: EditorState, customStyles?: Draft
   );
 };
 
-export const getEditorBounds = (editor: HTMLElement): {selectionRect: any; editorRect: any} => {
+export const getEditorBounds = (editor: HTMLElement): { selectionRect: any; editorRect: any } => {
   return {
     selectionRect: getVisibleSelectionRect(window),
     editorRect: editor.getBoundingClientRect(),

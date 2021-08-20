@@ -1,5 +1,5 @@
-import React, {FC, Fragment, useState} from "react";
-import {Button, ButtonGroup, Grid, Popover, TextField} from "@material-ui/core";
+import React, { FC, Fragment, useState } from "react";
+import { Button, ButtonGroup, Grid, Popover, TextField } from "@material-ui/core";
 import {
   Check,
   Delete,
@@ -10,8 +10,8 @@ import {
   Movie,
 } from "@material-ui/icons";
 
-import {useStyles} from "./styles";
-import {TAnchor} from "../types";
+import { useStyles } from "./styles";
+import { TAnchor } from "../types";
 
 export type TAlignment = "left" | "center" | "right";
 
@@ -33,7 +33,7 @@ interface IUrlPopoverStateProps {
 }
 
 export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
-  const {data: propData, anchor, isMedia, onConfirm} = props;
+  const { data: propData, anchor, isMedia, onConfirm } = props;
 
   const classes = useStyles();
 
@@ -49,14 +49,14 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
 
   const onSizeChange = (value: any, prop: "width" | "height") => {
     if (value === "") {
-      setData({...data, [prop]: undefined});
+      setData({ ...data, [prop]: undefined });
       return;
     }
     const intValue = parseInt(value, 10);
     if (isNaN(intValue)) {
       return;
     }
-    setData({...data, [prop]: intValue});
+    setData({ ...data, [prop]: intValue });
   };
 
   return (
@@ -78,7 +78,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
             <Grid item xs={12}>
               <TextField
                 className={classes.linkTextField}
-                onChange={event => setData({...data, url: event.target.value})}
+                onChange={event => setData({ ...data, url: event.target.value })}
                 label="URL"
                 defaultValue={data && data.url}
                 autoFocus={true}
@@ -94,14 +94,14 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     <Button
                       color={!data.type || data.type === "image" ? "primary" : "default"}
                       size="small"
-                      onClick={() => setData({...data, type: "image"})}
+                      onClick={() => setData({ ...data, type: "image" })}
                     >
                       <InsertPhoto />
                     </Button>
                     <Button
                       color={data.type === "video" ? "primary" : "default"}
                       size="small"
-                      onClick={() => setData({...data, type: "video"})}
+                      onClick={() => setData({ ...data, type: "video" })}
                     >
                       <Movie />
                     </Button>
@@ -132,21 +132,21 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     <Button
                       color={data.alignment === "left" ? "primary" : "default"}
                       size="small"
-                      onClick={() => setData({...data, alignment: "left"})}
+                      onClick={() => setData({ ...data, alignment: "left" })}
                     >
                       <FormatAlignLeft />
                     </Button>
                     <Button
                       color={data.alignment === "center" ? "primary" : "default"}
                       size="small"
-                      onClick={() => setData({...data, alignment: "center"})}
+                      onClick={() => setData({ ...data, alignment: "center" })}
                     >
                       <FormatAlignCenter />
                     </Button>
                     <Button
                       color={data.alignment === "right" ? "primary" : "default"}
                       size="small"
-                      onClick={() => setData({...data, alignment: "right"})}
+                      onClick={() => setData({ ...data, alignment: "right" })}
                     >
                       <FormatAlignRight />
                     </Button>

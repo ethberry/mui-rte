@@ -1,9 +1,9 @@
 import React from "react";
-import {Story} from "@storybook/react";
+import { Story } from "@storybook/react";
 
-import {IRichTextEditorProps, RichTextEditor} from "../../src";
-import {MyHashTagDecorator} from "./hash";
-import {MyAtDecorator} from "./at";
+import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { MyHashTagDecorator } from "./hash";
+import { MyAtDecorator } from "./at";
 
 export default {
   title: "Decorators",

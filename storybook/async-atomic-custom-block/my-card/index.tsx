@@ -1,10 +1,10 @@
-import React, {FC} from "react";
-import {Card, CardContent, Typography} from "@material-ui/core";
+import React, { FC } from "react";
+import { Card, CardContent, Typography } from "@material-ui/core";
 
-import {useStyles} from "./styles";
+import { useStyles } from "./styles";
 
 export const MyCard: FC<any> = props => {
-  const {blockProps} = props;
+  const { blockProps } = props;
 
   const classes = useStyles();
 

@@ -1,7 +1,7 @@
-import React, {useRef} from "react";
-import {Story} from "@storybook/react";
+import React, { useRef } from "react";
+import { Story } from "@storybook/react";
 
-import {RichTextEditor, IRichTextEditorRef, IRichTextEditorProps} from "../../src";
+import { RichTextEditor, IRichTextEditorRef, IRichTextEditorProps } from "../../src";
 
 export default {
   title: "Ref Save",

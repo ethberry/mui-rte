@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react";
 import clsx from "clsx";
-import {Paper} from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import {
   AtomicBlockUtils,
   CompositeDecorator,
@@ -31,14 +31,14 @@ import {
   RichUtils,
   SelectionState,
 } from "draft-js";
-import {Toolbar} from "../toolbar";
-import {TCustomControl, TToolbarButtonSize, TToolbarControl} from "../toolbar/types";
-import {Link} from "../link";
-import {Media} from "../media";
-import {Blockquote} from "../blockquote";
-import {CodeBlock} from "../code-block";
-import {IUrlData, TAlignment, TMediaType, UrlPopover} from "../url-popover";
-import {Autocomplete, IAutocompleteItem} from "../autocomplete";
+import { Toolbar } from "../toolbar";
+import { TCustomControl, TToolbarButtonSize, TToolbarControl } from "../toolbar/types";
+import { Link } from "../link";
+import { Media } from "../media";
+import { Blockquote } from "../blockquote";
+import { CodeBlock } from "../code-block";
+import { IUrlData, TAlignment, TMediaType, UrlPopover } from "../url-popover";
+import { Autocomplete, IAutocompleteItem } from "../autocomplete";
 import {
   atomicBlockExists,
   clearInlineStyles,
@@ -48,7 +48,7 @@ import {
   isGreaterThan,
   removeBlockFromMap,
 } from "../../utils";
-import {useStyles} from "./styles";
+import { useStyles } from "./styles";
 
 export type TDecorator = {
   component: FC<any>;
@@ -277,7 +277,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     if (!editor) {
       return;
     }
-    const {editorRect, selectionRect} = getEditorBounds(editor);
+    const { editorRect, selectionRect } = getEditorBounds(editor);
     const line = getLineNumber(editorState);
     const top = selectionRect ? selectionRect.top : (editorRect.top as number) + lineHeight * line;
     const left = selectionRect ? selectionRect.left : editorRect.left;
@@ -525,7 +525,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
   };
 
   const confirmLink = (url?: string) => {
-    const {urlKey} = state;
+    const { urlKey } = state;
     if (!url) {
       if (urlKey) {
         removeLink();
@@ -547,7 +547,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     } else {
       const contentStateWithEntity = contentState.createEntity("LINK", "MUTABLE", data);
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-      const newEditorState = EditorState.set(editorState, {currentContent: contentStateWithEntity});
+      const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
       replaceEditorState = RichUtils.toggleLink(newEditorState, newEditorState.getSelection(), entityKey);
     }
     updateStateForPopover(replaceEditorState);
@@ -698,7 +698,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
   };
 
   const confirmMedia = (url?: string, width?: number, height?: number, alignment?: TAlignment, type?: TMediaType) => {
-    const {urlKey} = state;
+    const { urlKey } = state;
     if (!url) {
       if (urlKey) {
         removeMedia();
@@ -822,7 +822,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
       if (!editor) {
         return;
       }
-      const {editorRect, selectionRect} = getEditorBounds(editor);
+      const { editorRect, selectionRect } = getEditorBounds(editor);
       if (!selectionRect) {
         return;
       }

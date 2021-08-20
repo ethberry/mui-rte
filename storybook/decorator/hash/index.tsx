@@ -1,7 +1,7 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 export const MyHashTagDecorator: FC = props => {
-  const {children} = props;
+  const { children } = props;
   return (
     <span
       style={{
