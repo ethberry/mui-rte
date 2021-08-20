@@ -10,7 +10,7 @@ export const MyBlockComponent: FC<IToolbarComponentProps> = props => {
       id={id}
       variant="contained"
       onMouseDown={onMouseDown}
-      color={active ? "primary" : "default"}
+      color={active ? "primary" : "inherit"}
       disabled={disabled}
     >
       My Block

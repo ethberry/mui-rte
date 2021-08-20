@@ -16,11 +16,13 @@
   },
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
+    "@emotion/react": "11.4.1",
     "@gemunion/cross-env": "0.0.3",
     "@gemunion/eslint-config": "0.1.9",
     "@hot-loader/react-dom": "17.0.1",
-    "@material-ui/core": "4.12.3",
-    "@material-ui/icons": "4.11.2",
+    "@material-ui/core": "5.0.0-beta.4",
+    "@material-ui/icons": "5.0.0-beta.4",
+    "@material-ui/styles": "5.0.0-beta.4",
     "@storybook/addon-actions": "6.3.7",
     "@storybook/addon-essentials": "6.3.7",
     "@storybook/addon-links": "6.3.7",
@@ -88,8 +90,9 @@
   "main": "./dist/index.js",
   "name": "@gemunion/mui-rte",
   "peerDependencies": {
-    "@material-ui/core": "^4",
-    "@material-ui/icons": "^4",
+    "@material-ui/core": "^5",
+    "@material-ui/icons": "^5",
+    "@material-ui/styles": "^5",
     "react": "^17",
     "react-dom": "17"
   },
@@ -111,5 +114,5 @@
     "watch": "cross-env NODE_ENV=development rollup -c -w"
   },
   "types": "./dist/index.d.ts",
-  "version": "0.0.16"
+  "version": "1.0.0"
 }
