@@ -119,7 +119,7 @@ export interface IRichTextEditorProps {
   onSave?: (data: string) => void;
   onChange?: (state: EditorState) => void;
   onFocus?: () => void;
-  onBlur?: () => void;
+  onBlur?: (data: string) => void;
 }
 
 type TMUIRichTextEditorState = {
@@ -374,7 +374,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     isFocusedWithMouse.current = false;
     setFocus(false);
     if (onBlur) {
-      onBlur();
+      onBlur(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     }
 
     if (!state.anchorUrlPopover) {
