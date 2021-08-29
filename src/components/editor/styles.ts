@@ -18,7 +18,7 @@ export const useStyles = makeStyles<Theme>(
     },
     editor: {},
     editorContainer: {
-      margin: theme.spacing(1, 0, 0, 0),
+      margin: theme.spacing(1),
       cursor: "text",
       width: "100%",
       padding: theme.spacing(0, 0, 1, 0),
@@ -33,6 +33,7 @@ export const useStyles = makeStyles<Theme>(
       display: "none",
     },
     placeHolder: {
+      margin: theme.spacing(1),
       color: theme.palette.grey[600],
       position: "relative",
       outline: "none",
