@@ -119,7 +119,7 @@ export interface IRichTextEditorProps {
   onSave?: (data: string) => void;
   onChange?: (state: EditorState) => void;
   onFocus?: () => void;
-  onBlur?: (data: string) => void;
+  onBlur?: () => void;
 }
 
 type TMUIRichTextEditorState = {
@@ -370,21 +370,6 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     setTimeout(() => setEditorState(EditorState.moveFocusToEnd(nextEditorState)), 0);
   };
 
-  const handleBlur = () => {
-    isFocusedWithMouse.current = false;
-    setFocus(false);
-    if (onBlur) {
-      onBlur(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
-    }
-
-    if (!state.anchorUrlPopover) {
-      setState({
-        ...state,
-        toolbarPosition: undefined,
-      });
-    }
-  };
-
   const handleMouseDown = () => {
     isFocusedWithMouse.current = true;
   };
@@ -402,6 +387,24 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
   const handleSave = () => {
     if (onSave) {
       onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    }
+  };
+
+  const handleBlur = () => {
+    isFocusedWithMouse.current = false;
+    setFocus(false);
+
+    handleSave();
+
+    if (onBlur) {
+      onBlur();
+    }
+
+    if (!state.anchorUrlPopover) {
+      setState({
+        ...state,
+        toolbarPosition: undefined,
+      });
     }
   };
 
