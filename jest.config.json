@@ -3,8 +3,7 @@
   "coverageDirectory": "../coverage",
   "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
   "rootDir": "src",
-  "setupFilesAfterEnv": ["<rootDir>/enzyme.config.ts"],
-  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "testEnvironment": "jsdom",
   "testRegex": ".test.tsx?$",
   "transform": {
     "^.+\\.tsx?$": "ts-jest"

@@ -1,14 +1,16 @@
 import React from "react";
-import { mount } from "enzyme";
+import { cleanup, render } from "@testing-library/react";
 import { spy } from "sinon";
 import { Editor, convertFromRaw } from "draft-js";
 import { RichTextEditor } from "./index";
 import { Toolbar } from "../toolbar";
 import { ToolbarButton } from "../toolbar-button";
 
+afterEach(cleanup);
+
 describe("<MUIRichTextEditor />", () => {
   it("should render controls and editor", () => {
-    const wrapper = mount(<RichTextEditor />);
+    const wrapper = render(<RichTextEditor />);
     const toolbar = wrapper.find(Toolbar);
     const editor = wrapper.find(Editor);
 
