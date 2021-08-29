@@ -90,9 +90,9 @@
   "main": "./dist/index.js",
   "name": "@gemunion/mui-rte",
   "peerDependencies": {
-    "@material-ui/core": "^5",
-    "@material-ui/icons": "^5",
-    "@material-ui/styles": "^5",
+    "@material-ui/core": "^5.0.0-beta",
+    "@material-ui/icons": "^5.0.0-beta",
+    "@material-ui/styles": "^5.0.0-beta",
     "react": "^17",
     "react-dom": "17"
   },
