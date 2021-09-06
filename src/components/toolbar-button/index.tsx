@@ -53,6 +53,7 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
         size={!inlineMode ? size || "medium" : "small"}
         disabled={disabled}
         onMouseDown={mouseDownHandler}
+        data-testid="toolbar-button"
       >
         {icon}
       </IconButton>
@@ -60,7 +61,15 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
   }
 
   if (Component) {
-    return <Component id={elemId} active={active || false} disabled={disabled} onMouseDown={mouseDownHandler} />;
+    return (
+      <Component
+        id={elemId}
+        active={active || false}
+        disabled={disabled}
+        onMouseDown={mouseDownHandler}
+        data-testid="toolbar-button"
+      />
+    );
   }
 
   return null;

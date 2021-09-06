@@ -59,7 +59,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
   }, curedControls);
 
   return (
-    <div id={id} className={className}>
+    <div id={id} className={className} data-testid="toolbar">
       {availableControls.map(style => {
         if (inlineMode && style.type !== "inline" && style.name !== "link" && style.name !== "clear") {
           return null;
