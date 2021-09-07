@@ -1,0 +1,32 @@
+name: CI Test
+
+on:
+  push:
+    branches:
+      - master
+      - mui5
+  pull_request:
+    branches:
+      - master
+      - mui5
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v2
+        name: Use Node.js ${{ matrix.node-version }}
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Packages
+        run: npm i
+      - name: Npm run test
+        run: npm run test
+
