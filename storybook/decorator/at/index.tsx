@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 export const MyAtDecorator: FC<{ decoratedText: string }> = props => {
   const { decoratedText, children } = props;

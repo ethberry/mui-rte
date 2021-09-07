@@ -1,4 +1,3 @@
-import React from "react";
 import { convertFromHTML, ContentState, convertToRaw } from "draft-js";
 import { Story } from "@storybook/react";
 

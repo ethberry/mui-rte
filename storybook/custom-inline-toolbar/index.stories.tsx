@@ -1,4 +1,3 @@
-import React from "react";
 import { InvertColors } from "@material-ui/icons";
 import { Story } from "@storybook/react";
 

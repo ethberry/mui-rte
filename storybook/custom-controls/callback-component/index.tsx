@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Avatar, Chip } from "@material-ui/core";
 
 import { IToolbarComponentProps } from "../../../src/components/toolbar/types";

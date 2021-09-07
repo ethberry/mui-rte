@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { EditorState } from "draft-js";
 
 import { getSelectionInfo } from "../../utils";

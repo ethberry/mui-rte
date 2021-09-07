@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ContentState } from "draft-js";
 import clsx from "clsx";
 import { Link as MuiLink } from "@material-ui/core";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
 import { useStyles } from "./styles";

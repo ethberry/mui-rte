@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Story } from "@storybook/react";
 import { Update } from "@material-ui/icons";
 

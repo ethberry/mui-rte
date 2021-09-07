@@ -1,4 +1,3 @@
-import React from "react";
 import { EditorState } from "draft-js";
 import { InvertColors } from "@material-ui/icons";
 import { Story } from "@storybook/react";

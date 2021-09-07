@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IAutocompleteItem } from "../../src/components/autocomplete";
 import { Staff } from "./staff";
 

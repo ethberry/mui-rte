@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from "react";
+import { FC, MouseEvent } from "react";
 import { IconButton } from "@material-ui/core";
 
 import { IToolbarComponentProps, TToolbarButtonSize } from "../toolbar/types";

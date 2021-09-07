@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Story } from "@storybook/react";
 
 import { RichTextEditor, IRichTextEditorRef, IRichTextEditorProps } from "../../src";
