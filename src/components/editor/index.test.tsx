@@ -25,8 +25,20 @@ describe("<MUIRichTextEditor />", () => {
   });
 
   it("should load content", async () => {
-    const expected =
-      '{"blocks":[{"key":"4a8q0","text":"bold text and normal","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":9,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}';
+    const expected = JSON.stringify({
+      blocks: [
+        {
+          key: "4a8q0",
+          text: "bold text and normal",
+          type: "unstyled",
+          depth: 0,
+          inlineStyleRanges: [{ offset: 0, length: 9, style: "BOLD" }],
+          entityRanges: [],
+          data: {},
+        },
+      ],
+      entityMap: {},
+    });
     const wrapper = render(<RichTextEditorWithThemeProvider defaultValue={expected} />);
     const editor = await wrapper.findByTestId("editor");
 
