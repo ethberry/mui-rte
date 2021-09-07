@@ -1119,6 +1119,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
             })}
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
+            data-testid="editor"
           >
             <Editor
               blockRenderMap={getBlockMap()}
