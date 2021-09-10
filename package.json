@@ -106,7 +106,6 @@
     "lint": "eslint . --fix",
     "prebuild": "rimraf dist/",
     "prepare": "npm run build",
-    "start": "cross-env webpack serve --mode development",
     "storybook": "start-storybook -p 6006",
     "test": "jest"
   },
