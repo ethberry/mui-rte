@@ -108,7 +108,7 @@
     "prepare": "npm run build",
     "start": "cross-env webpack serve --mode development",
     "storybook": "start-storybook -p 6006",
-    "test": "jest --config jest.config.json --no-watch --verbose"
+    "test": "jest"
   },
   "types": "./dist/index.d.ts",
   "version": "1.0.3"
