@@ -1,7 +1,6 @@
 src
 storybook
 coverage
-scripts
 
 renovate.json
 tsconfig.json
