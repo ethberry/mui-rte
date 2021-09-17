@@ -90,7 +90,7 @@
   "peerDependencies": {
     "@material-ui/core": "^5",
     "@material-ui/icons": "^5",
-    "@material-ui/styles": "^5",
+    "@material-ui/styles": "^5.0.0-beta",
     "react": "^17",
     "react-dom": "17"
   },
