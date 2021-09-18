@@ -1,13 +1,21 @@
 {
-  "author": "Erik Lopez",
+  "author": {
+    "email": "trejgun@gmail.com",
+    "name": "TrejGun",
+    "url": "https://trejgun.github.io/"
+  },
   "bugs": {
     "url": "https://github.com/gemunion/mui-rte/issues"
   },
   "contributors": [
     {
-      "email": "trejgun@gmail.com",
-      "name": "TrejGun",
-      "url": "https://trejgun.github.io/"
+      "email": "karafizi.artur@gmail.com",
+      "name": "Karafizi Arthur",
+      "url": "https://codepen.io/KarafiziArtur/full/gPxMqX"
+    },
+    {
+      "name": "Erik Lopez",
+      "url": "https://github.com/niuware"
     }
   ],
   "dependencies": {
@@ -20,8 +28,8 @@
     "@gemunion/cross-env": "0.0.4",
     "@gemunion/eslint-config": "0.1.10",
     "@hot-loader/react-dom": "17.0.1",
-    "@mui/material": "5.0.0",
     "@mui/icons-material": "5.0.0",
+    "@mui/material": "5.0.0",
     "@mui/styles": "5.0.0",
     "@storybook/addon-actions": "6.3.8",
     "@storybook/addon-essentials": "6.3.8",
@@ -78,6 +86,7 @@
   "homepage": "https://github.com/gemunion/mui-rte#readme",
   "keywords": [
     "material-ui",
+    "mui",
     "rich text editor",
     "rte",
     "react",
@@ -88,11 +97,11 @@
   "main": "./dist/index.js",
   "name": "@gemunion/mui-rte",
   "peerDependencies": {
-    "@mui/material": "^5",
     "@mui/icons-material": "^5",
+    "@mui/material": "^5",
     "@mui/styles": "^5",
     "react": "^17",
-    "react-dom": "17"
+    "react-dom": "^17"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
