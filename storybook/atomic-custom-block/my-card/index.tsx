@@ -8,8 +8,8 @@ import {
   CardMedia,
   IconButton,
   Typography,
-} from "@material-ui/core";
-import { Favorite, Share } from "@material-ui/icons";
+} from "@mui/material";
+import { Favorite, Share } from "@mui/icons-material";
 
 import { useStyles } from "./styles";
 

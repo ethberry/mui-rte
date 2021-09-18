@@ -1,5 +1,5 @@
 import { FC, Fragment, useState } from "react";
-import { Button, ButtonGroup, Grid, Popover, TextField } from "@material-ui/core";
+import { Button, ButtonGroup, Grid, Popover, TextField } from "@mui/material";
 import {
   Check,
   Delete,
@@ -8,7 +8,7 @@ import {
   FormatAlignRight,
   InsertPhoto,
   Movie,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import { useStyles } from "./styles";
 import { TAnchor } from "../types";

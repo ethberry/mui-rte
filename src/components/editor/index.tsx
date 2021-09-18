@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import clsx from "clsx";
-import { Paper } from "@material-ui/core";
+import { Paper } from "@mui/material";
 import {
   AtomicBlockUtils,
   CompositeDecorator,

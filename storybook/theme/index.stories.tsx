@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@mui/material";
 import { Story } from "@storybook/react";
 
 import { IRichTextEditorProps, RichTextEditor } from "../../src";

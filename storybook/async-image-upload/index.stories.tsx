@@ -1,5 +1,5 @@
 import { Fragment, useRef, useState } from "react";
-import { Backup } from "@material-ui/icons";
+import { Backup } from "@mui/icons-material";
 import { Story } from "@storybook/react";
 
 import { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";

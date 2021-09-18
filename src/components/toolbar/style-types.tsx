@@ -15,7 +15,7 @@ import {
   StrikethroughS,
   Title,
   Undo,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import { TStyleType } from "./types";
 

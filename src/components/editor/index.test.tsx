@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { ThemeProvider } from "@material-ui/core";
-import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 import { RichTextEditor } from "./index";
 

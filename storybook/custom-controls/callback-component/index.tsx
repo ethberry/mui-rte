@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Avatar, Chip } from "@material-ui/core";
+import { Avatar, Chip } from "@mui/material";
 
 import { IToolbarComponentProps } from "../../../src/components/toolbar/types";
 

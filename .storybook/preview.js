@@ -1,5 +1,5 @@
-import { CssBaseline } from "@material-ui/core";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const decorators = [
   Story => (

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { List, ListItem, Paper } from "@material-ui/core";
+import { List, ListItem, Paper } from "@mui/material";
 
 import { useStyles } from "./styles";
 
