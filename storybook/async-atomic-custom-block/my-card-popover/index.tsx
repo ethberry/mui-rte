@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState, ChangeEvent } from "react";
-import { Button, Grid, Popover, TextField } from "@material-ui/core";
-import { Close, Done } from "@material-ui/icons";
+import { FC, useEffect, useState, ChangeEvent } from "react";
+import { Button, Grid, Popover, TextField } from "@mui/material";
+import { Close, Done } from "@mui/icons-material";
 
 import { TAnchor } from "../../../src";
 import { useStyles } from "./styles";

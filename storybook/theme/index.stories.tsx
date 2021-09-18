@@ -1,5 +1,4 @@
-import React from "react";
-import { MuiThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@mui/material";
 import { Story } from "@storybook/react";
 
 import { IRichTextEditorProps, RichTextEditor } from "../../src";
@@ -15,9 +14,9 @@ const save = (data: string) => {
 
 const Template: Story<IRichTextEditorProps> = args => {
   return (
-    <MuiThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
       <RichTextEditor label="Type something here..." onSave={save} {...args} />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 };
 

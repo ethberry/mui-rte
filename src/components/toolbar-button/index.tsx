@@ -1,5 +1,5 @@
-import React, { FC, MouseEvent } from "react";
-import { IconButton } from "@material-ui/core";
+import { FC, MouseEvent } from "react";
+import { IconButton } from "@mui/material";
 
 import { IToolbarComponentProps, TToolbarButtonSize } from "../toolbar/types";
 
@@ -53,6 +53,7 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
         size={!inlineMode ? size || "medium" : "small"}
         disabled={disabled}
         onMouseDown={mouseDownHandler}
+        data-testid="toolbar-button"
       >
         {icon}
       </IconButton>
@@ -60,7 +61,15 @@ export const ToolbarButton: FC<IToolbarButtonProps> = props => {
   }
 
   if (Component) {
-    return <Component id={elemId} active={active || false} disabled={disabled} onMouseDown={mouseDownHandler} />;
+    return (
+      <Component
+        id={elemId}
+        active={active || false}
+        disabled={disabled}
+        onMouseDown={mouseDownHandler}
+        data-testid="toolbar-button"
+      />
+    );
   }
 
   return null;

@@ -1,4 +1,4 @@
-import React, {
+import {
   CSSProperties,
   FC,
   forwardRef,
@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react";
 import clsx from "clsx";
-import { Paper } from "@material-ui/core";
+import { Paper } from "@mui/material";
 import {
   AtomicBlockUtils,
   CompositeDecorator,
@@ -370,21 +370,6 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     setTimeout(() => setEditorState(EditorState.moveFocusToEnd(nextEditorState)), 0);
   };
 
-  const handleBlur = () => {
-    isFocusedWithMouse.current = false;
-    setFocus(false);
-    if (onBlur) {
-      onBlur();
-    }
-
-    if (!state.anchorUrlPopover) {
-      setState({
-        ...state,
-        toolbarPosition: undefined,
-      });
-    }
-  };
-
   const handleMouseDown = () => {
     isFocusedWithMouse.current = true;
   };
@@ -402,6 +387,24 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
   const handleSave = () => {
     if (onSave) {
       onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    }
+  };
+
+  const handleBlur = () => {
+    isFocusedWithMouse.current = false;
+    setFocus(false);
+
+    handleSave();
+
+    if (onBlur) {
+      onBlur();
+    }
+
+    if (!state.anchorUrlPopover) {
+      setState({
+        ...state,
+        toolbarPosition: undefined,
+      });
     }
   };
 
@@ -1116,6 +1119,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
             })}
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
+            data-testid="editor"
           >
             <Editor
               blockRenderMap={getBlockMap()}

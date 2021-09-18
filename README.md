@@ -13,7 +13,7 @@ The Material-UI Rich Text Editor and Viewer
 npm install mui-rte --save
 ```
 
-Install the peer dependencies: `@material-ui/core`, `@material-ui/icons`, `react` and `react-dom`.
+Install the peer dependencies: `@mui/material`, `@mui/icons-material`, `react` and `react-dom`.
 
 ## Demo
 
@@ -52,7 +52,7 @@ Check the [examples](https://github.com/niuware/mui-rte/tree/master/examples) di
 
 ## Custom Controls
 
-You can define your custom inline styles, blocks, atomic blocks and callback actions to the editor. Just select an icon from `@material-ui/icons` or create your own `FunctionComponent` and define your rules.
+You can define your custom inline styles, blocks, atomic blocks and callback actions to the editor. Just select an icon from `@mui/icons-material` or create your own `FunctionComponent` and define your rules.
 
 ### Adding a custom inline style
 
@@ -60,7 +60,7 @@ This sample adds a control to change the background color and font color of the 
 
 ```js
 import MUIRichTextEditor from 'mui-rte'
-import InvertColorsIcon from '@material-ui/icons/InvertColors'
+import InvertColorsIcon from '@mui/icons-material/InvertColors'
 
 <MUIRichTextEditor
     controls={["my-style"]}
@@ -84,7 +84,7 @@ This sample adds a block to the editor based on a `React Element`:
 
 ```js
 import MUIRichTextEditor from 'mui-rte'
-import TableChartIcon from '@material-ui/icons/TableChart'
+import TableChartIcon from '@mui/icons-material/TableChart'
 
 const MyBlock: FC = props => {
     const {children} = props;
@@ -118,11 +118,11 @@ const MyBlock: FC = props => {
 
 It is possible to insert custom blocks based on asynchronous behavior using the `insertAtomicBlockAsync` API. The above example shows an [example](https://github.com/niuware/mui-rte/blob/master/examples/async-image-upload/index.tsx) on how to upload an image and use the `MUIRichTextEditor` default image control for further edition. You can use this behavior to upload a file when dropping it inside the editor and render it as an image entity after upload.
 
-Check this [other sample](https://github.com/niuware/mui-rte/blob/master/examples/async-atomic-custom-block/index.tsx) that shows how to add a `@material-ui/core` Card with asynchronous downloaded content.
+Check this [other sample](https://github.com/niuware/mui-rte/blob/master/examples/async-atomic-custom-block/index.tsx) that shows how to add a `@mui/material` Card with asynchronous downloaded content.
 
 ### Adding a custom atomic block (Sync)
 
-Check [this sample](https://github.com/niuware/mui-rte/blob/master/examples/atomic-custom-block/index.tsx) that shows how to create a control to add a `@material-ui/core` Card component to the editor.
+Check [this sample](https://github.com/niuware/mui-rte/blob/master/examples/atomic-custom-block/index.tsx) that shows how to create a control to add a `@mui/material` Card component to the editor.
 
 ### Adding a custom callback control
 
@@ -130,7 +130,7 @@ This sample adds a control that will trigger a custom callback function to clear
 
 ```js
 import MUIRichTextEditor from 'mui-rte'
-import DoneIcon from '@material-ui/icons/Done'
+import DoneIcon from '@mui/icons-material/Done'
 import { EditorState } from 'draft-js'
 
 <MUIRichTextEditor
@@ -253,7 +253,7 @@ import MUIRichTextEditor from 'mui-rte'
 You can style the editor using the `Material-UI` theming feature. First create a theme with `createMuiTheme` and override classes such as `root`, `container`, `editor`, and `editorContainer`. Check the examples directory for more.
 
 ```js
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@mui/material'
 import MUIRichTextEditor from 'mui-rte'
 
 const defaultTheme = createMuiTheme()
@@ -272,11 +272,11 @@ Object.assign(defaultTheme, {
     }
 })
 
-<MuiThemeProvider theme={defaultTheme}>
+<ThemeProvider theme={defaultTheme}>
     <MUIRichTextEditor
         label="Type something here..."
     />
-</MuiThemeProvider>
+</ThemeProvider>
 ```
 
 ## API
@@ -317,7 +317,7 @@ Object.assign(defaultTheme, {
 |---|---|---|---|
 |id|`string`|optional|The HTML id attribute for the control|
 |name|`string`|required|The name of the custom control. For rendering the control this name should be added to the `MUIRichTextEditor` `controls` property.|
-|icon|`JSX.Element`|optional|The `@material-ui/icons` icon for the control. For "atomic" control type, the icon is not required. [Check this](https://material.io/resources/icons/?style=baseline) for available icons.|
+|icon|`JSX.Element`|optional|The `@mui/icons-material` icon for the control. For "atomic" control type, the icon is not required. [Check this](https://material.io/resources/icons/?style=baseline) for available icons.|
 |component|`React.FunctionComponent<TToolbarComponentProps>`|optional|The custom function component for the control. The icon has priority over the component, so if the icon is set the component will be ignored. For "atomic" control type, the component is not required.|
 |type|`string`|required|Either "inline", "block", "atomic" or "callback"|
 |inlineStyle|`string`|optional|The `React.CSSProperties` object for styling the text when using a custom inline style.|

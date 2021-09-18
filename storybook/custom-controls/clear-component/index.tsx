@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Chip } from "@material-ui/core";
+import { FC } from "react";
+import { Chip } from "@mui/material";
 
 import { IToolbarComponentProps } from "../../../src/components/toolbar/types";
 

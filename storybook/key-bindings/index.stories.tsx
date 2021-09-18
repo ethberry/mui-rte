@@ -1,4 +1,4 @@
-import React, { KeyboardEvent } from "react";
+import { KeyboardEvent } from "react";
 import { EditorState, RichUtils } from "draft-js";
 import { Story } from "@storybook/react";
 

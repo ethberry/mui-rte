@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Button } from "@material-ui/core";
+import { FC } from "react";
+import { Button } from "@mui/material";
 
 import { IToolbarComponentProps } from "../../../src/components/toolbar/types";
 
@@ -10,7 +10,7 @@ export const MyBlockComponent: FC<IToolbarComponentProps> = props => {
       id={id}
       variant="contained"
       onMouseDown={onMouseDown}
-      color={active ? "primary" : "default"}
+      color={active ? "primary" : "inherit"}
       disabled={disabled}
     >
       My Block

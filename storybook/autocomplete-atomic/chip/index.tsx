@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Avatar, Chip } from "@material-ui/core";
+import { FC } from "react";
+import { Avatar, Chip } from "@mui/material";
 
 export const CityChip: FC<any> = props => {
   const { blockProps } = props;

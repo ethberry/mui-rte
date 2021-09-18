@@ -1,6 +1,6 @@
-import React, { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Story } from "@storybook/react";
-import { Update } from "@material-ui/icons";
+import { Update } from "@mui/icons-material";
 
 import { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
 import { MyCard } from "./my-card";

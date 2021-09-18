@@ -1,5 +1,5 @@
-import React, { FC, Fragment } from "react";
-import { Avatar, ListItemAvatar, ListItemText } from "@material-ui/core";
+import { FC, Fragment } from "react";
+import { Avatar, ListItemAvatar, ListItemText } from "@mui/material";
 
 type IStaff = {
   job: string;

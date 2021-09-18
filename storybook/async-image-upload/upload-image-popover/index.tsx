@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from "react";
-import { Button, Grid, IconButton, Popover, TextField } from "@material-ui/core";
-import { AttachFile, Close, Done } from "@material-ui/icons";
+import { FC, useEffect, useState } from "react";
+import { Button, Grid, IconButton, Popover, TextField } from "@mui/material";
+import { AttachFile, Close, Done } from "@mui/icons-material";
 
 import { TAnchor } from "../../../src";
 import { useStyles } from "./styles";

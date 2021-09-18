@@ -1,10 +1,9 @@
-import React from "react";
-
-import {createMuiTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const decorators = [
   Story => (
-    <ThemeProvider theme={createMuiTheme()}>
+    <ThemeProvider theme={createTheme()}>
       <CssBaseline />
       <Story />
     </ThemeProvider>

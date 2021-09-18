@@ -1,15 +1,6 @@
-import React, { FC } from "react";
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  IconButton,
-  Typography,
-} from "@material-ui/core";
-import { Favorite, Share } from "@material-ui/icons";
+import { FC } from "react";
+import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from "@mui/material";
+import { Favorite, Share } from "@mui/icons-material";
 
 import { useStyles } from "./styles";
 

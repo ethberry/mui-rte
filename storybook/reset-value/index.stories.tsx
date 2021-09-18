@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { Story } from "@storybook/react";
 
 import { IRichTextEditorProps, RichTextEditor } from "../../src";

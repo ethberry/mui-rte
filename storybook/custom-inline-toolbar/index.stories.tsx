@@ -1,5 +1,4 @@
-import React from "react";
-import { InvertColors } from "@material-ui/icons";
+import { InvertColors } from "@mui/icons-material";
 import { Story } from "@storybook/react";
 
 import { IRichTextEditorProps, RichTextEditor } from "../../src";
