@@ -17,12 +17,6 @@ jobs:
       # pulls all tags (needed for lerna to correctly version)
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/* # see https://stackoverflow.com/a/60184319/9285308
 
-      - name: Install Packages npm i
-        run: npm i
-
-      - name: Build Packages
-        run: npm run build
-
       - name: Authenticate Registry & Configure Git User
         run: |
           echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
@@ -38,6 +32,12 @@ jobs:
 
       - name: Authenticate check via npm
         run: npm whoami --registry=https://npm.pkg.github.com/
+        
+      - name: Install Packages npm i
+        run: npm i
+
+      - name: Build Packages
+        run: npm run build
 
       - name: Version by NPM
         run: npm version patch -m "[Manual release] [skip ci] %s"
