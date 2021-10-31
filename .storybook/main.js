@@ -1,13 +1,7 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 module.exports = {
   stories: ["../storybook/**/*.stories.@(ts|tsx)"],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/preset-create-react-app"],
   webpackFinal: config => {
-    config.module.rules.push({
-      test: /\.css$/,
-      use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-    });
     config.module.rules.push({
       test: /\.[tj]sx?$/,
       exclude: [/node_modules/],
@@ -44,14 +38,12 @@ module.exports = {
               "optimize-clsx",
               "@babel/plugin-proposal-nullish-coalescing-operator",
               "@babel/plugin-proposal-optional-chaining",
+              "babel-plugin-inline-import",
             ],
           },
         },
       ],
     });
     return config;
-  },
-  typescript: {
-    reactDocgen: "none",
   },
 };
