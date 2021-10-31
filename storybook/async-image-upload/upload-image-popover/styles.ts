@@ -1,6 +1,7 @@
-import { makeStyles } from "@mui/material";
+import { Theme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 
-export const useStyles = makeStyles(
+export const useStyles = makeStyles<Theme>(
   () => ({
     root: {
       padding: 10,

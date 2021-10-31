@@ -1,6 +1,9 @@
-export { IRichTextEditorProps, IRichTextEditorRef, RichTextEditor } from "./components/editor";
-export { IToolbarProps, Toolbar } from "./components/toolbar";
-export { IRichTextDisplayProps, RichTextDisplay } from "./components/display";
-export { TToolbarControl, TCustomControl } from "./components/toolbar/types";
-export { TAnchor } from "./components/types";
+export type { IRichTextEditorProps, IRichTextEditorRef } from "./components/editor";
+export { RichTextEditor } from "./components/editor";
+export type { IToolbarProps } from "./components/toolbar";
+export { Toolbar } from "./components/toolbar";
+export type { IRichTextDisplayProps } from "./components/display";
+export { RichTextDisplay } from "./components/display";
+export type { TToolbarControl, TCustomControl } from "./components/toolbar/types";
+export type { TAnchor } from "./components/types";
 export { atomicBlockExists } from "./utils";

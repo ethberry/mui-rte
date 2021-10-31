@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "rootDirs": ["./src", "./examples"]
+    "rootDirs": ["./src", "./storybook"]
   },
   "exclude": ["node_modules", "./dist"]
 }

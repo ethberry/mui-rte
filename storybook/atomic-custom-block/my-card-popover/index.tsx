@@ -62,8 +62,10 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
     <Popover
       anchorEl={state.anchor}
       open={state.anchor !== null}
-      onExited={() => {
-        onSubmit(data, !state.isCancelled);
+      TransitionProps={{
+        onExited: () => {
+          onSubmit(data, !state.isCancelled);
+        },
       }}
       anchorOrigin={{
         vertical: "bottom",
@@ -87,7 +89,7 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
         <Grid item xs={12}>
           <TextField {...textFieldProps} label="Image URL" name="image" />
         </Grid>
-        <Grid item container xs={12} justify="flex-end">
+        <Grid item container xs={12} justifyContent="flex-end">
           <Button
             onClick={() => {
               setState({

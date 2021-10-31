@@ -44,8 +44,10 @@ export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
     <Popover
       anchorEl={state.anchor}
       open={state.anchor !== null}
-      onExited={() => {
-        onSubmit(data, !state.isCancelled);
+      TransitionProps={{
+        onExited: () => {
+          onSubmit(data, !state.isCancelled);
+        },
       }}
       anchorOrigin={{
         vertical: "bottom",
@@ -84,7 +86,7 @@ export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
             </IconButton>
           </label>
         </Grid>
-        <Grid item container xs={12} justify="flex-end">
+        <Grid item container xs={12} justifyContent="flex-end">
           <Button
             onClick={() => {
               setState({

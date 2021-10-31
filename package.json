@@ -20,8 +20,7 @@
   ],
   "dependencies": {
     "clsx": "1.1.1",
-    "draft-js": "0.11.7",
-    "react-scripts": "4.0.3"
+    "draft-js": "0.11.7"
   },
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
@@ -31,10 +30,7 @@
     "@mui/icons-material": "5.0.5",
     "@mui/material": "5.0.6",
     "@mui/styles": "5.0.2",
-    "@storybook/addon-actions": "6.3.12",
     "@storybook/addon-essentials": "6.3.12",
-    "@storybook/addon-links": "6.3.12",
-    "@storybook/node-logger": "6.3.12",
     "@storybook/preset-create-react-app": "3.2.0",
     "@storybook/react": "6.3.12",
     "@testing-library/jest-dom": "5.14.1",
@@ -46,7 +42,6 @@
     "@types/react-dom": "17.0.10",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "babel-loader": "8.2.3",
     "babel-plugin-inline-import": "3.0.0",
     "babel-plugin-optimize-clsx": "2.6.2",
     "eslint": "7.32.0",
@@ -68,6 +63,7 @@
     "prettier": "2.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-scripts": "4.0.3",
     "rimraf": "3.0.2",
     "ts-jest": "27.0.7",
     "ts-node": "10.4.0",
