@@ -1,7 +1,7 @@
 {
   "extends": [
     "@gemunion/eslint-config/presets/tsx",
-    "@gemunion/eslint-config/rules/jest"
+    "@gemunion/eslint-config/tests/jest"
   ],
   "parserOptions": {
     "project": "./tsconfig.test.json"
