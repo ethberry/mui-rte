@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
     "@wojtekmaj/enzyme-adapter-react-17": "0.6.7",
-    "babel-loader": "8.2.4",
+    "babel-loader": "8.2.5",
     "babel-plugin-optimize-clsx": "2.6.2",
     "css-loader": "6.7.1",
     "cssnano": "5.1.7",
