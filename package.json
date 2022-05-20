@@ -25,6 +25,7 @@
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
     "@emotion/react": "11.9.0",
+    "@emotion/styled": "11.8.1",
     "@gemunion/cross-env": "0.0.4",
     "@gemunion/eslint-config": "1.0.5",
     "@mui/icons-material": "5.6.2",
