@@ -1,9 +1,6 @@
-name: CI Test
+name: CI Test on PR
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
