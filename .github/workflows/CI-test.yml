@@ -1,9 +1,7 @@
-name: CI Test on PR
+name: CI Test on Demand
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   test:
