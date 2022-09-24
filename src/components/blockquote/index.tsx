@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { useStyles } from "./styles";
 
-export const Blockquote: FC = props => {
+export const Blockquote: FC<PropsWithChildren> = props => {
   const { children } = props;
 
   const classes = useStyles();
