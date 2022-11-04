@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { useStyles } from "./styles";
 
-export const CodeBlock: FC = props => {
+export const CodeBlock: FC<PropsWithChildren> = props => {
   const { children } = props;
 
   const classes = useStyles();
