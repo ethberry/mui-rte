@@ -1,5 +1,5 @@
 import { FC } from "react";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { ContentBlock, ContentState } from "draft-js";
 
 import { useStyles } from "./styles";
@@ -26,7 +26,7 @@ export const Media: FC<IMediaProps> = props => {
         [classes.editable]: !readOnly,
         [classes.focused]: !readOnly && focusKey === block.getKey(),
       }),
-      width: width,
+      width,
       height: type === "video" ? "auto" : height,
       onClick: () => {
         if (readOnly) {

@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { ContentState } from "draft-js";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { Link as MuiLink } from "@mui/material";
 
 interface ILinkProps {

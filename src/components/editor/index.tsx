@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { Paper } from "@mui/material";
 import {
   AtomicBlockUtils,
@@ -540,7 +540,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     const contentState = editorState.getCurrentContent();
     let replaceEditorState = editorState;
     const data = {
-      url: url,
+      url,
       className: classes.anchorLink,
     };
 
@@ -593,7 +593,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
       newEditorState,
       name.toUpperCase(),
       {
-        value: value,
+        value,
       },
       {
         selection: newEditorState.getCurrentContent().getSelectionAfter(),
@@ -712,11 +712,11 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
 
     const contentState = editorState.getCurrentContent();
     const data = {
-      url: url,
-      width: width,
-      height: height,
-      alignment: alignment,
-      type: type,
+      url,
+      width,
+      height,
+      alignment,
+      type,
     };
 
     if (urlKey) {
@@ -901,7 +901,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
             editable: false,
             props: {
               onClick: focusMedia,
-              readOnly: readOnly,
+              readOnly,
               focusKey: focusMediaKey,
             },
           };
