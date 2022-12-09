@@ -29,7 +29,7 @@
     "@gemunion/cross-env": "0.0.4",
     "@gemunion/eslint-config": "2.0.5",
     "@mui/icons-material": "5.10.16",
-    "@mui/material": "5.10.16",
+    "@mui/material": "5.10.17",
     "@mui/styles": "5.10.16",
     "@storybook/addon-essentials": "6.5.14",
     "@storybook/addon-links": "6.5.14",
