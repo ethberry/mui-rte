@@ -1,10 +1,12 @@
-import { Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextDisplayProps, RichTextDisplay, TCustomControl } from "../../src";
+import { RichTextDisplay, RichTextEditor, TCustomControl } from "../../src";
 
 export default {
   title: "Display",
-};
+} as Meta<typeof RichTextEditor>;
+
+type Story = StoryObj<typeof RichTextEditor>;
 
 const data = JSON.stringify({
   blocks: [
@@ -23,8 +25,6 @@ const data = JSON.stringify({
 
 const customControls: Array<TCustomControl> = [];
 
-const Template: Story<IRichTextDisplayProps> = args => (
-  <RichTextDisplay {...args} data={data} customControls={customControls} />
-);
+const Template: Story = { render: args => <RichTextDisplay {...args} data={data} customControls={customControls} /> };
 
-export const Display = Template.bind({});
+export const Display = Template;

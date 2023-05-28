@@ -1,10 +1,12 @@
-import { Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { RichTextEditor } from "../../src";
 
 export default {
   title: "Read Only",
-};
+} as Meta<typeof RichTextEditor>;
+
+type Story = StoryObj<typeof RichTextEditor>;
 
 const content = JSON.stringify({
   blocks: [
@@ -92,8 +94,10 @@ const content = JSON.stringify({
   entityMap: { "0": { type: "LINK", mutability: "MUTABLE", data: { url: "https://github.com/niuware" } } },
 });
 
-const Template: Story<IRichTextEditorProps> = args => {
-  return <RichTextEditor defaultValue={content} readOnly={true} {...args} />;
+const Template: Story = {
+  render: args => {
+    return <RichTextEditor defaultValue={content} readOnly={true} {...args} />;
+  },
 };
 
-export const ReadOnly = Template.bind({});
+export const ReadOnly = Template;

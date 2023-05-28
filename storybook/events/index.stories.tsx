@@ -1,11 +1,13 @@
 import { EditorState, convertToRaw } from "draft-js";
-import { Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { RichTextEditor } from "../../src";
 
 export default {
   title: "Events",
-};
+} as Meta<typeof RichTextEditor>;
+
+type Story = StoryObj<typeof RichTextEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -35,17 +37,19 @@ const blur = () => {
   console.info("Blur, focus lost on MUIRichTextEditor");
 };
 
-const Template: Story<IRichTextEditorProps> = args => {
-  return (
-    <RichTextEditor
-      label="Open the console to see the event callback as you type..."
-      onChange={change}
-      onFocus={focus}
-      onBlur={blur}
-      onSave={save}
-      {...args}
-    />
-  );
+const Template: Story = {
+  render: args => {
+    return (
+      <RichTextEditor
+        label="Open the console to see the event callback as you type..."
+        onChange={change}
+        onFocus={focus}
+        onBlur={blur}
+        onSave={save}
+        {...args}
+      />
+    );
+  },
 };
 
-export const Events = Template.bind({});
+export const Events = Template;
