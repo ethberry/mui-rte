@@ -1,11 +1,13 @@
 import { convertFromHTML, ContentState, convertToRaw } from "draft-js";
-import { Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { RichTextEditor } from "../../src";
 
 export default {
   title: "Load HTML",
-};
+} as Meta<typeof RichTextEditor>;
+
+type Story = StoryObj<typeof RichTextEditor>;
 
 const sampleMarkup =
   '<b>Bold text</b>, <i>Italic text</i><br/ ><br />Other text<br /><br /><a href="http://myurl.com">Some link</a>';
@@ -17,8 +19,10 @@ const save = (data: string) => {
   console.info(data);
 };
 
-const Template: Story<IRichTextEditorProps> = args => {
-  return <RichTextEditor defaultValue={content} onSave={save} {...args} />;
+const Template: Story = {
+  render: args => {
+    return <RichTextEditor defaultValue={content} onSave={save} {...args} />;
+  },
 };
 
-export const LoadHTML = Template.bind({});
+export const LoadHTML = Template;

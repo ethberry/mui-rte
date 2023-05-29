@@ -1,11 +1,13 @@
 import { Fragment, useState } from "react";
-import { Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextEditorProps, RichTextEditor } from "../../src";
+import { RichTextEditor } from "../../src";
 
 export default {
   title: "Reset Value",
-};
+} as Meta<typeof RichTextEditor>;
+
+type Story = StoryObj<typeof RichTextEditor>;
 
 const contentOne = JSON.stringify({
   blocks: [
@@ -155,15 +157,17 @@ const save = (data: string) => {
   console.info(data);
 };
 
-const Template: Story<IRichTextEditorProps> = args => {
-  const [content, setContent] = useState(contentOne);
+const Template: Story = {
+  render: args => {
+    const [content, setContent] = useState(contentOne);
 
-  return (
-    <Fragment>
-      <button onClick={() => setContent(contentTwo)}>Reset content</button>
-      <RichTextEditor defaultValue={content} onSave={save} {...args} />
-    </Fragment>
-  );
+    return (
+      <Fragment>
+        <button onClick={() => setContent(contentTwo)}>Reset content</button>
+        <RichTextEditor defaultValue={content} onSave={save} {...args} />
+      </Fragment>
+    );
+  },
 };
 
-export const ResetValue = Template.bind({});
+export const ResetValue = Template;
