@@ -85,7 +85,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
         return (
           <ToolbarButton
             id={style.id}
-            editorId={id}
+            editorId={props.id}
             key={`key-${style.label}`}
             active={active}
             label={style.label}

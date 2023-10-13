@@ -622,6 +622,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     handleAutocompleteClosed();
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   const handleKeyCommand = (command: DraftEditorCommand | string, editorState: EditorState): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -782,8 +783,8 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
   };
 
   const focusMedia = (block: ContentBlock) => {
-    const newSeletion = SelectionState.createEmpty(block.getKey());
-    const newEditorState = EditorState.forceSelection(editorStateRef.current!, newSeletion);
+    const newSelection = SelectionState.createEmpty(block.getKey());
+    const newEditorState = EditorState.forceSelection(editorStateRef.current!, newSelection);
     editorStateRef.current = newEditorState;
     setFocusMediaKey(block.getKey());
     setEditorState(newEditorState);
