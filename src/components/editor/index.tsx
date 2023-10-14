@@ -33,7 +33,7 @@ import {
 } from "draft-js";
 import { Toolbar } from "../toolbar";
 import { TCustomControl, TToolbarButtonSize, TToolbarControl } from "../toolbar/types";
-import { Link } from "../link";
+import { Link, findLinkEntities } from "../link";
 import { Media } from "../media";
 import { Blockquote } from "../blockquote";
 import { CodeBlock } from "../code-block";
@@ -163,13 +163,6 @@ const styleRenderMap: DraftStyleMap = {
 const autocompleteMinSearchCharCount = 2;
 const lineHeight = 26;
 const defaultInlineToolbarControls = ["bold", "italic", "underline", "clear"];
-
-const findLinkEntities = (contentBlock: any, callback: any, contentState: any) => {
-  contentBlock.findEntityRanges((character: any) => {
-    const entityKey = character.getEntity();
-    return entityKey !== null && contentState.getEntity(entityKey).getType() === "LINK";
-  }, callback);
-};
 
 const findDecoWithRegex = (regex: RegExp, contentBlock: any, callback: any) => {
   const text = contentBlock.getText();

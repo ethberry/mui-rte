@@ -1,8 +1,10 @@
 import { FC } from "react";
-import { Editor, EditorState, convertFromRaw, ContentBlock } from "draft-js";
+import { Editor, EditorState, convertFromRaw, ContentBlock, CompositeDecorator } from "draft-js";
 
 import { atomicBlockExists } from "../../utils";
 import { TCustomControl } from "../toolbar/types";
+import { Media } from "../media";
+import { Link, findLinkEntities } from "../link";
 
 export interface IRichTextDisplayProps {
   data: any;
@@ -12,7 +14,13 @@ export interface IRichTextDisplayProps {
 export const RichTextDisplay: FC<IRichTextDisplayProps> = props => {
   const { data, customControls = [] } = props;
 
-  const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(data)));
+  const decorator = new CompositeDecorator([
+    {
+      strategy: findLinkEntities,
+      component: Link,
+    },
+  ]);
+  const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(data)), decorator);
 
   const handleChange = () => {};
 
@@ -23,13 +31,21 @@ export const RichTextDisplay: FC<IRichTextDisplayProps> = props => {
       const entity = contentBlock.getEntityAt(0);
       if (entity) {
         const type = contentState.getEntity(entity).getType();
-        const block = atomicBlockExists(type.toLowerCase(), customControls);
-        if (block) {
+        if (type === "IMAGE") {
           return {
-            component: block.atomicComponent,
+            component: Media,
             editable: false,
             props: contentState.getEntity(contentBlock.getEntityAt(0)).getData(),
           };
+        } else {
+          const block = atomicBlockExists(type.toLowerCase(), customControls);
+          if (block) {
+            return {
+              component: block.atomicComponent,
+              editable: false,
+              props: contentState.getEntity(contentBlock.getEntityAt(0)).getData(),
+            };
+          }
         }
       }
     }
