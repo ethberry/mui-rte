@@ -20,6 +20,11 @@ export const RichTextDisplay: FC<IRichTextDisplayProps> = props => {
       component: Link,
     },
   ]);
+
+  if (!data) {
+    return null;
+  }
+
   const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(data)), decorator);
 
   const handleChange = () => {};
