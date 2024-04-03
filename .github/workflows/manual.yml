@@ -11,6 +11,37 @@ jobs:
       # BEGIN INSTALL
       - uses: actions/checkout@v4
 
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: ./.npmrc
+
+      - name: Authenticate NPM Registry & Configure Git User
+        run: |
+          echo "save-exact=true" > .npmrc
+          echo "package-lock=false" >> .npmrc
+          echo "legacy-peer-deps=true" >> .npmrc
+          git update-index --assume-unchanged .npmrc
+          echo "@gemunion:registry=https://registry.npmjs.org/" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+          echo "//registry.npmjs.org/:username=${NPM_USER}" >> .npmrc
+          echo "//registry.npmjs.org/:email=${NPM_EMAIL}" >> .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_USER: ${{ secrets.NPM_USER }}
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+
+      - name: Authenticate check via npm
+        run: npm whoami --registry=https://registry.npmjs.org/
+
+      - name: Publish by NPM to NPM
+        run: npm run publish:npm
+
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: ./.npmrc
+
       - name: Authenticate Registry & Configure Git User
         run: |
           echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
@@ -40,29 +71,6 @@ jobs:
         run: npm publish
         env:
           GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
-
-      - name: Remove File
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: ./.npmrc
-
-      - name: Authenticate NPM Registry & Configure Git User
-        run: |
-          echo "save-exact=true" > .npmrc
-          echo "package-lock=false" >> .npmrc
-          echo "legacy-peer-deps=true" >> .npmrc
-          git update-index --assume-unchanged .npmrc
-          echo "@gemunion:registry=https://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-          echo "//registry.npmjs.org/:username=${NPM_USER}" >> .npmrc
-          echo "//registry.npmjs.org/:email=${NPM_EMAIL}" >> .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_USER: ${{ secrets.NPM_USER }}
-          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
-
-      - name: Publish by NPM to NPM
-        run: npm run publish:npm
 
       - name: Git push
         run: git push --no-verify && git push --tags --no-verify
