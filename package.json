@@ -112,6 +112,7 @@
     "prebuild": "rimraf dist/",
     "prepare": "npm run build",
     "storybook": "storybook dev -p 6006",
+    "publish:npm": "npm publish --ignore-scripts --registry=https://registry.npmjs.org/",
     "test": "jest"
   },
   "types": "./dist/index.d.ts",
