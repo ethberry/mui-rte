@@ -46,11 +46,11 @@ jobs:
       - name: Version by NPM
         run: npm version patch -m "[Manual release] [skip ci] %s"
 
-      - uses: JS-DevTools/npm-publish@v3 NPM
+      - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
-      - uses: JS-DevTools/npm-publish@v3 GIT
+      - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           registry: "https://npm.pkg.github.com"
