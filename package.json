@@ -25,7 +25,7 @@
   "description": "Material-UI Rich Text Editor and Viewer",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
-    "@emotion/react": "11.13.0",
+    "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
     "@gemunion/cross-env": "0.0.4",
     "@gemunion/eslint-config": "4.0.6",
@@ -40,12 +40,12 @@
     "@storybook/preset-create-react-app": "8.2.9",
     "@storybook/react": "8.2.9",
     "@storybook/react-webpack5": "8.2.9",
-    "@testing-library/jest-dom": "6.4.8",
+    "@testing-library/jest-dom": "6.5.0",
     "@testing-library/react": "16.0.0",
     "@types/draft-js": "0.11.18",
     "@types/jest": "29.5.12",
     "@types/node": "20.16.1",
-    "@types/react": "18.3.3",
+    "@types/react": "18.3.4",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
@@ -72,10 +72,10 @@
     "react-scripts": "5.0.1",
     "rimraf": "5.0.10",
     "storybook": "8.2.9",
-    "ts-jest": "29.2.4",
+    "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
-    "webpack": "5.93.0"
+    "webpack": "5.94.0"
   },
   "engines": {
     "node": ">=12.13"
