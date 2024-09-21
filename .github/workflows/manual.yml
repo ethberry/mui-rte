@@ -11,32 +11,6 @@ jobs:
       # BEGIN INSTALL
       - uses: actions/checkout@v4
 
-      - name: Authenticate Registry & Configure Git User
-        run: |
-          echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN" >> .npmrc
-          echo "@gemunion:registry=https://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-          echo "//registry.npmjs.org/:username=${NPM_USER}" >> .npmrc
-          echo "//registry.npmjs.org/:email=${NPM_EMAIL}" >> .npmrc         
-          git update-index --assume-unchanged .npmrc
-          npx npm-cli-login -u $GITHUBUSER -p $GITHUBTOKEN -e $GITHUBEMAIL -r https://npm.pkg.github.com -s @gemunion --config-path="./"
-          git config --global user.name '@gemunion'
-          git config --global user.email $GITHUBEMAIL
-        env:
-          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
-          NPM_USER: ${{ secrets.NPM_USER }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
-          GITHUBUSER: ${{ secrets.GITHUBUSER }}
-          GITHUBEMAIL: ${{ secrets.GITHUBEMAIL }}
-
-      - name: Authenticate check via npm GIT
-        run: npm whoami --registry=https://npm.pkg.github.com/
-
-      - name: Authenticate check via npm GIT
-        run: npm whoami --registry=https://registry.npmjs.org/
-
       - name: Install Packages npm i
         run: npm i
 
@@ -46,15 +20,49 @@ jobs:
       - name: Version by NPM
         run: npm version patch -m "[Manual release] [skip ci] %s"
 
-      - uses: JS-DevTools/npm-publish@v3
-        with:
-          registry: "https://registry.npmjs.org"
-          token: ${{ secrets.NPM_TOKEN }}
+      - name: Authenticate Registry & Configure Git User
+        run: |
+          echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN" >> .npmrc
+          git update-index --assume-unchanged .npmrc
+          npx npm-cli-login -u $GITHUBUSER -p $GITHUBTOKEN -e $GITHUBEMAIL -r https://npm.pkg.github.com -s @gemunion --config-path="./"
+          git config --global user.name '@gemunion'
+          git config --global user.email $GITHUBEMAIL
+        env:
+          GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
+          GITHUBUSER: ${{ secrets.GITHUBUSER }}
+          GITHUBEMAIL: ${{ secrets.GITHUBEMAIL }}
+
+      - name: Authenticate check via npm GIT
+        run: npm whoami --registry=https://npm.pkg.github.com/
 
       - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           registry: "https://npm.pkg.github.com"
+          ignore-scripts: true
+
+      - name: Authenticate Registry & Configure Git User
+        run: |
+          echo "@gemunion:registry=https://registry.npmjs.org/" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+          echo "//registry.npmjs.org/:username=${NPM_USER}" >> .npmrc
+          echo "//registry.npmjs.org/:email=${NPM_EMAIL}" >> .npmrc         
+          git update-index --assume-unchanged .npmrc
+          git config --global user.name '@gemunion'
+          git config --global user.email $GITHUBEMAIL
+        env:
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+          NPM_USER: ${{ secrets.NPM_USER }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Authenticate check via npm GIT
+        run: npm whoami --registry=https://registry.npmjs.org/
+
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          registry: "https://registry.npmjs.org"
+          token: ${{ secrets.NPM_TOKEN }}
           ignore-scripts: true
 
       - name: Git push
