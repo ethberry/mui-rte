@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { List, ListItem, Paper } from "@mui/material";
+import { List, ListItemButton, Paper } from "@mui/material";
 
 import { useStyles } from "./styles";
 
@@ -36,14 +36,14 @@ export const Autocomplete: FC<IAutocompleteProps> = props => {
     >
       <List dense={true}>
         {items.map((item, index) => (
-          <ListItem
+          <ListItemButton
             key={index}
             className={classes.item}
             selected={index === selectedIndex}
             onClick={() => onClick(index)}
           >
             {item.content}
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
     </Paper>
