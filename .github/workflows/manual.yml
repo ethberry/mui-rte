@@ -17,9 +17,6 @@ jobs:
       - name: Build Packages
         run: npm run build
 
-      - name: Version by NPM
-        run: npm version patch -m "[Manual release] [skip ci] %s"
-
       - name: Authenticate Registry & Configure Git User
         run: |
           echo "@gemunion:registry=https://npm.pkg.github.com/" >> .npmrc
@@ -35,6 +32,9 @@ jobs:
 
       - name: Authenticate check via npm GIT
         run: npm whoami --registry=https://npm.pkg.github.com/
+
+      - name: Version by NPM
+        run: npm version patch -m "[Manual release] [skip ci] %s"
 
       - uses: JS-DevTools/npm-publish@v3
         with:
@@ -56,7 +56,7 @@ jobs:
           NPM_USER: ${{ secrets.NPM_USER }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Authenticate check via npm GIT
+      - name: Authenticate check via npm ТЗЬ
         run: npm whoami --registry=https://registry.npmjs.org/
 
       - uses: JS-DevTools/npm-publish@v3
