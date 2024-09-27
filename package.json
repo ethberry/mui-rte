@@ -27,7 +27,7 @@
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
-    "@gemunion/cross-env": "0.0.4",
+    "@gemunion/cross-env": "0.0.5",
     "@gemunion/eslint-config": "4.0.6",
     "@mui/icons-material": "6.1.1",
     "@mui/material": "6.1.1",
