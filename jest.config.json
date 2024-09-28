@@ -4,6 +4,6 @@
   "preset": "ts-jest",
   "rootDir": "src",
   "testEnvironment": "jsdom",
-  "testMatch": ["**/*.test.tsx"],
+  "testMatch": ["**/*.spec.tsx"],
   "verbose": true
 }

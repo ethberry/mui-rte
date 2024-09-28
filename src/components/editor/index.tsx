@@ -615,7 +615,6 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     handleAutocompleteClosed();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   const handleKeyCommand = (command: DraftEditorCommand | string, editorState: EditorState): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {

@@ -56,7 +56,7 @@ jobs:
           NPM_USER: ${{ secrets.NPM_USER }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Authenticate check via npm ТЗЬ
+      - name: Authenticate check via npm NPM
         run: npm whoami --registry=https://registry.npmjs.org/
 
       - uses: JS-DevTools/npm-publish@v3
