@@ -86,7 +86,7 @@
     "react-dom": "^18"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
@@ -101,5 +101,5 @@
     "test": "jest"
   },
   "types": "./dist/index.d.ts",
-  "version": "4.0.12"
+  "version": "4.0.13"
 }
