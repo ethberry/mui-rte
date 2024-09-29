@@ -1,4 +1,4 @@
 {
-  "extends": ["github>gemunion/renovate-config"],
+  "extends": ["github>ethberry/renovate-config"],
   "baseBranches": ["main"]
 }
