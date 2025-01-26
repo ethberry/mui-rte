@@ -6,7 +6,7 @@ import { useStyles } from "./styles";
 export type IAutocompleteItem = {
   keys: string[];
   value: any;
-  content: string | JSX.Element;
+  content: string | React.ReactNode;
 };
 
 interface IAutocompleteProps {

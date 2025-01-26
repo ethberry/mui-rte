@@ -177,6 +177,7 @@ const useEditorState = (props: IRichTextEditorProps) => {
   const decorators: DraftDecorator[] = [
     {
       strategy: findLinkEntities,
+      // @ts-ignore
       component: Link,
     },
   ];
@@ -186,6 +187,7 @@ const useEditorState = (props: IRichTextEditorProps) => {
         strategy: (contentBlock: any, callback: any) => {
           findDecoWithRegex(deco.regex, contentBlock, callback);
         },
+        // @ts-ignore
         component: deco.component,
       }),
     );

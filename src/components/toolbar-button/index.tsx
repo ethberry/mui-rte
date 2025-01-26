@@ -10,7 +10,7 @@ interface IToolbarButtonProps {
   style: string;
   type: string;
   active?: boolean;
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
   onClick?: any;
   inlineMode?: boolean;
   disabled?: boolean;

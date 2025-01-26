@@ -17,6 +17,7 @@ export const RichTextDisplay: FC<IRichTextDisplayProps> = props => {
   const decorator = new CompositeDecorator([
     {
       strategy: findLinkEntities,
+      // @ts-ignore
       component: Link,
     },
   ]);
