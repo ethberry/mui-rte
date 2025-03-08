@@ -28,7 +28,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@ethberry/cross-env": "0.0.5",
-    "@ethberry/eslint-config": "5.0.4",
+    "@ethberry/eslint-config": "5.0.5",
     "@mui/icons-material": "6.4.6",
     "@mui/material": "6.4.6",
     "@mui/styles": "6.4.6",
