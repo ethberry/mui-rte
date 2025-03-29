@@ -1,11 +1,17 @@
 import { FC, PropsWithChildren } from "react";
-
-import { useStyles } from "./styles";
+import { Box } from "@mui/material";
 
 export const CodeBlock: FC<PropsWithChildren> = props => {
   const { children } = props;
 
-  const classes = useStyles();
-
-  return <div className={classes.root}>{children}</div>;
+  return (
+    <Box
+      sx={theme => ({
+        backgroundColor: theme.palette.grey[200],
+        padding: theme.spacing(1, 2, 1, 2),
+      })}
+    >
+      {children}
+    </Box>
+  );
 };

@@ -1,5 +1,5 @@
 import { FC, Fragment, useState } from "react";
-import { Button, ButtonGroup, Grid, Popover, TextField } from "@mui/material";
+import { Box, Button, ButtonGroup, Grid, Popover, TextField } from "@mui/material";
 import {
   Check,
   Delete,
@@ -10,20 +10,19 @@ import {
   Movie,
 } from "@mui/icons-material";
 
-import { useStyles } from "./styles";
 import { TAnchor } from "../types";
 
 export type TAlignment = "left" | "center" | "right";
 
 export type TMediaType = "image" | "video";
 
-export type IUrlData = {
+export interface IUrlData {
   url?: string;
   width?: number;
   height?: number;
   alignment?: TAlignment;
   type?: TMediaType;
-};
+}
 
 interface IUrlPopoverStateProps {
   anchor?: TAnchor;
@@ -34,8 +33,6 @@ interface IUrlPopoverStateProps {
 
 export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
   const { data: propData, anchor, isMedia, onConfirm } = props;
-
-  const classes = useStyles();
 
   const [data, setData] = useState<IUrlData>(
     propData || {
@@ -72,24 +69,31 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
         horizontal: "left",
       }}
     >
-      <div className={classes.linkPopover}>
+      <Box
+        sx={theme => ({
+          padding: theme.spacing(2, 2, 2, 2),
+          maxWidth: 250,
+        })}
+      >
         <Grid container spacing={1}>
-          <Grid container item xs spacing={1}>
-            <Grid item xs={12}>
+          <Grid container size={{ xs: 12 }} spacing={1}>
+            <Grid size={{ xs: 12 }}>
               <TextField
-                className={classes.linkTextField}
+                style={{ width: "100%" }}
                 onChange={event => setData({ ...data, url: event.target.value })}
                 label="URL"
-                defaultValue={data && data.url}
+                defaultValue={data?.url}
                 autoFocus={true}
-                InputLabelProps={{
-                  shrink: true,
+                slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                 }}
               />
             </Grid>
             {isMedia ? (
               <Fragment>
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                   <ButtonGroup fullWidth>
                     <Button
                       color={!data.type || data.type === "image" ? "primary" : "inherit"}
@@ -107,7 +111,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     </Button>
                   </ButtonGroup>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     onChange={event => onSizeChange(event.target.value, "width")}
                     value={data.width || ""}
@@ -117,7 +121,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     onChange={event => onSizeChange(event.target.value, "height")}
                     value={data.height || ""}
@@ -127,7 +131,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                   <ButtonGroup fullWidth>
                     <Button
                       color={data.alignment === "left" ? "primary" : "inherit"}
@@ -155,8 +159,8 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
               </Fragment>
             ) : null}
           </Grid>
-          <Grid container item xs={12} direction="row" justifyContent="flex-end">
-            {data && data.url ? (
+          <Grid container size={{ xs: 12 }} direction="row" justifyContent="flex-end">
+            {data?.url ? (
               <Button onClick={() => onConfirm(isMedia, "")}>
                 <Delete />
               </Button>
@@ -166,7 +170,7 @@ export const UrlPopover: FC<IUrlPopoverStateProps> = props => {
             </Button>
           </Grid>
         </Grid>
-      </div>
+      </Box>
     </Popover>
   );
 };

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextDisplay, RichTextEditor, TCustomControl } from "../../src";
+import { RichTextDisplay, RichTextEditor, ICustomControl } from "../../src";
 
 export default {
   title: "Display",
@@ -23,7 +23,7 @@ const data = JSON.stringify({
   entityMap: {},
 });
 
-const customControls: Array<TCustomControl> = [];
+const customControls: Array<ICustomControl> = [];
 
 const Template: Story = { render: args => <RichTextDisplay {...args} data={data} customControls={customControls} /> };
 

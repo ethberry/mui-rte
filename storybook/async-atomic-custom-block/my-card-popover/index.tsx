@@ -3,15 +3,14 @@ import { Button, Grid, Popover, TextField } from "@mui/material";
 import { Close, Done } from "@mui/icons-material";
 
 import { TAnchor } from "../../../src";
-import { useStyles } from "./styles";
 
-type TMyCardData = {
+interface IMyCardData {
   searchTerm?: string;
-};
+}
 
 interface IMyCardPopoverProps {
   anchor: TAnchor;
-  onSubmit: (data: TMyCardData, insert: boolean) => void;
+  onSubmit: (data: IMyCardData, insert: boolean) => void;
 }
 
 interface IMyCardPopoverState {
@@ -22,13 +21,11 @@ interface IMyCardPopoverState {
 export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
   const { anchor, onSubmit } = props;
 
-  const classes = useStyles();
-
   const [state, setState] = useState<IMyCardPopoverState>({
     anchor: null,
     isCancelled: false,
   });
-  const [data, setData] = useState<TMyCardData>({});
+  const [data, setData] = useState<IMyCardData>({});
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setData({
@@ -62,13 +59,22 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
         horizontal: "left",
       }}
     >
-      <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={12}>
+      <Grid
+        container
+        spacing={1}
+        style={{
+          padding: 10,
+          maxWidth: 350,
+        }}
+      >
+        <Grid size={{ xs: 12 }}>
           <TextField
-            className={classes.textField}
+            style={{ width: "100%" }}
             onChange={handleChange}
-            InputLabelProps={{
-              shrink: true,
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
             }}
             autoFocus={true}
             label="Search term"
@@ -76,7 +82,7 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
             placeholder="Type anything here..."
           />
         </Grid>
-        <Grid item container xs={12} justifyContent="flex-end">
+        <Grid container size={{ xs: 12 }} justifyContent="flex-end">
           <Button
             onClick={() => {
               setState({

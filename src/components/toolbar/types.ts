@@ -16,21 +16,20 @@ export type TToolbarControl =
   | "save"
   | "media"
   | "strikethrough"
-  | "highlight"
-  | string;
+  | "highlight";
 
 export type TControlType = "inline" | "block" | "callback" | "atomic";
 
 export type TToolbarButtonSize = "small" | "medium";
 
-export type IToolbarComponentProps = {
+export interface IToolbarComponentProps {
   id: string;
   onMouseDown: (e: MouseEvent) => void;
   active: boolean;
   disabled: boolean;
-};
+}
 
-export type TCustomControl = {
+export interface ICustomControl {
   id?: string;
   name: string;
   icon?: React.ReactNode;
@@ -40,11 +39,11 @@ export type TCustomControl = {
   blockWrapper?: ReactElement;
   atomicComponent?: FC;
   onClick?: (editorState: EditorState, name: string, anchor: TAnchor) => EditorState | void;
-};
+}
 
-export type TStyleType = {
+export interface IStyleType {
   id?: string;
-  name: TToolbarControl | string;
+  name: TToolbarControl;
   label: string;
   style: string;
   icon?: React.ReactNode;
@@ -52,4 +51,4 @@ export type TStyleType = {
   type: TControlType;
   active?: boolean;
   clickFnName?: string;
-};
+}

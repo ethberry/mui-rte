@@ -4,13 +4,13 @@ import { EditorState } from "draft-js";
 import { getSelectionInfo } from "../../utils";
 import { ToolbarButton } from "../toolbar-button";
 import { STYLE_TYPES } from "./style-types";
-import { TCustomControl, TStyleType, TToolbarButtonSize, TToolbarControl } from "./types";
+import { ICustomControl, IStyleType, TToolbarButtonSize, TToolbarControl } from "./types";
 
 export interface IToolbarProps {
   id: string;
   editorState: EditorState;
   controls?: Array<TToolbarControl>;
-  customControls?: TCustomControl[];
+  customControls?: ICustomControl[];
   onClick: (style: string, type: string, id: string, inlineMode?: boolean) => void;
   inlineMode?: boolean;
   className?: string;
@@ -32,7 +32,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
     if (!controls) {
       return;
     }
-    const filteredControls: TStyleType[] = [];
+    const filteredControls: IStyleType[] = [];
     controls
       .filter((control, index) => controls.indexOf(control) >= index)
       .forEach(name => {
@@ -44,7 +44,7 @@ export const Toolbar: FC<IToolbarProps> = props => {
           if (customControl && customControl.type !== "atomic" && (customControl.icon || customControl.component)) {
             filteredControls.push({
               id: customControl.id || customControl.name + "Id",
-              name: customControl.name,
+              name: customControl.name as TToolbarControl,
               label: customControl.name,
               style: customControl.name.toUpperCase(),
               icon: customControl.icon,

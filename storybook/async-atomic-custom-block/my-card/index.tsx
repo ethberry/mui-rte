@@ -1,15 +1,11 @@
 import { FC } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 
-import { useStyles } from "./styles";
-
 export const MyCard: FC<any> = props => {
   const { blockProps } = props;
 
-  const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
+    <Card style={{ maxWidth: "345px" }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {blockProps.title}

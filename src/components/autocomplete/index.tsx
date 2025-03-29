@@ -1,13 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { List, ListItemButton, Paper } from "@mui/material";
 
-import { useStyles } from "./styles";
-
-export type IAutocompleteItem = {
+export interface IAutocompleteItem {
   keys: string[];
   value: any;
-  content: string | React.ReactNode;
-};
+  content: string | ReactNode;
+}
 
 interface IAutocompleteProps {
   items: IAutocompleteItem[];
@@ -24,12 +22,12 @@ export const Autocomplete: FC<IAutocompleteProps> = props => {
     return null;
   }
 
-  const classes = useStyles();
-
   return (
     <Paper
-      className={classes.container}
       style={{
+        minWidth: "200px",
+        position: "absolute",
+        zIndex: 10,
         top,
         left,
       }}
@@ -38,7 +36,9 @@ export const Autocomplete: FC<IAutocompleteProps> = props => {
         {items.map((item, index) => (
           <ListItemButton
             key={index}
-            className={classes.item}
+            style={{
+              cursor: "pointer",
+            }}
             selected={index === selectedIndex}
             onClick={() => onClick(index)}
           >

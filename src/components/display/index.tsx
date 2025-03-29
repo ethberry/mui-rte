@@ -2,13 +2,13 @@ import { FC } from "react";
 import { Editor, EditorState, convertFromRaw, ContentBlock, CompositeDecorator } from "draft-js";
 
 import { atomicBlockExists } from "../../utils";
-import { TCustomControl } from "../toolbar/types";
+import { ICustomControl } from "../toolbar/types";
 import { Media } from "../media";
 import { Link, findLinkEntities } from "../link";
 
 export interface IRichTextDisplayProps {
   data: any;
-  customControls?: Array<TCustomControl>;
+  customControls?: Array<ICustomControl>;
 }
 
 export const RichTextDisplay: FC<IRichTextDisplayProps> = props => {

@@ -2,12 +2,8 @@ import { FC } from "react";
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from "@mui/material";
 import { Favorite, Share } from "@mui/icons-material";
 
-import { useStyles } from "./styles";
-
 export const MyCard: FC<any> = props => {
   const { blockProps } = props;
-
-  const classes = useStyles(props);
 
   const handleLiked = () => {
     alert("Favorited");
@@ -18,17 +14,21 @@ export const MyCard: FC<any> = props => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card style={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar aria-label="name" className={classes.avatar}>
-            {blockProps.name && blockProps.name.substring(0, 1)}
+          <Avatar aria-label="name" style={{ backgroundColor: "tomato" }}>
+            {blockProps.name?.substring(0, 1)}
           </Avatar>
         }
         title={blockProps.title}
-        subheader={blockProps.date && blockProps.date.toLocaleDateString()}
+        subheader={blockProps.date?.toLocaleDateString()}
       />
-      <CardMedia className={classes.media} image={blockProps.image || "default"} title={blockProps.title} />
+      <CardMedia
+        style={{ height: 0, paddingTop: "56.25%" }}
+        image={blockProps.image || "default"}
+        title={blockProps.title}
+      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {blockProps.text}

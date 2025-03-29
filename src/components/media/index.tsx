@@ -1,8 +1,6 @@
 import { FC } from "react";
-import { clsx } from "clsx";
+import { type Theme, Box } from "@mui/material";
 import { ContentBlock, ContentState } from "draft-js";
-
-import { useStyles } from "./styles";
 
 interface IMediaProps {
   block: ContentBlock;
@@ -17,14 +15,17 @@ export const Media: FC<IMediaProps> = props => {
   const { url, width, height, alignment, type } = contentState.getEntity(block.getEntityAt(0)).getData();
   const { onClick, readOnly, focusKey } = blockProps;
 
-  const classes = useStyles();
-
   const htmlTag = () => {
     const componentProps = {
       src: url,
-      className: clsx(classes.root, {
-        [classes.editable]: !readOnly,
-        [classes.focused]: !readOnly && focusKey === block.getKey(),
+      sx: (theme: Theme) => ({
+        margin: "5px 0 1px",
+        outline: "none",
+        cursor: !readOnly ? "pointer" : "auto",
+        "&:hover": {
+          boxShadow: !readOnly ? theme.shadows[3] : "none",
+        },
+        boxShadow: !readOnly && focusKey === block.getKey() ? theme.shadows[3] : "none",
       }),
       width,
       height: type === "video" ? "auto" : height,
@@ -37,23 +38,21 @@ export const Media: FC<IMediaProps> = props => {
     };
 
     if (!type || type === "image") {
-      return <img {...componentProps} />;
+      return <Box component="img" {...componentProps} />;
     }
     if (type === "video") {
-      return <video {...componentProps} autoPlay={false} controls />;
+      return <Box component="video" {...componentProps} autoPlay={false} controls />;
     }
     return null;
   };
 
   return (
-    <div
-      className={clsx({
-        [classes.centered]: alignment === "center",
-        [classes.leftAligned]: alignment === "left",
-        [classes.rightAligned]: alignment === "right",
-      })}
+    <Box
+      sx={{
+        textAlign: alignment,
+      }}
     >
       {htmlTag()}
-    </div>
+    </Box>
   );
 };

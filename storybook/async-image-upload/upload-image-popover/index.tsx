@@ -3,32 +3,29 @@ import { Button, Grid, IconButton, Popover, TextField } from "@mui/material";
 import { AttachFile, Close, Done } from "@mui/icons-material";
 
 import { TAnchor } from "../../../src";
-import { useStyles } from "./styles";
 
 interface IUploadImagePopoverProps {
   anchor: TAnchor;
-  onSubmit: (data: TUploadImageData, insert: boolean) => void;
+  onSubmit: (data: IUploadImageData, insert: boolean) => void;
 }
 
-type TUploadImagePopoverState = {
+interface IUploadImagePopoverState {
   anchor: TAnchor;
   isCancelled: boolean;
-};
+}
 
-type TUploadImageData = {
+interface IUploadImageData {
   file?: File;
-};
+}
 
 export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
   const { anchor, onSubmit } = props;
 
-  const classes = useStyles();
-
-  const [state, setState] = useState<TUploadImagePopoverState>({
+  const [state, setState] = useState<IUploadImagePopoverState>({
     anchor: null,
     isCancelled: false,
   });
-  const [data, setData] = useState<TUploadImageData>({});
+  const [data, setData] = useState<IUploadImageData>({});
 
   useEffect(() => {
     setState({
@@ -58,19 +55,26 @@ export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
         horizontal: "left",
       }}
     >
-      <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={10}>
+      <Grid
+        container
+        spacing={1}
+        style={{
+          padding: 10,
+          maxWidth: 350,
+        }}
+      >
+        <Grid size={{ xs: 10 }}>
           <TextField
-            className={classes.textField}
+            style={{ width: "100%" }}
             disabled
             value={data.file?.name || ""}
             placeholder="Click icon to attach image"
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid size={{ xs: 10 }}>
           <input
             accept="image/*"
-            className={classes.input}
+            style={{ display: "none" }}
             id="contained-button-file"
             type="file"
             onChange={event => {
@@ -86,7 +90,7 @@ export const UploadImagePopover: FC<IUploadImagePopoverProps> = props => {
             </IconButton>
           </label>
         </Grid>
-        <Grid item container xs={12} justifyContent="flex-end">
+        <Grid container size={{ xs: 12 }} justifyContent="flex-end">
           <Button
             onClick={() => {
               setState({

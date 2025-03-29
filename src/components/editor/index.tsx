@@ -9,8 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { clsx } from "clsx";
-import { Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import {
   AtomicBlockUtils,
   CompositeDecorator,
@@ -32,8 +31,8 @@ import {
   SelectionState,
 } from "draft-js";
 import { Toolbar } from "../toolbar";
-import { TCustomControl, TToolbarButtonSize, TToolbarControl } from "../toolbar/types";
-import { Link, findLinkEntities } from "../link";
+import { ICustomControl, TToolbarButtonSize, TToolbarControl } from "../toolbar/types";
+import { findLinkEntities, Link } from "../link";
 import { Media } from "../media";
 import { Blockquote } from "../blockquote";
 import { CodeBlock } from "../code-block";
@@ -48,30 +47,29 @@ import {
   isGreaterThan,
   removeBlockFromMap,
 } from "../../utils";
-import { useStyles } from "./styles";
 
-export type TDecorator = {
+export interface IDecorator {
   component: FC<any>;
   regex: RegExp;
-};
+}
 
-export type TAutocompleteStrategy = {
+export interface IAutocompleteStrategy {
   triggerChar: string;
   items: IAutocompleteItem[];
   insertSpaceAfter?: boolean;
   atomicBlockName?: string;
-};
+}
 
-export type TAutocomplete = {
-  strategies: TAutocompleteStrategy[];
+export interface IAutocomplete {
+  strategies: IAutocompleteStrategy[];
   suggestLimit?: number;
-};
+}
 
-export type TAsyncAtomicBlockResponse = {
+export interface IAsyncAtomicBlockResponse {
   data: any;
-};
+}
 
-export type IRichTextEditorRef = {
+export interface IRichTextEditorRef {
   focus: () => void;
   save: () => void;
   /**
@@ -79,20 +77,20 @@ export type IRichTextEditorRef = {
    */
   insertAtomicBlock: (name: string, data: any) => void;
   insertAtomicBlockSync: (name: string, data: any) => void;
-  insertAtomicBlockAsync: (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => void;
-};
+  insertAtomicBlockAsync: (name: string, promise: Promise<IAsyncAtomicBlockResponse>, placeholder?: string) => void;
+}
 
-export type TDraftEditorProps = {
+export interface IDraftEditorProps {
   spellCheck?: boolean;
   stripPastedStyles?: boolean;
   handleDroppedFiles?: (selectionState: SelectionState, files: Blob[]) => DraftHandleValue;
-};
+}
 
-export type TKeyCommand = {
+export interface IKeyCommand {
   key: number;
   name: string;
   callback: (state: EditorState) => EditorState;
-};
+}
 
 export interface IRichTextEditorProps {
   id?: string;
@@ -106,39 +104,39 @@ export interface IRichTextEditorProps {
   inheritFontSize?: boolean;
   error?: boolean;
   controls?: Array<TToolbarControl>;
-  customControls?: TCustomControl[];
-  decorators?: TDecorator[];
+  customControls?: ICustomControl[];
+  decorators?: IDecorator[];
   toolbar?: boolean;
   toolbarButtonSize?: TToolbarButtonSize;
   inlineToolbar?: boolean;
   inlineToolbarControls?: Array<TToolbarControl>;
-  draftEditorProps?: TDraftEditorProps;
-  keyCommands?: TKeyCommand[];
+  draftEditorProps?: IDraftEditorProps;
+  keyCommands?: IKeyCommand[];
   maxLength?: number;
-  autocomplete?: TAutocomplete;
+  autocomplete?: IAutocomplete;
   onSave?: (data: string) => void;
   onChange?: (state: EditorState) => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }
 
-type TMUIRichTextEditorState = {
+interface IPosition {
+  top: number;
+  left: number;
+}
+
+interface IMUIRichTextEditorState {
   anchorUrlPopover?: HTMLElement;
   urlKey?: string;
   urlData?: IUrlData;
   urlIsMedia?: boolean;
-  toolbarPosition?: TPosition;
-};
+  toolbarPosition?: IPosition;
+}
 
-type TStateOffset = {
+interface IStateOffset {
   start: number;
   end: number;
-};
-
-type TPosition = {
-  top: number;
-  left: number;
-};
+}
 
 const blockRenderMap = {
   blockquote: {
@@ -162,7 +160,7 @@ const styleRenderMap: DraftStyleMap = {
 
 const autocompleteMinSearchCharCount = 2;
 const lineHeight = 26;
-const defaultInlineToolbarControls = ["bold", "italic", "underline", "clear"];
+const defaultInlineToolbarControls = ["bold", "italic", "underline", "clear"] as Array<TToolbarControl>;
 
 const findDecoWithRegex = (regex: RegExp, contentBlock: any, callback: any) => {
   const text = contentBlock.getText();
@@ -224,9 +222,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     draftEditorProps,
   } = props;
 
-  const classes = useStyles();
-
-  const [state, setState] = useState<TMUIRichTextEditorState>({});
+  const [state, setState] = useState<IMUIRichTextEditorState>({});
   const [focus, setFocus] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -235,17 +231,17 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
 
   const editorRef = useRef<Editor>(null);
   const editorId = id;
-  const toolbarPositionRef = useRef<TPosition | undefined>(undefined);
+  const toolbarPositionRef = useRef<IPosition | undefined>(undefined);
   const editorStateRef = useRef<EditorState | null>(editorState);
-  const autocompleteRef = useRef<TAutocompleteStrategy | undefined>(undefined);
+  const autocompleteRef = useRef<IAutocompleteStrategy | undefined>(undefined);
   const autocompleteSelectionStateRef = useRef<SelectionState | undefined>(undefined);
-  const autocompletePositionRef = useRef<TPosition | undefined>(undefined);
+  const autocompletePositionRef = useRef<IPosition | undefined>(undefined);
   const autocompleteLimit = autocomplete ? autocomplete.suggestLimit || 5 : 5;
   const isFirstFocus = useRef(true);
   const customBlockMapRef = useRef<DraftBlockRenderMap | undefined>(undefined);
   const customStyleMapRef = useRef<DraftStyleMap | undefined>(undefined);
   const isFocusedWithMouse = useRef(false);
-  const selectionRef = useRef<TStateOffset>({
+  const selectionRef = useRef<IStateOffset>({
     start: 0,
     end: 0,
   });
@@ -256,7 +252,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     autocompleteSelectionStateRef.current = undefined;
   };
 
-  const findAutocompleteStrategy = (chars: string): TAutocompleteStrategy | undefined => {
+  const findAutocompleteStrategy = (chars: string): IAutocompleteStrategy | undefined => {
     if (!autocomplete) {
       return undefined;
     }
@@ -536,7 +532,6 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     let replaceEditorState = editorState;
     const data = {
       url,
-      className: classes.anchorLink,
     };
 
     if (urlKey) {
@@ -617,6 +612,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     handleAutocompleteClosed();
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   const handleKeyCommand = (command: DraftEditorCommand | string, editorState: EditorState): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -646,7 +642,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
 
   const handleInsertAtomicBlockAsync = (
     name: string,
-    promise: Promise<TAsyncAtomicBlockResponse>,
+    promise: Promise<IAsyncAtomicBlockResponse>,
     placeholder?: string,
   ) => {
     const selection = insertAsyncAtomicBlockPlaceholder(name, placeholder);
@@ -988,23 +984,30 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
 
   const renderToolbar = toolbar === undefined || toolbar;
   const editable = readOnly === undefined || !readOnly;
-  let className = "";
+  let hidePlaceholder = false;
   let placeholder: ReactElement | null = null;
   if (!focus) {
     const contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
       placeholder = (
-        <div
-          className={clsx(classes.editorContainer, classes.placeHolder, {
-            [classes.error]: error,
+        <Box
+          sx={theme => ({
+            margin: theme.spacing(1),
+            cursor: "text",
+            width: "100%",
+            padding: theme.spacing(0, 0, 1, 0),
+            color: theme.palette.grey[600],
+            position: "relative",
+            outline: "none",
+            borderBottom: error ? "2px solid red" : "",
           })}
           tabIndex={0}
           onFocus={handlePlaceholderFocus}
         >
           {label || ""}
-        </div>
+        </Box>
       );
-      className = classes.hidePlaceholder;
+      hidePlaceholder = true;
     }
   }
 
@@ -1050,17 +1053,23 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     insertAtomicBlockSync: (name: string, data: any) => {
       handleInsertAtomicBlockSync(name, data);
     },
-    insertAtomicBlockAsync: (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => {
+    insertAtomicBlockAsync: (name: string, promise: Promise<IAsyncAtomicBlockResponse>, placeholder?: string) => {
       handleInsertAtomicBlockAsync(name, promise, placeholder);
     },
   }));
 
   return (
-    <div id={`${editorId}-root`} className={classes.root}>
-      <div
+    <Box id={`${editorId}-root`}>
+      <Box
         id={`${editorId}-container`}
-        className={clsx(classes.container, {
-          [classes.inheritFontSize]: inheritFontSize,
+        sx={theme => ({
+          margin: theme.spacing(1, 0, 0, 0),
+          position: "relative",
+          fontFamily: theme.typography.body1.fontFamily,
+          "& figure": {
+            margin: 0,
+          },
+          fontSize: inheritFontSize ? "inherit" : theme.typography.body1.fontSize,
         })}
       >
         {autocomplete && autocompletePositionRef.current ? (
@@ -1074,8 +1083,11 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
         ) : null}
         {inlineToolbar && editable && state.toolbarPosition ? (
           <Paper
-            className={classes.inlineToolbar}
             style={{
+              maxWidth: "180px",
+              position: "absolute",
+              padding: "5px",
+              zIndex: 10,
               top: state.toolbarPosition.top,
               left: state.toolbarPosition.left,
             }}
@@ -1098,19 +1110,22 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
             onClick={handleToolbarClick}
             controls={controls}
             customControls={customControls}
-            className={classes.toolbar}
             disabled={!editable}
             size={toolbarButtonSize}
             isActive={focus}
           />
         ) : null}
         {placeholder}
-        <div id={`${editorId}-editor`} className={classes.editor}>
-          <div
+        <Box id={`${editorId}-editor`}>
+          <Box
             id={`${editorId}-editor-container`}
-            className={clsx(className, classes.editorContainer, {
-              [classes.editorReadOnly]: !editable,
-              [classes.error]: error,
+            sx={theme => ({
+              margin: theme.spacing(1),
+              cursor: "text",
+              width: "100%",
+              padding: theme.spacing(0, 0, 1, 0),
+              borderBottom: !editable ? "none" : error ? "2px solid red" : "",
+              display: hidePlaceholder ? "none" : "block",
             })}
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
@@ -1132,8 +1147,8 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
               ref={editorRef}
               {...draftEditorProps}
             />
-          </div>
-        </div>
+          </Box>
+        </Box>
         {state.anchorUrlPopover ? (
           <UrlPopover
             data={state.urlData}
@@ -1142,7 +1157,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
             isMedia={state.urlIsMedia}
           />
         ) : null}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 });

@@ -1,11 +1,18 @@
 import { FC, PropsWithChildren } from "react";
-
-import { useStyles } from "./styles";
+import { Box } from "@mui/material";
 
 export const Blockquote: FC<PropsWithChildren> = props => {
   const { children } = props;
 
-  const classes = useStyles();
-
-  return <div className={classes.root}>{children}</div>;
+  return (
+    <Box
+      sx={theme => ({
+        fontStyle: "italic",
+        color: theme.palette.grey[800],
+        borderLeft: `4px solid ${theme.palette.grey.A100}`,
+      })}
+    >
+      {children}
+    </Box>
+  );
 };

@@ -4,34 +4,33 @@ import { Button, Grid, Popover, TextField } from "@mui/material";
 import { Close, Done } from "@mui/icons-material";
 
 import { TAnchor } from "../../../src";
-import { useStyles } from "./styles";
 
-type TMyCardData = {
+interface IMyCardData {
   title?: string;
   name?: string;
   date?: Date;
   text?: string;
   image?: string;
-};
+}
 
 interface IMyCardPopoverProps {
   anchor: TAnchor;
-  onSubmit: (data: TMyCardData, insert: boolean) => void;
+  onSubmit: (data: IMyCardData, insert: boolean) => void;
 }
 
-type IMyCardPopoverState = {
+interface IMyCardPopoverState {
   anchor: TAnchor;
   isCancelled: boolean;
-};
+}
 
 export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
   const { anchor, onSubmit } = props;
-  const classes = useStyles();
+
   const [state, setState] = useState<IMyCardPopoverState>({
     anchor: null,
     isCancelled: false,
   });
-  const [data, setData] = useState<TMyCardData>({});
+  const [data, setData] = useState<IMyCardData>({});
 
   useEffect(() => {
     setState({
@@ -51,7 +50,9 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
   };
 
   const textFieldProps = {
-    className: classes.textField,
+    style: {
+      width: "100%",
+    },
     onChange: handleChange,
     InputLabelProps: {
       shrink: true,
@@ -76,20 +77,27 @@ export const MyCardPopover: FC<IMyCardPopoverProps> = props => {
         horizontal: "left",
       }}
     >
-      <Grid container spacing={1} className={classes.root}>
-        <Grid item xs={6}>
+      <Grid
+        container
+        spacing={1}
+        style={{
+          padding: 10,
+          maxWidth: 350,
+        }}
+      >
+        <Grid size={{ xs: 6 }}>
           <TextField {...textFieldProps} autoFocus={true} label="Title" name="title" />
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{ xs: 6 }}>
           <TextField {...textFieldProps} label="Name" name="name" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField {...textFieldProps} label="Text" name="text" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField {...textFieldProps} label="Image URL" name="image" />
         </Grid>
-        <Grid item container xs={12} justifyContent="flex-end">
+        <Grid container size={{ xs: 12 }} justifyContent="flex-end">
           <Button
             onClick={() => {
               setState({

@@ -1,11 +1,11 @@
 import { FC, Fragment } from "react";
 import { Avatar, ListItemAvatar, ListItemText } from "@mui/material";
 
-type IStaff = {
+interface IStaff {
   job: string;
   name: string;
   backgroundColor: string;
-};
+}
 
 export const Staff: FC<IStaff> = props => {
   const { backgroundColor, name, job } = props;

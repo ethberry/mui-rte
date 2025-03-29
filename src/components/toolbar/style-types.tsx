@@ -17,9 +17,9 @@ import {
   Undo,
 } from "@mui/icons-material";
 
-import { TStyleType } from "./types";
+import { IStyleType } from "./types";
 
-export const STYLE_TYPES: TStyleType[] = [
+export const STYLE_TYPES: IStyleType[] = [
   {
     label: "H2",
     name: "title",

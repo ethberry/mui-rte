@@ -9,20 +9,20 @@ import {
   DraftStyleMap,
   DraftInlineStyle,
 } from "draft-js";
-import { TCustomControl } from "./components/toolbar/types";
+import { ICustomControl } from "./components/toolbar/types";
 
-export type TSelectionInfo = {
+export interface ISelectionInfo {
   inlineStyle: DraftInlineStyle;
   blockType: DraftBlockType;
   entityType: string;
   linkKey: string;
   block: ContentBlock;
-};
+}
 
 /**
  * Get the current selection details
  */
-export const getSelectionInfo = (editorState: EditorState): TSelectionInfo => {
+export const getSelectionInfo = (editorState: EditorState): ISelectionInfo => {
   const selection = editorState.getSelection();
   const startOffset = selection.getStartOffset();
   const currentContent = editorState.getCurrentContent();
@@ -65,7 +65,7 @@ export const removeBlockFromMap = (editorState: EditorState, block: ContentBlock
   }) as ContentState;
 };
 
-export const atomicBlockExists = (name: string, controls: TCustomControl[]): TCustomControl | undefined => {
+export const atomicBlockExists = (name: string, controls: ICustomControl[]): ICustomControl | undefined => {
   if (!controls.length) {
     return;
   }

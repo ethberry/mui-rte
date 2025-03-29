@@ -4,6 +4,6 @@ export type { IToolbarProps } from "./components/toolbar";
 export { Toolbar } from "./components/toolbar";
 export type { IRichTextDisplayProps } from "./components/display";
 export { RichTextDisplay } from "./components/display";
-export type { TToolbarControl, TCustomControl } from "./components/toolbar/types";
+export type { TToolbarControl, ICustomControl } from "./components/toolbar/types";
 export type { TAnchor } from "./components/types";
 export { atomicBlockExists } from "./utils";
