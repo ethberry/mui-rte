@@ -29,8 +29,8 @@
     "@emotion/styled": "11.14.0",
     "@ethberry/cross-env": "0.0.5",
     "@ethberry/eslint-config": "5.0.5",
-    "@mui/icons-material": "6.4.9",
-    "@mui/material": "6.4.9",
+    "@mui/icons-material": "7.0.1",
+    "@mui/material": "7.0.1",
     "@mui/styles": "6.4.8",
     "@storybook/addon-essentials": "8.6.11",
     "@storybook/addon-interactions": "8.6.11",
@@ -79,8 +79,8 @@
   "main": "./dist/index.js",
   "name": "@ethberry/mui-rte",
   "peerDependencies": {
-    "@mui/icons-material": "^6.0.0",
-    "@mui/material": "^6.0.0",
+    "@mui/icons-material": "^6.0.0 || ^7.0.0",
+    "@mui/material": "^6.0.0 || ^7.0.0",
     "@mui/styles": "^6.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
