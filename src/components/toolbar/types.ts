@@ -16,7 +16,9 @@ export type TToolbarControl =
   | "save"
   | "media"
   | "strikethrough"
-  | "highlight";
+  | "highlight"
+  | "undo"
+  | "redo";
 
 export type TControlType = "inline" | "block" | "callback" | "atomic";
 
