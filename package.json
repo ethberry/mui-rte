@@ -43,7 +43,7 @@
     "@testing-library/react": "16.3.0",
     "@types/draft-js": "0.11.18",
     "@types/jest": "30.0.0",
-    "@types/node": "22.16.0",
+    "@types/node": "22.16.3",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "husky": "9.1.7",
@@ -59,7 +59,7 @@
     "ts-jest": "29.4.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
-    "webpack": "5.99.9"
+    "webpack": "5.100.1"
   },
   "engines": {
     "node": ">=20"
