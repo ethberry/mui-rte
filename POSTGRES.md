@@ -34,7 +34,7 @@ const queryBuilder = this.contentEntityRepository.createQueryBuilder("content");
 
 const sub = this.contentEntityRepository.createQueryBuilder("content");
 sub.select(raw("id, json_array_elements(content.description->'blocks') as blocks"));
-queryBuilder.leftJoinLateral(sub, "elements", { "xxx.id": raw("elements.id") });
+queryBuilder.leftJoinLateral(sub, "elements", { "content.id": raw("elements.id") });
 queryBuilder.andWhere(raw("elements.blocks->>'text' ILIKE '%' || ? || '%'", [query]));
 queryBuilder.orWhere(raw("content.title ILIKE '%' || ? || '%'", [query]));
 
