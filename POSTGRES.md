@@ -32,7 +32,7 @@ const queryBuilder = this.xxxEntityRepository.createQueryBuilder("xxx");
 
 if (query) {
   const sub = this.xxxEntityRepository.createQueryBuilder("xxx");
-  sub.select(raw("id, json_array_elements(artwork.description->'blocks') as blocks"));
+  sub.select(raw("id, json_array_elements(xxx.description->'blocks') as blocks"));
   queryBuilder.leftJoinLateral(sub, "elements", { "xxx.id": raw("elements.id") });
   queryBuilder.andWhere(raw("elements.blocks->>'text' ILIKE '%' || ? || '%'", [query]));
   queryBuilder.orWhere(raw("xxx.title ILIKE '%' || ? || '%'", [query]));
