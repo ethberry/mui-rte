@@ -28,39 +28,39 @@ MikroOrm
 ```ts
 import { raw } from "@mikro-orm/core";
 
-const queryBuilder = this.xxxEntityRepository.createQueryBuilder("xxx");
+const query = "hello";
 
-if (query) {
-  const sub = this.xxxEntityRepository.createQueryBuilder("xxx");
-  sub.select(raw("id, json_array_elements(xxx.description->'blocks') as blocks"));
-  queryBuilder.leftJoinLateral(sub, "elements", { "xxx.id": raw("elements.id") });
-  queryBuilder.andWhere(raw("elements.blocks->>'text' ILIKE '%' || ? || '%'", [query]));
-  queryBuilder.orWhere(raw("xxx.title ILIKE '%' || ? || '%'", [query]));
-}
+const queryBuilder = this.contentEntityRepository.createQueryBuilder("content");
+
+const sub = this.contentEntityRepository.createQueryBuilder("content");
+sub.select(raw("id, json_array_elements(content.description->'blocks') as blocks"));
+queryBuilder.leftJoinLateral(sub, "elements", { "xxx.id": raw("elements.id") });
+queryBuilder.andWhere(raw("elements.blocks->>'text' ILIKE '%' || ? || '%'", [query]));
+queryBuilder.orWhere(raw("content.title ILIKE '%' || ? || '%'", [query]));
 
 queryBuilder.getResultAndCount();
 ```
 
 TypeOrm
 ```ts
-const queryBuilder = this.xxxEntityRepository.createQueryBuilder("xxx");
+const query = "hello";
 
-if (query) {
-  queryBuilder.leftJoin(
-    qb => {
-      qb.getQuery = () => `LATERAL json_array_elements(template.description->'blocks')`;
-      return qb;
-    },
-    "blocks",
-    "TRUE",
-  );
-  queryBuilder.andWhere(
-    new Brackets(qb => {
-      qb.where("xxx.title ILIKE '%' || :title || '%'", { title: query });
-      qb.orWhere("blocks->>'text' ILIKE '%' || :description || '%'", { description: query });
-    }),
-  );
-}
+const queryBuilder = this.contentEntityRepository.createQueryBuilder("content");
+
+queryBuilder.leftJoin(
+  qb => {
+    qb.getQuery = () => `LATERAL json_array_elements(content.description->'blocks')`;
+    return qb;
+  },
+  "blocks",
+  "TRUE",
+);
+queryBuilder.andWhere(
+  new Brackets(qb => {
+    qb.where("content.title ILIKE '%' || :title || '%'", { title: query });
+    qb.orWhere("blocks->>'text' ILIKE '%' || :description || '%'", { description: query });
+ }),
+);
 
 queryBuilder.getManyAndCount();
 ```
