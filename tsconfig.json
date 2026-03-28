@@ -4,7 +4,11 @@
     "declaration": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "lib": ["es5", "es6", "dom"],
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -23,5 +27,9 @@
     "strictPropertyInitialization": false,
     "target": "es2017"
   },
-  "exclude": ["node_modules", "./dist", "./storybook"]
+  "exclude": [
+    "node_modules",
+    "./dist",
+    "./storybook"
+  ]
 }
