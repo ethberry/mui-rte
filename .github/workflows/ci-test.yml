@@ -1,23 +1,31 @@
-name: CI Test on Demand
+# CI runs on Node.js 24.x
+name: CI Test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
         with:
-          ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v6
-        name: Use Node.js ${{ matrix.node-version }}
-        with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "24.x"
 
       - name: Authenticate Registry & Configure Git User
         run: |
@@ -34,8 +42,12 @@ jobs:
 
       - name: Authenticate check via npm
         run: npm whoami --registry=https://npm.pkg.github.com/
+
       - name: Install Packages
         run: npm i
-      - name: Npm run test
-        run: npm run test
 
+      - name: Build Packages
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
