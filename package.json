@@ -100,5 +100,5 @@
     "test": "jest"
   },
   "types": "./dist/index.d.ts",
-  "version": "7.0.0"
+  "version": "7.0.1"
 }
