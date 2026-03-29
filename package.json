@@ -84,6 +84,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
+  "private": false,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -100,5 +101,5 @@
     "test": "jest"
   },
   "types": "./dist/index.d.ts",
-  "version": "7.0.1"
+  "version": "7.0.2"
 }
