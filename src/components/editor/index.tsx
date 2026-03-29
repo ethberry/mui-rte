@@ -69,7 +69,7 @@ export interface IAsyncAtomicBlockResponse {
   data: any;
 }
 
-export interface IRichTextEditorRef {
+export interface IMuiDraftJsEditorRef {
   focus: () => void;
   save: () => void;
   /**
@@ -92,7 +92,7 @@ export interface IKeyCommand {
   callback: (state: EditorState) => EditorState;
 }
 
-export interface IRichTextEditorProps {
+export interface IMuiDraftJsEditorProps {
   id?: string;
   /**
    * @deprecated Use `defaultValue` instead.
@@ -125,7 +125,7 @@ interface IPosition {
   left: number;
 }
 
-interface IMUIRichTextEditorState {
+interface IMuiDraftJsEditorState {
   anchorUrlPopover?: HTMLElement;
   urlKey?: string;
   urlData?: IUrlData;
@@ -171,7 +171,7 @@ const findDecoWithRegex = (regex: RegExp, contentBlock: any, callback: any) => {
   }
 };
 
-const useEditorState = (props: IRichTextEditorProps) => {
+const useEditorState = (props: IMuiDraftJsEditorProps) => {
   const decorators: DraftDecorator[] = [
     {
       strategy: findLinkEntities,
@@ -197,13 +197,13 @@ const useEditorState = (props: IRichTextEditorProps) => {
     : EditorState.createEmpty(decorator);
 };
 
-export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProps>((props, ref) => {
+export const MuiDraftJsEditor = forwardRef<IMuiDraftJsEditorRef, IMuiDraftJsEditorProps>((props, ref) => {
   const {
     readOnly,
     controls,
     customControls = [],
     keyCommands,
-    id = "mui-rte",
+    id = "mui-draft-js",
     autocomplete,
     onFocus,
     onBlur,
@@ -222,7 +222,7 @@ export const RichTextEditor = forwardRef<IRichTextEditorRef, IRichTextEditorProp
     draftEditorProps,
   } = props;
 
-  const [state, setState] = useState<IMUIRichTextEditorState>({});
+  const [state, setState] = useState<IMuiDraftJsEditorState>({});
   const [focus, setFocus] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIndex, setSelectedIndex] = useState<number>(0);

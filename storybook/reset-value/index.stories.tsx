@@ -1,13 +1,13 @@
 import { Fragment, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 
 export default {
   title: "Reset Value",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const contentOne = JSON.stringify({
   blocks: [
@@ -164,7 +164,7 @@ const Template: Story = {
     return (
       <Fragment>
         <button onClick={() => setContent(contentTwo)}>Reset content</button>
-        <RichTextEditor defaultValue={content} onSave={save} {...args} />
+        <MuiDraftJsEditor defaultValue={content} onSave={save} {...args} />
       </Fragment>
     );
   },

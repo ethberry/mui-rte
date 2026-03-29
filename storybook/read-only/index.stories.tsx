@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 
 export default {
   title: "Read Only",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const content = JSON.stringify({
   blocks: [
@@ -96,7 +96,7 @@ const content = JSON.stringify({
 
 const Template: Story = {
   render: args => {
-    return <RichTextEditor defaultValue={content} readOnly={true} {...args} />;
+    return <MuiDraftJsEditor defaultValue={content} readOnly={true} {...args} />;
   },
 };
 

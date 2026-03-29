@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextDisplay, RichTextEditor, ICustomControl } from "../../src";
+import { RichTextDisplay, MuiDraftJsEditor, ICustomControl } from "../../src";
 
 export default {
   title: "Display",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const data = JSON.stringify({
   blocks: [

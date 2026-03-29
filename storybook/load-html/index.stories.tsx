@@ -1,13 +1,13 @@
 import { convertFromHTML, ContentState, convertToRaw } from "draft-js";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 
 export default {
   title: "Load HTML",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const sampleMarkup =
   '<b>Bold text</b>, <i>Italic text</i><br/ ><br />Other text<br /><br /><a href="http://myurl.com">Some link</a>';
@@ -21,7 +21,7 @@ const save = (data: string) => {
 
 const Template: Story = {
   render: args => {
-    return <RichTextEditor defaultValue={content} onSave={save} {...args} />;
+    return <MuiDraftJsEditor defaultValue={content} onSave={save} {...args} />;
   },
 };
 

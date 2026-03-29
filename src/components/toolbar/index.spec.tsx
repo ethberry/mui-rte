@@ -15,7 +15,7 @@ describe("<EditorControls />", () => {
 
   it("should render all controls", async () => {
     const { findAllByTestId } = render(
-      <Toolbar id="mui-rte" editorState={editorState} onClick={() => {}} isActive={true} />,
+      <Toolbar id="mui-draft-js" editorState={editorState} onClick={() => {}} isActive={true} />,
     );
     const result = await findAllByTestId("toolbar-button");
     expect(result).toHaveLength(16);
@@ -25,7 +25,7 @@ describe("<EditorControls />", () => {
     const controls: TToolbarControl[] = ["save", "code", "underline"];
     const expected = ["Save", "Code Block", "Underline"];
     const { findAllByTestId } = render(
-      <Toolbar id="mui-rte" editorState={editorState} controls={controls} onClick={() => {}} isActive={true} />,
+      <Toolbar id="mui-draft-js" editorState={editorState} controls={controls} onClick={() => {}} isActive={true} />,
     );
     const result = await findAllByTestId("toolbar-button");
 
@@ -35,7 +35,7 @@ describe("<EditorControls />", () => {
 
   it("should not render controls", () => {
     const { queryAllByTestId } = render(
-      <Toolbar id="mui-rte" editorState={editorState} controls={[]} onClick={() => {}} isActive={true} />,
+      <Toolbar id="mui-draft-js" editorState={editorState} controls={[]} onClick={() => {}} isActive={true} />,
     );
     const result = queryAllByTestId("toolbar-button");
     expect(result).toHaveLength(0);

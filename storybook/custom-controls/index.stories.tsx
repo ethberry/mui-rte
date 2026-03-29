@@ -2,7 +2,7 @@ import { EditorState } from "draft-js";
 import { InvertColors } from "@mui/icons-material";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 import { MyCallbackComponent } from "./callback-component";
 import { ClearComponent } from "./clear-component";
 import { MyBlockComponent } from "./block-component";
@@ -10,9 +10,9 @@ import { MyBlock } from "./block";
 
 export default {
   title: "Custom Controls",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -21,7 +21,7 @@ const save = (data: string) => {
 const Template: Story = {
   render: args => {
     return (
-      <RichTextEditor
+      <MuiDraftJsEditor
         label="Type something here..."
         controls={["title", "bold", "my-block", "my-style", "clear", "my-callback", "clear-callback", "save"]}
         customControls={[

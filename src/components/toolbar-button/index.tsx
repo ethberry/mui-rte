@@ -20,7 +20,7 @@ interface IToolbarButtonProps {
 
 export const ToolbarButton: FC<IToolbarButtonProps> = props => {
   const {
-    editorId = "mui-rte",
+    editorId = "mui-draft-js",
     inlineMode,
     onClick,
     id,

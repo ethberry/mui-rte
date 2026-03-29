@@ -1,13 +1,13 @@
 import { EditorState, convertToRaw } from "draft-js";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 
 export default {
   title: "Events",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -30,17 +30,17 @@ const change = (state: EditorState) => {
 };
 
 const focus = () => {
-  console.info("Focus on MUIRichTextEditor");
+  console.info("Focus on MuiDraftJsEditor");
 };
 
 const blur = () => {
-  console.info("Blur, focus lost on MUIRichTextEditor");
+  console.info("Blur, focus lost on MuiDraftJsEditor");
 };
 
 const Template: Story = {
   render: args => {
     return (
-      <RichTextEditor
+      <MuiDraftJsEditor
         label="Open the console to see the event callback as you type..."
         onChange={change}
         onFocus={focus}

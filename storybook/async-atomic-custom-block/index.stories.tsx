@@ -2,16 +2,16 @@ import { Fragment, useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Update } from "@mui/icons-material";
 
-import { IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
+import { IMuiDraftJsEditorRef, MuiDraftJsEditor, TAnchor } from "../../src";
 import { MyCard } from "./my-card";
 import { MyCardPopover } from "./my-card-popover";
 import { downloadData } from "./utils";
 
 export default {
   title: "Async Atomic Custom Block",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -19,7 +19,7 @@ const save = (data: string) => {
 
 const Template: Story = {
   render: args => {
-    const ref = useRef<IRichTextEditorRef>(null);
+    const ref = useRef<IMuiDraftJsEditorRef>(null);
     const [anchor, setAnchor] = useState<TAnchor>(null);
     return (
       <Fragment>
@@ -32,7 +32,7 @@ const Template: Story = {
             setAnchor(null);
           }}
         />
-        <RichTextEditor
+        <MuiDraftJsEditor
           label="Press the last icon in the toolbar to insert an async atomic custom block..."
           ref={ref}
           controls={["title", "bold", "underline", "save", "add-card"]}

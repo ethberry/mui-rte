@@ -5,7 +5,7 @@
     "url": "https://ethberry.io/"
   },
   "bugs": {
-    "url": "https://github.com/ethberry/mui-rte/issues"
+    "url": "https://github.com/ethberry/mui-draft-js/issues"
   },
   "contributors": [
     {
@@ -21,7 +21,7 @@
   "dependencies": {
     "draft-js": "0.11.7"
   },
-  "description": "Material-UI Rich Text Editor and Viewer",
+  "description": "Material UI Draft.js editor and viewer",
   "devDependencies": {
     "ajv": "8.18.0",
     "@emotion/react": "11.14.0",
@@ -64,7 +64,7 @@
   "engines": {
     "node": ">=20"
   },
-  "homepage": "https://github.com/ethberry/mui-rte#readme",
+  "homepage": "https://github.com/ethberry/mui-draft-js#readme",
   "keywords": [
     "material-ui",
     "mui",
@@ -76,7 +76,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "name": "@ethberry/mui-rte",
+  "name": "@ethberry/mui-draft-js",
   "peerDependencies": {
     "@mui/icons-material": "^7.0.0",
     "@mui/material": "^7.0.0",
@@ -89,7 +89,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethberry/mui-rte.git"
+    "url": "git+https://github.com/ethberry/mui-draft-js.git"
   },
   "scripts": {
     "build": "tsc",
@@ -100,5 +100,5 @@
     "test": "jest"
   },
   "types": "./dist/index.d.ts",
-  "version": "6.0.3"
+  "version": "7.0.0"
 }

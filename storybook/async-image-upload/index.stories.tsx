@@ -2,15 +2,15 @@ import { Fragment, useRef, useState } from "react";
 import { Backup } from "@mui/icons-material";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { IRichTextEditorRef, RichTextEditor, TAnchor } from "../../src";
+import { IMuiDraftJsEditorRef, MuiDraftJsEditor, TAnchor } from "../../src";
 import { uploadImage } from "./utils";
 import { UploadImagePopover } from "./upload-image-popover";
 
 export default {
   title: "Async Image Upload",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -18,7 +18,7 @@ const save = (data: string) => {
 
 const Template: Story = {
   render: args => {
-    const ref = useRef<IRichTextEditorRef>(null);
+    const ref = useRef<IMuiDraftJsEditorRef>(null);
     const [anchor, setAnchor] = useState<TAnchor>(null);
 
     const handleFileUpload = (file: File) => {
@@ -36,7 +36,7 @@ const Template: Story = {
             setAnchor(null);
           }}
         />
-        <RichTextEditor
+        <MuiDraftJsEditor
           label="Drop a file inside the editor or press the last icon in the toolbar to simulate uploading an image...."
           ref={ref}
           controls={["title", "bold", "underline", "media", "save", "upload-image"]}

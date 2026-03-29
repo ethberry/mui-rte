@@ -2,13 +2,13 @@ import { KeyboardEvent } from "react";
 import { EditorState, RichUtils } from "draft-js";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor } from "../../src";
+import { MuiDraftJsEditor } from "../../src";
 
 export default {
   title: "Key Bindings",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -17,7 +17,7 @@ const save = (data: string) => {
 const Template: Story = {
   render: args => {
     return (
-      <RichTextEditor
+      <MuiDraftJsEditor
         label="Press CMD + C to clear the editor or CMD + K to add 'italic' style to the selection..."
         controls={["title", "italic", "numberList", "bulletList", "save"]}
         keyCommands={[

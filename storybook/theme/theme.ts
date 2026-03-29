@@ -10,7 +10,7 @@ export const defaultTheme = createTheme({
 
 Object.assign(defaultTheme, {
   overrides: {
-    MUIRichTextEditor: {
+    MuiDraftJsEditor: {
       root: {
         backgroundColor: "#ebebeb",
       },

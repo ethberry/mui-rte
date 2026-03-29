@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RichTextEditor, IRichTextEditorRef } from "../../src";
+import { MuiDraftJsEditor, IMuiDraftJsEditorRef } from "../../src";
 
 export default {
   title: "Ref Save",
-} as Meta<typeof RichTextEditor>;
+} as Meta<typeof MuiDraftJsEditor>;
 
-type Story = StoryObj<typeof RichTextEditor>;
+type Story = StoryObj<typeof MuiDraftJsEditor>;
 
 const save = (data: string) => {
   console.info(data);
@@ -15,7 +15,7 @@ const save = (data: string) => {
 
 const Template: Story = {
   render: args => {
-    const ref = useRef<IRichTextEditorRef>(null);
+    const ref = useRef<IMuiDraftJsEditorRef>(null);
 
     const handleClick = () => {
       ref.current?.save();
@@ -46,7 +46,7 @@ const Template: Story = {
         >
           Focus
         </button>
-        <RichTextEditor
+        <MuiDraftJsEditor
           label="Type something here..."
           ref={ref}
           controls={["bold", "italic", "underline", "quote", "clear"]}
